@@ -24,8 +24,7 @@
         android:fontFamily="@font/poppins_regular"
         android:paddingStart="65dp"
         android:paddingEnd="65dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur
- adipiscing elit. Nam posuere elit vitae turpis"
+        android:text=""
         android:textAlignment="center"
         android:textColor="@color/lightGray"
         android:textSize="16sp" />

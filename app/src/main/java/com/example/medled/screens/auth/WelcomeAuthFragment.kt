@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.medled.R
 import com.example.medled.adapters.view_pager.WelcomeViewPagerAdapter
+import com.example.medled.models.PagerCard
 import kotlinx.android.synthetic.main.fragment_welcome_auth.*
 
 class WelcomeAuthFragment : Fragment() {
@@ -34,7 +35,7 @@ class WelcomeAuthFragment : Fragment() {
 
     //-------------------------------| setup view pager set view and margin between pager dots |------------------------------
     private fun setupViewPager(){
-        welcomeAuthViewPager.adapter = WelcomeViewPagerAdapter(requireContext())
+        welcomeAuthViewPager.adapter = WelcomeViewPagerAdapter(requireContext(),getPagerMessagesList())
         welcomePagerDots.setupWithViewPager(welcomeAuthViewPager)
         for (i in 0 until welcomePagerDots.tabCount) {
             val tab = (welcomePagerDots.getChildAt(0) as ViewGroup).getChildAt(i)
@@ -61,6 +62,17 @@ class WelcomeAuthFragment : Fragment() {
         super.onDestroy()
         handler.removeCallbacksAndMessages(null)
     }
+
+
+    //--------------------| Get titles and messages to viewpager |------------------------
+    private fun getPagerMessagesList():ArrayList<PagerCard>{
+        val listOfCards = ArrayList<PagerCard>()
+        listOfCards.add(PagerCard("Let's get started","some messages here, some messages here, some messages here, some messages here"))
+        listOfCards.add(PagerCard("Let's get started2","some messages here, some messages here, some messages here, some messages here2"))
+        listOfCards.add( PagerCard("Let's get started3","some messages here, some messages here, some messages here, some messages here3"))
+        return listOfCards
+    }
+    //====================================================================================
 
 
 }
