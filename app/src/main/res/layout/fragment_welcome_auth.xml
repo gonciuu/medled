@@ -19,7 +19,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/welcomeAuthViewPager"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:layout_marginTop="20dp" />
 
     <com.google.android.material.tabs.TabLayout
@@ -49,9 +49,9 @@
             android:layout_marginBottom="15dp"
             android:background="@drawable/rounded50_bg"
             android:backgroundTint="@color/colorPrimary"
-            android:fontFamily="@font/poppins_regular"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:paddingTop="17dp"
+            android:paddingBottom="17dp"
             android:text="Create account"
             android:textAllCaps="false"
             android:textColor="#ffffff"
@@ -65,9 +65,9 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/rounded50_bg"
             android:backgroundTint="#2200B5AD"
-            android:fontFamily="@font/poppins_regular"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:paddingTop="17dp"
+            android:paddingBottom="17dp"
             android:text="Login"
             android:textAllCaps="false"
             android:textSize="17sp" />
