@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/medled_nav_graph"
-    app:startDestination="@id/addMedicineFragment">
+    app:startDestination="@id/allDoctorsFragment">
 
 
     <fragment
@@ -44,5 +44,10 @@
         android:name="com.example.medled.screens.medicines.AddMedicineFragment"
         android:label="fragment_add_medicine"
         tools:layout="@layout/fragment_add_medicine" />
+    <fragment
+        android:id="@+id/allDoctorsFragment"
+        android:name="com.example.medled.screens.doctor.AllDoctorsFragment"
+        android:label="AllDoctorsFragment"
+        tools:layout="@layout/fragment_all_doctors"/>
 
 </navigation>
