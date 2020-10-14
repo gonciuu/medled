@@ -24,6 +24,6 @@ class MedicinesFragment : Fragment() {
     }
     private fun setupRecyclerView(){
         medicinesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter(requireContext())
+        medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter()
     }
 }
