@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="120dp"
+    android:layout_width="110dp"
     android:background="@drawable/rounded10_bg"
     android:padding="10dp"
     android:backgroundTint="#f7f7f7"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
-    android:layout_height="120dp"
+    android:layout_height="110dp"
     android:orientation="vertical">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp"
+        android:padding="7dp"
         android:src="@drawable/ic_time"
         android:layout_weight="1"/>
 
@@ -22,7 +22,7 @@
         android:layout_weight="2"
         android:text="Solution"
         android:gravity="center"
-        android:textSize="16sp"
+        android:textSize="15sp"
         android:textColor="@color/black"
         android:fontFamily="@font/open_sans_semibold"/>
 

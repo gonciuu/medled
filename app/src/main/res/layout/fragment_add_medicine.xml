@@ -91,6 +91,31 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6"
             tools:ignore="LabelFor" />
 
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_stroke_bg"
+            android:fontFamily="@font/open_sans_regular"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingStart="15dp"
+            android:paddingTop="17dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="17dp"
+            android:text="20 March 2020"
+            android:textColor="@color/darkGray"
+            android:textCursorDrawable="@null"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView11"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            tools:ignore="LabelFor" />
+
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
@@ -127,7 +152,7 @@
             android:background="@drawable/rounded_stroke_bg"
             android:fontFamily="@font/open_sans_regular"
             android:importantForAutofill="no"
-            android:inputType="text"
+            android:inputType="number"
             android:paddingStart="15dp"
             android:paddingTop="17dp"
             android:paddingEnd="15dp"
@@ -211,6 +236,7 @@
             app:layout_constraintVertical_bias="0.5"
             app:tint="@color/white" />
 
+
         <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
@@ -223,7 +249,6 @@
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/editText3" />
-
 
 
         <SeekBar
@@ -251,6 +276,7 @@
             android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
@@ -264,15 +290,68 @@
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Start date"
+            android:textColor="@color/gray"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/medicineFormRecyclerView" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/medicineFormRecyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="15dp"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/circle"
+            android:backgroundTint="@color/colorPrimary"
+            android:padding="10dp"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toTopOf="@+id/editText5"
+            app:layout_constraintBottom_toBottomOf="@+id/editText5"
+            app:tint="@color/white" />
+
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded10_bg"
+            android:backgroundTint="@color/colorPrimary"
+            android:fontFamily="@font/open_sans_semibold"
+            android:paddingTop="17dp"
+            android:layout_marginBottom="30dp"
+            android:paddingBottom="17dp"
+            android:text="Done"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/editText5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
