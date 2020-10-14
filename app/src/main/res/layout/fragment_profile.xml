@@ -102,9 +102,9 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:background="@drawable/rounded10_bg"
-                android:backgroundTint="#673AB7"
+                android:backgroundTint="#17E500"
                 android:padding="7dp"
-                android:src="@drawable/ic_profile"
+                android:src="@drawable/ic_flower"
                 app:tint="@color/white" />
 
 
@@ -151,9 +151,9 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:background="@drawable/rounded10_bg"
-                android:backgroundTint="#673AB7"
+                android:backgroundTint="#FF00AA"
                 android:padding="7dp"
-                android:src="@drawable/ic_profile"
+                android:src="@drawable/ic_face"
                 app:tint="@color/white" />
 
 
@@ -200,9 +200,9 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:background="@drawable/rounded10_bg"
-                android:backgroundTint="#673AB7"
-                android:padding="7dp"
-                android:src="@drawable/ic_profile"
+                android:backgroundTint="#FF0000"
+                android:padding="8dp"
+                android:src="@drawable/ic_doctors"
                 app:tint="@color/white" />
 
 
@@ -249,9 +249,9 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:background="@drawable/rounded10_bg"
-                android:backgroundTint="#673AB7"
-                android:padding="7dp"
-                android:src="@drawable/ic_profile"
+                android:backgroundTint="@color/colorPrimary"
+                android:padding="10dp"
+                android:src="@drawable/ic_lock"
                 app:tint="@color/white" />
 
 
@@ -298,9 +298,9 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:background="@drawable/rounded10_bg"
-                android:backgroundTint="#673AB7"
-                android:padding="7dp"
-                android:src="@drawable/ic_profile"
+                android:backgroundTint="#FFB300"
+                android:padding="8dp"
+                android:src="@drawable/ic_logout"
                 app:tint="@color/white" />
 
 

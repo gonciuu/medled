@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/event_note/baseline_event_note_24.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/lock/baseline_lock_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,7 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_calendar" />
+                            <entry key="outputName" value="ic_lock" />
                             <entry key="sourceFile" value="C:\Users\ideapad\Desktop\Programowanie\kotlin-aplikacje\Myself Projects\medled" />
                           </map>
                         </option>
