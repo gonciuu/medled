@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/medled_nav_graph"
-    app:startDestination="@id/testFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
-        android:id="@+id/testFragment"
+        android:id="@+id/welcomeAuthFragment"
         android:name="com.example.medled.screens.auth.WelcomeAuthFragment"
-        android:label="fragment_test"
+        android:label="fragment_welcome_auth"
         tools:layout="@layout/fragment_welcome_auth" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.medled.screens.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" />
 </navigation>
