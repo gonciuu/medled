@@ -103,6 +103,7 @@
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
+
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
@@ -120,9 +121,9 @@
             android:id="@+id/editText3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/rounded_stroke_bg"
-            android:layout_marginStart="8dp"
             android:fontFamily="@font/open_sans_regular"
             android:importantForAutofill="no"
             android:inputType="text"
@@ -131,12 +132,11 @@
             android:paddingEnd="15dp"
             android:paddingBottom="17dp"
             android:textColor="@color/darkGray"
-            app:layout_constraintHorizontal_weight="1"
-
             android:textCursorDrawable="@null"
             android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@+id/autoCompleteTextView"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/textView8"
             tools:ignore="LabelFor" />
@@ -144,9 +144,8 @@
         <EditText
             android:id="@+id/editText4"
             android:layout_width="0dp"
-            app:layout_constraintHorizontal_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/rounded_stroke_bg"
             android:fontFamily="@font/open_sans_regular"
@@ -163,6 +162,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/autoCompleteTextView"
             app:layout_constraintEnd_toStartOf="@+id/imageView10"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@+id/autoCompleteTextView"
             app:layout_constraintTop_toTopOf="@+id/autoCompleteTextView"
             app:layout_constraintVertical_bias="1.0"
@@ -173,8 +173,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
-            app:layout_constraintHorizontal_weight="0.9"
-
             android:background="@drawable/rounded_stroke_bg"
             android:drawableEnd="@drawable/ic_more"
             android:fontFamily="@font/open_sans_regular"
@@ -190,6 +188,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/editText3"
             app:layout_constraintEnd_toStartOf="@+id/editText4"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="0.9"
             app:layout_constraintStart_toEndOf="@+id/editText3"
             app:layout_constraintTop_toTopOf="@+id/editText3"
             app:layout_constraintVertical_bias="1.0" />
@@ -198,7 +197,7 @@
             android:id="@+id/imageView10"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="12dp"
             android:background="@drawable/circle"
             android:backgroundTint="@color/colorPrimary"
             android:padding="10dp"
@@ -211,6 +210,57 @@
             app:layout_constraintVertical_bias="0.5"
             app:tint="@color/white" />
 
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Duration"
+            android:textColor="@color/gray"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Medicine form"
+            android:textColor="@color/gray"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="10"
+            android:progress="3"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="4 weeks"
+            android:textColor="@color/darkGray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
