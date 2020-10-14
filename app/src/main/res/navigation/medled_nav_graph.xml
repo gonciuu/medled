@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/medled_nav_graph"
-    app:startDestination="@id/welcomeAuthFragment">
+    app:startDestination="@id/medicinesFragment">
 
 
     <fragment
@@ -34,5 +34,10 @@
         android:name="com.example.medled.screens.auth.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/medicinesFragment"
+        android:name="com.example.medled.screens.medicines.MedicinesFragment"
+        android:label="MedicinesFragment"
+        tools:layout="@layout/fragment_medicines"/>
 
 </navigation>
