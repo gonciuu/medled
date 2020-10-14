@@ -38,14 +38,13 @@
                 android:layout_height="40dp"
                 android:layout_gravity="start"
                 android:layout_marginEnd="48dp"
-
                 android:contentDescription="notification_icon"
-                android:gravity="center"
-                android:src="@drawable/doctor_avatar_1"
+                android:src="@drawable/ic_notification"
+                app:tint="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.4" />
+                app:layout_constraintVertical_bias="1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
