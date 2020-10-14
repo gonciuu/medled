@@ -1,6 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:background="#ff0000"
-    android:layout_marginBottom="20dp"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rounded10_bg"
+    android:backgroundTint="#f7f7f7"
+    android:layout_marginTop="10dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
+    android:layout_marginBottom="10dp"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_gravity="center"
+        android:src="@drawable/doctor_avatar_1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dr. Wilson"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:fontFamily="@font/open_sans_semibold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pulmanonologist"
+            android:textColor="@color/gray"
+            android:textSize="15sp"
+            android:fontFamily="@font/open_sans_regular"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_star"
+                app:tint="@color/yellow"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:text="4.3"
+                android:textColor="@color/darkGray"
+                android:textSize="15sp"
+                android:fontFamily="@font/open_sans_semibold"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_time"
+                android:layout_gravity="end"
+                app:tint="@color/colorPrimary"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="10:00-13:00"
+                android:textColor="@color/darkGray"
+                android:layout_marginEnd="20dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/open_sans_semibold"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
