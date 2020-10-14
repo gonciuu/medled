@@ -110,7 +110,7 @@
     <Button
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded5_bg"
+        android:background="@drawable/rounded10_bg"
         android:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="40dp"
