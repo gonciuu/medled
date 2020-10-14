@@ -5,4 +5,8 @@
     <string name="medicines">Medicines</string>
     <string name="doctors">Doctors</string>
     <string name="profile">Profile</string>
+    <string name="email_adress">Email Adress</string>
+    <string name="full_name">Full Name</string>
+    <string name="password">Password</string>
+    <string name="are_you">Are you?</string>
 </resources>

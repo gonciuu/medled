@@ -5,12 +5,14 @@
     android:id="@+id/medled_nav_graph"
     app:startDestination="@id/welcomeFragment">
 
+
     <fragment
         android:id="@+id/welcomeAuthFragment"
         android:name="com.example.medled.screens.auth.WelcomeAuthFragment"
         android:label="fragment_welcome_auth"
         tools:layout="@layout/fragment_welcome_auth" />
     <fragment
+
 
         android:id="@+id/welcomeFragment"
         android:name="com.example.medled.screens.WelcomeFragment"
@@ -21,5 +23,16 @@
         android:name="com.example.medled.screens.profile.ChooseAvatarFragment"
         android:label="fragment_choose_avatar"
         tools:layout="@layout/fragment_choose_avatar" />
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.medled.screens.auth.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.medled.screens.auth.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" />
 
 </navigation>
