@@ -11,8 +11,15 @@
         android:label="fragment_welcome_auth"
         tools:layout="@layout/fragment_welcome_auth" />
     <fragment
+
         android:id="@+id/welcomeFragment"
         android:name="com.example.medled.screens.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" />
+    <fragment
+        android:id="@+id/chooseAvatarFragment"
+        android:name="com.example.medled.screens.profile.ChooseAvatarFragment"
+        android:label="fragment_choose_avatar"
+        tools:layout="@layout/fragment_choose_avatar" />
+
 </navigation>
