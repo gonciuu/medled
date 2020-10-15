@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
@@ -24,6 +25,7 @@ class AddMedicineFragment : Fragment() {
 
         setupNavigation()
         setupRecyclerView()
+        onSeekbarChanged()
     }
 
     private fun setupNavigation() =  addMedicineBackButton.setOnClickListener {
@@ -34,5 +36,17 @@ class AddMedicineFragment : Fragment() {
         medicineFormRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
         medicineFormRecyclerView.adapter = MedicineFormsRecyclerViewAdapter()
     }
+
+    //-------------------------------| set count of weeks on seekbar changed |-----------------------------
+    private fun onSeekbarChanged(){
+        durationSeekbar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                durationText.text = "$p1 weeks"
+            }
+            override fun onStartTrackingTouch(p0: SeekBar?) {}
+            override fun onStopTrackingTouch(p0: SeekBar?) {}
+        })
+    }
+    //======================================================================================================
 
 }

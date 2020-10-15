@@ -251,13 +251,14 @@
 
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/durationSeekbar"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:progressDrawable="@drawable/seekbar_path"
             android:max="10"
+            android:min="1"
             android:thumb="@drawable/seekbar_thumb"
             android:progress="3"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -266,17 +267,17 @@
 
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/durationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/open_sans_semibold"
-            android:text="4 weeks"
+            android:text="3 weeks"
             android:textColor="@color/darkGray"
             android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+            app:layout_constraintTop_toBottomOf="@+id/durationSeekbar" />
 
         <TextView
             android:id="@+id/textView13"
@@ -289,7 +290,7 @@
             android:textColor="@color/gray"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/durationText" />
 
         <TextView
             android:id="@+id/textView12"
