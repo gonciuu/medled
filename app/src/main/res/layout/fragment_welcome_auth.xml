@@ -42,6 +42,7 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/welcomeAuthRegisterButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -58,6 +59,7 @@
             android:textSize="17sp" />
 
         <Button
+            android:id="@+id/welcomeAuthLoginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"

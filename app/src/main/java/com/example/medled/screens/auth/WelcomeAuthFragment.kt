@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.medled.R
 import com.example.medled.adapters.view_pager.WelcomeViewPagerAdapter
 import com.example.medled.models.PagerCard
@@ -19,6 +20,16 @@ class WelcomeAuthFragment : Fragment() {
     private var handler : Handler = Handler(Looper.getMainLooper())
     //===========================
 
+    //-------------------------| Pager auto scroll |--------------------------------
+    private var changeViewPagerItem : Runnable = object : Runnable {
+        override fun run() {
+            viewPagerItemPosition = if(viewPagerItemPosition>=welcomeAuthViewPager.childCount) 0
+            else welcomeAuthViewPager.currentItem + 1
+            welcomeAuthViewPager.setCurrentItem(viewPagerItemPosition,true)
+            handler.postDelayed(this,2000)
+        }
+    }
+    //===============================================================================
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_welcome_auth, container, false)
@@ -28,6 +39,7 @@ class WelcomeAuthFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupViewPager()
+        setupNavigation()
         handler.postDelayed(changeViewPagerItem,2000)
     }
 
@@ -46,21 +58,10 @@ class WelcomeAuthFragment : Fragment() {
     }
     //==========================================================================================================================
 
-    //-------------------------| Pager auto scroll |--------------------------------
-    private var changeViewPagerItem : Runnable = object : Runnable {
-        override fun run() {
-            viewPagerItemPosition = if(viewPagerItemPosition>=welcomeAuthViewPager.childCount) 0
-            else welcomeAuthViewPager.currentItem + 1
-            welcomeAuthViewPager.setCurrentItem(viewPagerItemPosition,true)
-            handler.postDelayed(this,2000)
-        }
-    }
-    //===============================================================================
 
-
-    override fun onDestroy() {
-        super.onDestroy()
-        handler.removeCallbacksAndMessages(null)
+    override fun onStop() {
+        super.onStop()
+        handler.removeCallbacks(changeViewPagerItem)
     }
 
 
@@ -73,6 +74,18 @@ class WelcomeAuthFragment : Fragment() {
         return listOfCards
     }
     //====================================================================================
+
+
+    //--------------------------| Go to login/register destination |--------------------------
+    private fun setupNavigation(){
+        welcomeAuthRegisterButton.setOnClickListener {
+            findNavController().navigate(R.id.action_welcomeAuthFragment_to_registerFragment)
+        }
+        welcomeAuthLoginButton.setOnClickListener {
+            findNavController().navigate(R.id.action_welcomeAuthFragment_to_loginFragment)
+        }
+    }
+    //=========================================================================================
 
 
 }
