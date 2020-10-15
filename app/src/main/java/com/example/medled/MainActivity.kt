@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.medled.authentication.Authentication
 import com.example.medled.view_models.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -14,6 +15,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        bottom_nav.setupWithNavController(findNavController(R.id.nav_host_fragment))
         handleUserAuthStateChanged()
         setBottomNavigationVisibility()
     }
@@ -49,6 +52,8 @@ class MainActivity : AppCompatActivity() {
     //=====================================================================================================
 
 
+    //-----------------------------| Show or hide bottom bar based on current destination in navigation component |-------------------------------
+
     private fun setBottomNavigationVisibility() {
         val mainViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
@@ -61,4 +66,6 @@ class MainActivity : AppCompatActivity() {
             else mainViewModel.hideBottomNavigation()
         }
     }
+
+    //=============================================================================================================================================
 }

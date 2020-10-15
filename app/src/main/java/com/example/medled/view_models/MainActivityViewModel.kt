@@ -11,7 +11,7 @@ class MainActivityViewModel: ViewModel() {
     val bottomNavVisibility : LiveData<Int> get() = isBottomNavVisible
 
     init {
-        showBottomNavigation()
+        hideBottomNavigation()
     }
 
     //--------show bottom bar-----------
