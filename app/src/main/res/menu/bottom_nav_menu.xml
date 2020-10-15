@@ -8,7 +8,7 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/doctorsFragment"
+        android:id="@+id/allDoctorsFragment"
         android:icon="@drawable/ic_doctors"
         android:title="@string/doctors"
         app:showAsAction="ifRoom" />
