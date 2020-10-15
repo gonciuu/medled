@@ -33,8 +33,8 @@ class RegisterFragment : Fragment() {
     //------------------------| Register User With Email And Password |-----------------------------------
     private fun registerWithEmailAndPassword() {
         val authentication = Authentication()
-        authentication.registerWithEmailAndPassword(registerEmailInput.text.toString(), registerPasswordInput.text.toString())
-        
+        authentication.registerWithEmailAndPassword(registerEmailInput.text.toString(), registerPasswordInput.text.toString(),requireView())
+
         { Toast.makeText(requireContext(), "SUKCES", Toast.LENGTH_SHORT).show() }
     }
     //=====================================================================================================
