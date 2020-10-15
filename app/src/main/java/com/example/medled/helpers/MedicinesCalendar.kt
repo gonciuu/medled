@@ -6,7 +6,7 @@ import kotlin.collections.ArrayList
 
 class MedicinesCalendar {
 
-
+    //--------------------------| Setup list of weekdays in the nearest week |------------------------
     fun getListOfDays() : ArrayList<CalendarDay>{
         val listOfDaysLetters :ArrayList<String> = arrayListOf<String>("S","M","T","W","T","F","S")
         val listOfDays :ArrayList<CalendarDay> = arrayListOf<CalendarDay>()
@@ -29,5 +29,6 @@ class MedicinesCalendar {
         listOfDays[0].isChoose = true
         return listOfDays
     }
+    //================================================================================================
 
 }

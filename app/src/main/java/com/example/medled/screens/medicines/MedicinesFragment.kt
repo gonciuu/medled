@@ -29,13 +29,11 @@ class MedicinesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupNavigation()
-    }
-
-    override fun onResume() {
-        super.onResume()
         setupRecyclerView()
         setCalendar()
     }
+
+
 
     private fun setupNavigation() = addMedicineButton.setOnClickListener {
         findNavController().navigate(R.id.action_medicinesFragment_to_addMedicineFragment)
@@ -47,7 +45,7 @@ class MedicinesFragment : Fragment() {
     }
 
 
-    
+
     //----------------------| Setup calendar |--------------------------
     private fun setCalendar(){
 
@@ -77,6 +75,7 @@ class MedicinesFragment : Fragment() {
                        listOfNumbersTextViews[i].backgroundTintList =  if(listOfCalendarDays[i].isChoose) ContextCompat.getColorStateList(requireActivity(), R.color.colorPrimary) else ContextCompat.getColorStateList(requireActivity(), R.color.backgroundLightGray)
                        listOfNumbersTextViews[i].setTextColor(if(listOfCalendarDays[i].isChoose) ContextCompat.getColor(requireContext(),R.color.white) else ContextCompat.getColor(requireContext(),R.color.black))
                 }
+                //Log.d("TAG",listOfCalendarDays[actualIndex].toString())
                 //tu bedzie kod to ustawienia recyclerviewa
             }
             //========================================
