@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,7 @@ class AddMedicineFragment : Fragment() {
         setupNavigation()
         setupRecyclerView()
         onSeekbarChanged()
+        setUpMedicineType()
     }
 
     private fun setupNavigation() =  addMedicineBackButton.setOnClickListener {
@@ -36,6 +38,7 @@ class AddMedicineFragment : Fragment() {
         medicineFormRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
         medicineFormRecyclerView.adapter = MedicineFormsRecyclerViewAdapter()
     }
+
 
     //-------------------------------| set count of weeks on seekbar changed |-----------------------------
     private fun onSeekbarChanged(){
@@ -48,5 +51,17 @@ class AddMedicineFragment : Fragment() {
         })
     }
     //======================================================================================================
+
+    //----------------------------| setup medicine type auto complete text view as spinner |------------------------------
+    private fun setUpMedicineType(){
+        medicineTypeChooser.setAdapter(ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,arrayListOf("pills", "mg", "ml")))
+        medicineTypeChooser.inputType = 0
+        medicineTypeChooser.keyListener = null;
+        medicineTypeChooser.setOnClickListener {
+            medicineTypeChooser.showDropDown()
+        }
+
+    }
+    //=====================================================================================================================
 
 }
