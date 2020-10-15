@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/medled_nav_graph"
-    app:startDestination="@id/chatFragment">
+    app:startDestination="@id/welcomeAuthFragment">
 
 
     <fragment
@@ -12,8 +12,6 @@
         android:label="fragment_welcome_auth"
         tools:layout="@layout/fragment_welcome_auth" />
     <fragment
-
-
         android:id="@+id/welcomeFragment"
         android:name="com.example.medled.screens.WelcomeFragment"
         android:label="fragment_welcome"
