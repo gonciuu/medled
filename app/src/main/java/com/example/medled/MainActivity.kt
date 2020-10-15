@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     private fun stateLogOut() {
         val navController = findNavController(R.id.nav_host_fragment)
         if (navController.currentDestination!!.id != R.id.welcomeAuthFragment)
-            navController.navigate(R.id.welcomeFragment, null, getNavOptions())
+            navController.navigate(R.id.welcomeAuthFragment, null, getNavOptions())
     }
 
 

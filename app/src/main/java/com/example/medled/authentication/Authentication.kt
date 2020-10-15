@@ -62,4 +62,14 @@ class Authentication {
     //===============================================================================================
 
 
+    //------------------| Sign out |-----------------------
+    fun signOutFromFirebase(view: View) = try {
+        helpers.showSnackBar("Log outed",view)
+        auth.signOut()
+    }catch (ex:Exception){
+        helpers.showSnackBar(ex.message.toString(),view)
+    }
+    //=====================================================
+
+
 }

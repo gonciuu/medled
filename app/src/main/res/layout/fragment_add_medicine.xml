@@ -15,7 +15,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/addMedicineBackButton"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="32dp"
@@ -37,7 +37,7 @@
             android:textColor="@color/black"
             android:textSize="28sp"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+            app:layout_constraintTop_toBottomOf="@+id/addMedicineBackButton" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.MedicinesRecyclerViewAdapter
@@ -20,10 +21,22 @@ class MedicinesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupNavigation()
+    }
+
+    override fun onResume() {
+        super.onResume()
         setupRecyclerView()
     }
+
+    private fun setupNavigation() = addMedicineButton.setOnClickListener {
+        findNavController().navigate(R.id.action_medicinesFragment_to_addMedicineFragment)
+    }
+
     private fun setupRecyclerView(){
         medicinesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter()
     }
+
+
 }

@@ -7,7 +7,7 @@
     tools:context=".screens.profile.ChooseAvatarFragment">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/changeAvatarBackButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="36dp"
@@ -27,7 +27,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/changeAvatarBackButton" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -108,6 +108,7 @@
 
 
     <Button
+        android:id="@+id/saveAvatarButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded10_bg"

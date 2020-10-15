@@ -1,276 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7F7F7"
-    android:fillViewport="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+
+    <androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:fontFamily="@font/open_sans_bold"
-                android:gravity="center"
-                android:text="@string/journal"
-                android:textColor="@color/black"
-                android:textSize="28sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="start"
-                android:layout_marginEnd="48dp"
-                android:contentDescription="notification_icon"
-                android:src="@drawable/ic_notification"
-                app:tint="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="#F7F7F7"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="20dp"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:text="M"
-                    android:textColor="@color/lightGray"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="7dp"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:fontFamily="@font/open_sans_semibold"
+                    android:layout_marginStart="32dp"
+                    android:fontFamily="@font/open_sans_bold"
                     android:gravity="center"
-                    android:text="7"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:text="M"
-                    android:textColor="@color/lightGray"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="7dp"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="@android:color/transparent"
-                    android:fontFamily="@font/open_sans_semibold"
-                    android:gravity="center"
-                    android:text="8"
+                    android:text="@string/journal"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="28sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:text="M"
-                    android:textColor="@color/lightGray"
-                    android:textSize="15sp" />
-
-                <TextView
+                <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="7dp"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="@android:color/transparent"
-                    android:fontFamily="@font/open_sans_semibold"
-                    android:gravity="center"
-                    android:text="9"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:layout_gravity="start"
+                    android:layout_marginEnd="48dp"
+                    android:contentDescription="notification_icon"
+                    android:src="@drawable/ic_notification"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1"
+                    app:tint="@color/black" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:text="M"
-                    android:textColor="@color/lightGray"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="7dp"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="@android:color/transparent"
-                    android:fontFamily="@font/open_sans_semibold"
-                    android:gravity="center"
-                    android:text="10"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:text="M"
-                    android:textColor="@color/lightGray"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="7dp"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="@android:color/transparent"
-                    android:fontFamily="@font/open_sans_semibold"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:text="11"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:text="M"
+                        android:textColor="@color/lightGray"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/circle"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="7"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:text="M"
+                        android:textColor="@color/lightGray"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/circle"
+                        android:backgroundTint="@android:color/transparent"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="8"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:text="M"
+                        android:textColor="@color/lightGray"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/circle"
+                        android:backgroundTint="@android:color/transparent"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="9"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:text="M"
+                        android:textColor="@color/lightGray"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/circle"
+                        android:backgroundTint="@android:color/transparent"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="10"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:text="M"
+                        android:textColor="@color/lightGray"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/circle"
+                        android:backgroundTint="@android:color/transparent"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="11"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:text="M"
+                        android:textColor="@color/lightGray"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/circle"
+                        android:backgroundTint="@android:color/transparent"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="12"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:text="M"
+                        android:textColor="@color/lightGray"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/circle"
+                        android:backgroundTint="@android:color/transparent"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="13"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/medicinesRecyclerView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_marginTop="40dp"
+                android:paddingBottom="20dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:text="M"
-                    android:textColor="@color/lightGray"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="7dp"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="@android:color/transparent"
-                    android:fontFamily="@font/open_sans_semibold"
-                    android:gravity="center"
-                    android:text="12"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:text="M"
-                    android:textColor="@color/lightGray"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="7dp"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="@android:color/transparent"
-                    android:fontFamily="@font/open_sans_semibold"
-                    android:gravity="center"
-                    android:text="13"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/medicinesRecyclerView"
-            android:layout_width="match_parent"
-            android:paddingBottom="20dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp" />
 
+    </androidx.core.widget.NestedScrollView>
 
-    </LinearLayout>
-
-
-</androidx.core.widget.NestedScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addMedicineButton"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:src="@drawable/ic_add"
+        android:tint="#ffffff" />
+</FrameLayout>

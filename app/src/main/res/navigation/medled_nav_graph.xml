@@ -6,12 +6,11 @@
     app:startDestination="@id/welcomeAuthFragment">
 
 
-
     <fragment
         android:id="@+id/welcomeAuthFragment"
         android:name="com.example.medled.screens.auth.WelcomeAuthFragment"
         android:label="fragment_welcome_auth"
-        tools:layout="@layout/fragment_welcome_auth" >
+        tools:layout="@layout/fragment_welcome_auth">
         <action
             android:id="@+id/action_welcomeAuthFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -52,7 +51,15 @@
         android:id="@+id/medicinesFragment"
         android:name="com.example.medled.screens.medicines.MedicinesFragment"
         android:label="MedicinesFragment"
-        tools:layout="@layout/fragment_medicines"/>
+        tools:layout="@layout/fragment_medicines">
+        <action
+            android:id="@+id/action_medicinesFragment_to_addMedicineFragment"
+            app:destination="@id/addMedicineFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/addMedicineFragment"
         android:name="com.example.medled.screens.medicines.AddMedicineFragment"
@@ -63,7 +70,7 @@
         android:id="@+id/allDoctorsFragment"
         android:name="com.example.medled.screens.doctor.AllDoctorsFragment"
         android:label="AllDoctorsFragment"
-        tools:layout="@layout/fragment_all_doctors"/>
+        tools:layout="@layout/fragment_all_doctors" />
     <fragment
         android:id="@+id/reserveMessageFragment"
         android:name="com.example.medled.screens.doctor.ReserveMessageFragment"
@@ -78,6 +85,14 @@
         android:id="@+id/profileFragment"
         android:name="com.example.medled.screens.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_chooseAvatarFragment"
+            app:destination="@id/chooseAvatarFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
 </navigation>

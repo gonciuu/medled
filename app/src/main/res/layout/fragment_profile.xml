@@ -140,6 +140,7 @@
             android:background="@color/lightGray" />
 
         <LinearLayout
+            android:id="@+id/changeAvatarBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -287,6 +288,7 @@
             android:background="@color/lightGray" />
 
         <LinearLayout
+            android:id="@+id/logOutBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

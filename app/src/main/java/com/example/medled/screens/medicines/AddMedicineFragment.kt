@@ -22,6 +22,15 @@ class AddMedicineFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupNavigation()
+        setupRecyclerView()
+    }
+
+    private fun setupNavigation() =  addMedicineBackButton.setOnClickListener {
+        requireActivity().onBackPressed()
+    }
+
+    private fun setupRecyclerView(){
         medicineFormRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
         medicineFormRecyclerView.adapter = MedicineFormsRecyclerViewAdapter()
     }
