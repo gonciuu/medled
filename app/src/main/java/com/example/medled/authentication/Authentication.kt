@@ -28,7 +28,27 @@ class Authentication {
             dialog.dismiss()
             helpers.showSnackBar(ex.message.toString(),view)
         }
+    }
+    //============================================================================================
 
+    //----------------------| Login With email and password |----------------------------
+    fun loginWithEmailAndPassword(email: String, password: String,view: View, complete : () -> Unit) {
+        val dialog :AlertDialog = helpers.getLoadingDialog(view.context,"Logging")  //loading dialog
+        try {
+            dialog.show()
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful){
+                    complete()
+                }else{
+                    //catch network exception etc
+                    helpers.showSnackBar(task.exception!!.message.toString(),view)
+                }
+                dialog.dismiss()
+            }
+        }catch (ex:Exception){
+            dialog.dismiss()
+            helpers.showSnackBar(ex.message.toString(),view)
+        }
     }
     //============================================================================================
 }

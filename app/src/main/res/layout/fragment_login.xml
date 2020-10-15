@@ -13,7 +13,7 @@
 
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/signInButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="28dp"
@@ -31,7 +31,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2"
+            app:layout_constraintTop_toBottomOf="@+id/loginPasswordInput"
             app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
@@ -80,10 +80,10 @@
             android:textColor="@color/lightGray"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
+            app:layout_constraintTop_toBottomOf="@+id/loginEmailInput" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/loginEmailInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -106,7 +106,7 @@
 
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress2"
+            android:id="@+id/loginPasswordInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
