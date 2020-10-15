@@ -70,6 +70,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/firstDayLetter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_regular"
@@ -100,6 +101,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/secondDayLetter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_regular"
@@ -130,6 +132,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/thirdDayLetter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_regular"
@@ -160,6 +163,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/fourthDayLetter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_regular"
@@ -190,6 +194,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/fifthDayLetter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_regular"
@@ -220,6 +225,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/sixthDayLetter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_regular"
@@ -250,6 +256,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/seventhDayLetter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_regular"
