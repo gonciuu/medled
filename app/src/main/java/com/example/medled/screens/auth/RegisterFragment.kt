@@ -38,15 +38,13 @@ class RegisterFragment : Fragment() {
     private fun registerWithEmailAndPassword() {
         val authentication = Authentication()
         authentication.registerWithEmailAndPassword(registerEmailInput.text.toString(), registerPasswordInput.text.toString(),requireView())
-
-        { Toast.makeText(requireContext(), "SUKCES", Toast.LENGTH_SHORT).show() }
     }
     //=====================================================================================================
 
     //-----------------| unfocus cursor and close keyboard by enter click on keyboard when put the password |------------------
     private fun onEnterClicked(){
         Helpers().keyboardEnterButtonClick(registerPasswordInput){
-            registerPasswordInput.clearFocus()            
+            registerPasswordInput.clearFocus()
             val imm: InputMethodManager? =
                 requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
             imm?.hideSoftInputFromWindow(requireView().windowToken, 0)

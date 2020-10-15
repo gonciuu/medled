@@ -38,7 +38,7 @@ class LoginFragment : Fragment() {
             loginEmailInput.text.toString(),
             loginPasswordInput.text.toString(),
             requireView()
-        ) { Toast.makeText(requireContext(), "SUKCES", Toast.LENGTH_SHORT).show() }
+        )
     }
     //=============================================================
 

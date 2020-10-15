@@ -11,13 +11,13 @@ class Authentication {
     private val helpers: Helpers = Helpers()
 
     //----------------------| Register With email and password |----------------------------
-    fun registerWithEmailAndPassword(email: String, password: String,view: View, complete : () -> Unit) {
+    fun registerWithEmailAndPassword(email: String, password: String,view: View) {
         val dialog :AlertDialog = helpers.getLoadingDialog(view.context,"Registering")  //loading dialog
         try {
             dialog.show()
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful){
-                    complete()
+                    helpers.showSnackBar("Successfully registering",view)
                 }else{
                     //catch network exception etc
                     helpers.showSnackBar(task.exception!!.message.toString(),view)
@@ -32,13 +32,13 @@ class Authentication {
     //============================================================================================
 
     //----------------------| Login With email and password |----------------------------
-    fun loginWithEmailAndPassword(email: String, password: String,view: View, complete : () -> Unit) {
+    fun loginWithEmailAndPassword(email: String, password: String,view: View) {
         val dialog :AlertDialog = helpers.getLoadingDialog(view.context,"Logging")  //loading dialog
         try {
             dialog.show()
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful){
-                    complete()
+                    helpers.showSnackBar("Successfully log in",view)
                 }else{
                     //catch network exception etc
                     helpers.showSnackBar(task.exception!!.message.toString(),view)
