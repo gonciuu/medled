@@ -8,17 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.medled.R
 import com.example.medled.authentication.Authentication
+import com.example.medled.helpers.Helpers
 import kotlinx.android.synthetic.main.fragment_login.*
 
 
 class LoginFragment : Fragment() {
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
@@ -27,6 +24,7 @@ class LoginFragment : Fragment() {
 
         setupNavigation()
         signInButton.setOnClickListener { loginWithEmailAndPassword() }
+        onEnterClicked()
     }
 
     private fun setupNavigation() {
@@ -45,5 +43,12 @@ class LoginFragment : Fragment() {
     //=============================================================
 
 
+    //-----------------| Log in to app by enter click on keyboard when put the password |------------------
+    private fun onEnterClicked(){
+        Helpers().keyboardEnterButtonClick(loginPasswordInput){
+            signInButton.performClick()
+        }
+    }
+    //=====================================================================================================
 
 }
