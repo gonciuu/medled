@@ -51,4 +51,15 @@ class Authentication {
         }
     }
     //============================================================================================
+
+    //-----------------------| Handle user already log in or on log out |----------------------------
+    fun handleAuthStateChanged(actionLogIn: () -> Unit,actionLogOut: () -> Unit){
+        auth.addAuthStateListener {firebaseAuth ->
+            if(firebaseAuth.currentUser == null) actionLogOut()
+            else actionLogIn()
+        }
+    }
+    //===============================================================================================
+
+
 }

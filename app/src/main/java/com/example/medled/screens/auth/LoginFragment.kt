@@ -33,6 +33,7 @@ class LoginFragment : Fragment() {
         loginBackButton.setOnClickListener { requireActivity().onBackPressed() }
     }
 
+    //--------| Login to app With Email and Password |------------
     private fun loginWithEmailAndPassword() {
         val authentication: Authentication = Authentication()
         authentication.loginWithEmailAndPassword(
@@ -41,5 +42,8 @@ class LoginFragment : Fragment() {
             requireView()
         ) { Toast.makeText(requireContext(), "SUKCES", Toast.LENGTH_SHORT).show() }
     }
+    //=============================================================
+
+
 
 }
