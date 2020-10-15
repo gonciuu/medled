@@ -12,9 +12,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.MedicinesRecyclerViewAdapter
+import com.example.medled.helpers.MedicinesCalendar
 import com.example.medled.models.CalendarDay
 import kotlinx.android.synthetic.main.fragment_medicines.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MedicinesFragment : Fragment() {
@@ -44,50 +46,46 @@ class MedicinesFragment : Fragment() {
         medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter()
     }
 
-    //----------------------| Setup calendar |--------------------------
 
+    
+    //----------------------| Setup calendar |--------------------------
     private fun setCalendar(){
-        val listOfDaysLetters = arrayListOf<String>("S","M","T","W","T","F","S")
+
+        //--------------| textvies from calendar layout view |--------------------
         val listOfNumbersTextViews = arrayListOf<TextView>(firstDay,secondDay,thirdDay,fourthDay,fifthDay,sixthDay,seventhDay)
         val listOfDaysLettersTextViews = arrayListOf<TextView>(firstDayLetter,secondDayLetter,thirdDayLetter,fourthDayLetter,fifthDayLetter,sixthDayLetter,seventhDayLetter)
+        //=========================================================================
 
-        val listOfDays =  arrayListOf<CalendarDay>()
-        val calendar = Calendar.getInstance()
-        var currentTime = calendar.timeInMillis
-
-        for(i in 0..6){
-            Log.d("TAG",calendar.get(Calendar.DAY_OF_WEEK).toString())
-            listOfDays.add(CalendarDay(calendar.get(Calendar.DAY_OF_MONTH),calendar.get(Calendar.MONTH),listOfDaysLetters[calendar.get(Calendar.DAY_OF_WEEK)-1]))
-            calendar.timeInMillis = currentTime + 86400000
-            currentTime+=86400000
-        }
-
-
-        Log.d("TAG",listOfDays.toString())
-
+        //the weekdays of the nearest week
+        val listOfCalendarDays :ArrayList<CalendarDay> = MedicinesCalendar().getListOfDays()
 
         listOfNumbersTextViews.forEach { day ->
-            day.text = listOfDays[listOfNumbersTextViews.indexOf(day)].day.toString()
-            listOfDaysLettersTextViews[listOfNumbersTextViews.indexOf(day)].text = listOfDays[listOfNumbersTextViews.indexOf(day)].dayLetter
+            //-----------------set data in textviews---------------------
+            val actualIndex:Int = listOfNumbersTextViews.indexOf(day)
+            day.text = listOfCalendarDays[actualIndex].day.toString()
+            listOfDaysLettersTextViews[actualIndex].text = listOfCalendarDays[actualIndex].dayLetter
+            //===========================================================
+
+            //-----------handle day click--------------
             day.setOnClickListener {
-                //set all days white
-                listOfNumbersTextViews.forEach { tv->
-                    tv.backgroundTintList = ContextCompat.getColorStateList(requireActivity(), R.color.backgroundLightGray)
-                    tv.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                //set all days choose to false
+                listOfCalendarDays.forEach { it.isChoose = false }
+                //set clicked day choose to true
+                listOfCalendarDays[actualIndex].isChoose = true
+                for(i in 0 until listOfNumbersTextViews.size) {
+                    //set colors based on choose property
+                       listOfNumbersTextViews[i].backgroundTintList =  if(listOfCalendarDays[i].isChoose) ContextCompat.getColorStateList(requireActivity(), R.color.colorPrimary) else ContextCompat.getColorStateList(requireActivity(), R.color.backgroundLightGray)
+                       listOfNumbersTextViews[i].setTextColor(if(listOfCalendarDays[i].isChoose) ContextCompat.getColor(requireContext(),R.color.white) else ContextCompat.getColor(requireContext(),R.color.black))
                 }
-                //set clicked day blue
-                day.backgroundTintList = ContextCompat.getColorStateList(requireActivity(), R.color.colorPrimary)
-                day.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
+                //tu bedzie kod to ustawienia recyclerviewa
             }
+            //========================================
         }
-
-
     }
+}
 
 
     //==================================================================
 
 
 
-
-}
