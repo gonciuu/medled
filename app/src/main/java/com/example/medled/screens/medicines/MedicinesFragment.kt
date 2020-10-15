@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medled.R
@@ -27,6 +29,7 @@ class MedicinesFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         setupRecyclerView()
+        setCalendar()
     }
 
     private fun setupNavigation() = addMedicineButton.setOnClickListener {
@@ -37,6 +40,31 @@ class MedicinesFragment : Fragment() {
         medicinesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter()
     }
+
+    //----------------------| Setup calendar |--------------------------
+
+    private fun setCalendar(){
+        val listOfNumbers = arrayListOf<TextView>(firstDay,secondDay,thirdDay,fourthDay,fifthDay,sixthDay,seventhDay)
+        listOfNumbers.forEach { day ->
+            day.setOnClickListener {
+                //set all days white
+                listOfNumbers.forEach { tv->
+                    tv.backgroundTintList = ContextCompat.getColorStateList(requireActivity(), R.color.backgroundLightGray)
+                    tv.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                }
+                //set clicked day blue
+                day.backgroundTintList = ContextCompat.getColorStateList(requireActivity(), R.color.colorPrimary)
+                day.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
+            }
+        }
+
+
+    }
+
+
+    //==================================================================
+
+
 
 
 }

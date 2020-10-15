@@ -78,6 +78,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/firstDay"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="7dp"
@@ -107,6 +108,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/secondDay"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="7dp"
@@ -136,6 +138,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/thirdDay"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="7dp"
@@ -165,6 +168,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/fourthDay"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="7dp"
@@ -194,6 +198,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/fifthDay"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="7dp"
@@ -223,6 +228,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/sixthDay"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="7dp"
@@ -252,6 +258,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/seventhDay"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="7dp"

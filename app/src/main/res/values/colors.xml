@@ -9,4 +9,5 @@
     <color name="black">#000000</color>
     <color name="gray">#707070</color>
     <color name="yellow">#FFC107</color>
+    <color name="backgroundLightGray">#F7F7F7</color>
 </resources>
