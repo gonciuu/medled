@@ -6,6 +6,7 @@
     app:startDestination="@id/welcomeAuthFragment">
 
 
+
     <fragment
         android:id="@+id/welcomeAuthFragment"
         android:name="com.example.medled.screens.auth.WelcomeAuthFragment"
@@ -58,6 +59,7 @@
         android:label="fragment_add_medicine"
         tools:layout="@layout/fragment_add_medicine" />
     <fragment
+
         android:id="@+id/allDoctorsFragment"
         android:name="com.example.medled.screens.doctor.AllDoctorsFragment"
         android:label="AllDoctorsFragment"
@@ -72,5 +74,10 @@
         android:name="com.example.medled.screens.doctor.ChatFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.medled.screens.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>
