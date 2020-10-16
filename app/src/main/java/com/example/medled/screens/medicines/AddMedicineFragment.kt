@@ -2,19 +2,25 @@ package com.example.medled.screens.medicines
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.format.DateFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.MedicineFormsRecyclerViewAdapter
 import com.example.medled.screens.medicines.time_date_pickers.DatePickerHelper
 import com.example.medled.screens.medicines.time_date_pickers.TimePickerHelper
+import com.example.medled.view_models.DateTimePickerViewModel
 import kotlinx.android.synthetic.main.fragment_add_medicine.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class AddMedicineFragment : Fragment() {
@@ -81,7 +87,21 @@ class AddMedicineFragment : Fragment() {
             datePickerDialog.show(requireActivity().supportFragmentManager,"date_picker")
         }
 
+        
+        val dateTimePickerViewModel : DateTimePickerViewModel = ViewModelProvider(requireActivity()).get(DateTimePickerViewModel::class.java)
+        dateTimePickerViewModel.getTime().observe(viewLifecycleOwner, Observer { time->
+            //tu bedzie ustawienie czasu w obiekcie
+            val c = Calendar.getInstance()
+            c.timeInMillis = time
+            timeTextInput.setText(DateFormat.format("HH:mm", c).toString())
+        })
 
+        dateTimePickerViewModel.getDate().observe(viewLifecycleOwner, Observer { date->
+            //tu bedzie ustawienie daty w obiekcie
+            val c = Calendar.getInstance()
+            c.timeInMillis = date
+            dateTextInput.setText(DateFormat.format("dd MMMM yyyy", c).toString())
+        })
     }
 
 

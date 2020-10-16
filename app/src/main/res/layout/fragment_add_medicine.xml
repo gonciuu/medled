@@ -116,7 +116,7 @@
 
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView8"
-            app:layout_constraintStart_toStartOf="@+id/editText4"
+            app:layout_constraintStart_toStartOf="@+id/timeTextInput"
             app:layout_constraintTop_toTopOf="@+id/textView8" />
 
         <EditText
@@ -144,7 +144,7 @@
             tools:ignore="LabelFor" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/timeTextInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -191,7 +191,7 @@
             android:textColorHint="@color/gray"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/editText3"
-            app:layout_constraintEnd_toStartOf="@+id/editText4"
+            app:layout_constraintEnd_toStartOf="@+id/timeTextInput"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="0.95"
             app:layout_constraintStart_toEndOf="@+id/editText3"
@@ -208,11 +208,11 @@
             android:backgroundTint="@color/colorPrimary"
             android:padding="10dp"
             android:src="@drawable/ic_time"
-            app:layout_constraintBottom_toBottomOf="@+id/editText4"
+            app:layout_constraintBottom_toBottomOf="@+id/timeTextInput"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/editText4"
-            app:layout_constraintTop_toTopOf="@+id/editText4"
+            app:layout_constraintStart_toEndOf="@+id/timeTextInput"
+            app:layout_constraintTop_toTopOf="@+id/timeTextInput"
             app:layout_constraintVertical_bias="0.5"
             app:tint="@color/white" />
 
@@ -297,7 +297,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/dateTextInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -333,8 +333,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             android:layout_marginStart="10dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toTopOf="@+id/editText5"
-            app:layout_constraintBottom_toBottomOf="@+id/editText5"
+            app:layout_constraintTop_toTopOf="@+id/dateTextInput"
+            app:layout_constraintBottom_toBottomOf="@+id/dateTextInput"
             app:tint="@color/white" />
 
         <Button
@@ -357,7 +357,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/editText5" />
+            app:layout_constraintTop_toBottomOf="@+id/dateTextInput" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
