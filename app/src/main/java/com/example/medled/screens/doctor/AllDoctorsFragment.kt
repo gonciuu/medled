@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
+import com.example.medled.adapters.recycler_view.DoctorTypesRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.DoctorsRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.MedicineFormsRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_all_doctors.*
@@ -23,8 +24,8 @@ class AllDoctorsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
-        //doctorsTypeRecyclerView.adapter = MedicineFormsRecyclerViewAdapter()
+        doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
+        doctorsTypeRecyclerView.adapter = DoctorTypesRecyclerViewAdapter()
 
         doctorsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter()

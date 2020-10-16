@@ -69,6 +69,7 @@
         <EditText
             android:id="@+id/editText2"
             android:layout_width="0dp"
+            android:nextFocusDown="@id/amountInputField"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -119,7 +120,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView8" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/amountInputField"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -188,12 +189,12 @@
             android:textColor="@color/darkGray"
             android:textColorHint="@color/gray"
             android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@+id/editText3"
+            app:layout_constraintBottom_toBottomOf="@+id/amountInputField"
             app:layout_constraintEnd_toStartOf="@+id/timeTextInput"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="0.95"
-            app:layout_constraintStart_toEndOf="@+id/editText3"
-            app:layout_constraintTop_toTopOf="@+id/editText3"
+            app:layout_constraintStart_toEndOf="@+id/amountInputField"
+            app:layout_constraintTop_toTopOf="@+id/amountInputField"
             app:layout_constraintVertical_bias="1.0" />
 
 
@@ -226,7 +227,7 @@
             android:textColor="@color/gray"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+            app:layout_constraintTop_toBottomOf="@+id/amountInputField" />
 
 
         <SeekBar

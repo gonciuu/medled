@@ -1,27 +1,28 @@
 package com.example.medled.screens.medicines
 
-import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.text.format.DateFormat
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.MedicineFormsRecyclerViewAdapter
+import com.example.medled.helpers.Helpers
 import com.example.medled.models.MedicineFormCard
 import com.example.medled.screens.medicines.time_date_pickers.DatePickerHelper
 import com.example.medled.screens.medicines.time_date_pickers.TimePickerHelper
 import com.example.medled.view_models.DateTimePickerViewModel
 import kotlinx.android.synthetic.main.fragment_add_medicine.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -86,8 +87,20 @@ class AddMedicineFragment : Fragment() {
         medicineTypeChooser.setOnClickListener {
             medicineTypeChooser.showDropDown()
         }
+
+        //close keyboard on amount enter click
+        val helper: Helpers = Helpers()
+        helper.keyboardEnterButtonClick(amountInputField) {closeKeyboard()}
     }
     //=====================================================================================================================
+
+    //--------------------------------| Close the keyboard |-------------------------------------
+    private fun closeKeyboard(){
+        val imm: InputMethodManager =
+            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
+    }
+    //============================================================================================
 
     //------------------------------| Setup time and date picker |-----------------------------------
 
