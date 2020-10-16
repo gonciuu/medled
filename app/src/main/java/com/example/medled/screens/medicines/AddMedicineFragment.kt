@@ -54,13 +54,13 @@ class AddMedicineFragment : Fragment() {
 
     //----------------------------| setup medicine type auto complete text view as spinner |------------------------------
     private fun setUpMedicineType(){
-        medicineTypeChooser.setAdapter(ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,arrayListOf("pills", "mg", "ml")))
+
+        medicineTypeChooser.setAdapter(ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,arrayListOf("pills", "ml", "mg")))
         medicineTypeChooser.inputType = 0
         medicineTypeChooser.keyListener = null;
         medicineTypeChooser.setOnClickListener {
             medicineTypeChooser.showDropDown()
         }
-
     }
     //=====================================================================================================================
 
