@@ -9,12 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.MedicineFormsRecyclerViewAdapter
+import com.example.medled.models.MedicineFormCard
 import com.example.medled.screens.medicines.time_date_pickers.DatePickerHelper
 import com.example.medled.screens.medicines.time_date_pickers.TimePickerHelper
 import com.example.medled.view_models.DateTimePickerViewModel
@@ -45,10 +47,20 @@ class AddMedicineFragment : Fragment() {
     }
 
     private fun setupRecyclerView(){
+        val listOfMedicinesForms = arrayListOf<MedicineFormCard>(
+            MedicineFormCard("SIEMA",R.drawable.doctor_avatar_1,true),
+            MedicineFormCard("SIEMA2",R.drawable.doctor_avatar_1,false),
+            MedicineFormCard("SIEMA3",R.drawable.doctor_avatar_1,false),
+            MedicineFormCard("SIEMA4",R.drawable.doctor_avatar_1,false)
+        )
+
         medicineFormRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
-        medicineFormRecyclerView.adapter = MedicineFormsRecyclerViewAdapter()
+        medicineFormRecyclerView.adapter = MedicineFormsRecyclerViewAdapter(listOfMedicinesForms){setPillForm()}
     }
 
+    private fun setPillForm(){
+        Toast.makeText(requireContext(),"ZMIENIONO FORME",Toast.LENGTH_SHORT).show()
+    }
 
     //-------------------------------| set count of weeks on seekbar changed |-----------------------------
     private fun onSeekbarChanged(){
@@ -64,7 +76,6 @@ class AddMedicineFragment : Fragment() {
 
     //----------------------------| setup medicine type auto complete text view as spinner |------------------------------
     private fun setupMedicineType(){
-
         medicineTypeChooser.setAdapter(ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,arrayListOf("pills", "ml", "mg")))
         medicineTypeChooser.inputType = 0
         medicineTypeChooser.keyListener = null;
@@ -113,9 +124,6 @@ class AddMedicineFragment : Fragment() {
         })
         //=========================================================================================================================
     }
-
-
-
     //===============================================================================================
 
 }

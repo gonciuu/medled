@@ -23,8 +23,8 @@ class AllDoctorsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
-        doctorsTypeRecyclerView.adapter = MedicineFormsRecyclerViewAdapter()
+        //doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
+        //doctorsTypeRecyclerView.adapter = MedicineFormsRecyclerViewAdapter()
 
         doctorsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter()
