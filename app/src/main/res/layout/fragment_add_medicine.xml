@@ -90,30 +90,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6"
             tools:ignore="LabelFor" />
 
-        <EditText
-            android:id="@+id/editText5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/rounded_stroke_bg"
-            android:fontFamily="@font/open_sans_regular"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:paddingStart="15dp"
-            android:paddingTop="17dp"
-            android:paddingEnd="15dp"
-            android:paddingBottom="17dp"
-            android:text="20 March 2020"
-            android:textColor="@color/darkGray"
-            android:textCursorDrawable="@null"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/imageView11"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/textView12"
-            tools:ignore="LabelFor" />
+
 
         <TextView
             android:id="@+id/textView8"
@@ -185,7 +162,7 @@
             android:textCursorDrawable="@null"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/medicineTypeChooser"
-            app:layout_constraintEnd_toStartOf="@+id/imageView10"
+            app:layout_constraintEnd_toStartOf="@+id/chooseTimeButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@+id/medicineTypeChooser"
@@ -223,7 +200,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView10"
+            android:id="@+id/chooseTimeButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="12dp"
@@ -319,10 +296,33 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_stroke_bg"
+            android:fontFamily="@font/open_sans_regular"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingStart="15dp"
+            android:paddingTop="17dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="17dp"
+            android:text="20 March 2020"
+            android:textColor="@color/darkGray"
+            android:textCursorDrawable="@null"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/chooseDateButton"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            tools:ignore="LabelFor" />
 
         <ImageView
-            android:id="@+id/imageView11"
+            android:id="@+id/chooseDateButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="4dp"

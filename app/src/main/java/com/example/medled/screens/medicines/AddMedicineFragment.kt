@@ -1,5 +1,6 @@
 package com.example.medled.screens.medicines
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.MedicineFormsRecyclerViewAdapter
+import com.example.medled.screens.medicines.time_date_pickers.DatePickerHelper
+import com.example.medled.screens.medicines.time_date_pickers.TimePickerHelper
 import kotlinx.android.synthetic.main.fragment_add_medicine.*
 
 
@@ -27,7 +30,8 @@ class AddMedicineFragment : Fragment() {
         setupNavigation()
         setupRecyclerView()
         onSeekbarChanged()
-        setUpMedicineType()
+        setupMedicineType()
+        setupDateAndTimePicker()
     }
 
     private fun setupNavigation() =  addMedicineBackButton.setOnClickListener {
@@ -44,7 +48,7 @@ class AddMedicineFragment : Fragment() {
     private fun onSeekbarChanged(){
         durationSeekbar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                durationText.text = "$p1 weeks"
+                durationText.text = resources.getQuantityString(R.plurals.numberOfSongsAvailable,p1,p1)
             }
             override fun onStartTrackingTouch(p0: SeekBar?) {}
             override fun onStopTrackingTouch(p0: SeekBar?) {}
@@ -53,7 +57,7 @@ class AddMedicineFragment : Fragment() {
     //======================================================================================================
 
     //----------------------------| setup medicine type auto complete text view as spinner |------------------------------
-    private fun setUpMedicineType(){
+    private fun setupMedicineType(){
 
         medicineTypeChooser.setAdapter(ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,arrayListOf("pills", "ml", "mg")))
         medicineTypeChooser.inputType = 0
@@ -63,5 +67,25 @@ class AddMedicineFragment : Fragment() {
         }
     }
     //=====================================================================================================================
+
+    //------------------------------| Setup time and date picker |-----------------------------------
+
+    private fun setupDateAndTimePicker(){
+        chooseTimeButton.setOnClickListener {
+            val timePickerDialog:TimePickerHelper = TimePickerHelper()
+            timePickerDialog.show(requireActivity().supportFragmentManager,"time_picker")
+        }
+
+        chooseDateButton.setOnClickListener {
+            val datePickerDialog:DatePickerHelper = DatePickerHelper()
+            datePickerDialog.show(requireActivity().supportFragmentManager,"date_picker")
+        }
+
+
+    }
+
+
+
+    //===============================================================================================
 
 }
