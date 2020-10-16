@@ -2,9 +2,9 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,7 +91,6 @@
             tools:ignore="LabelFor" />
 
 
-
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
@@ -143,7 +142,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView8"
             tools:ignore="LabelFor" />
 
-        <EditText
+        <TextView
             android:id="@+id/timeTextInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -152,7 +151,6 @@
             android:background="@drawable/rounded_stroke_bg"
             android:fontFamily="@font/open_sans_regular"
             android:importantForAutofill="no"
-            android:inputType="text"
             android:paddingStart="15dp"
             android:paddingTop="17dp"
             android:paddingEnd="15dp"
@@ -175,14 +173,14 @@
             android:id="@+id/medicineTypeChooser"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/rounded_stroke_bg"
             android:drawableEnd="@drawable/ic_more"
-            android:layout_marginStart="10dp"
             android:ems="10"
+            android:fontFamily="@font/open_sans_regular"
             android:maxLines="1"
             android:paddingStart="10dp"
             android:paddingTop="17dp"
-            android:fontFamily="@font/open_sans_regular"
             android:paddingEnd="10dp"
             android:paddingBottom="17dp"
             android:singleLine="true"
@@ -196,7 +194,7 @@
             app:layout_constraintHorizontal_weight="0.95"
             app:layout_constraintStart_toEndOf="@+id/editText3"
             app:layout_constraintTop_toTopOf="@+id/editText3"
-            app:layout_constraintVertical_bias="1.0"/>
+            app:layout_constraintVertical_bias="1.0" />
 
 
         <ImageView
@@ -237,11 +235,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:progressDrawable="@drawable/seekbar_path"
             android:max="10"
             android:min="1"
-            android:thumb="@drawable/seekbar_thumb"
             android:progress="3"
+            android:progressDrawable="@drawable/seekbar_path"
+            android:thumb="@drawable/seekbar_thumb"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -290,13 +288,14 @@
             android:id="@+id/medicineFormRecyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
-        <EditText
+
+        <TextView
             android:id="@+id/dateTextInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -304,9 +303,9 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/rounded_stroke_bg"
+            android:enabled="false"
             android:fontFamily="@font/open_sans_regular"
             android:importantForAutofill="no"
-            android:inputType="text"
             android:paddingStart="15dp"
             android:paddingTop="17dp"
             android:paddingEnd="15dp"
@@ -325,16 +324,16 @@
             android:id="@+id/chooseDateButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="4dp"
             android:background="@drawable/circle"
             android:backgroundTint="@color/colorPrimary"
             android:padding="10dp"
             android:src="@drawable/ic_calendar"
-            app:layout_constraintHorizontal_bias="0.5"
-            android:layout_marginStart="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toTopOf="@+id/dateTextInput"
             app:layout_constraintBottom_toBottomOf="@+id/dateTextInput"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toTopOf="@+id/dateTextInput"
             app:tint="@color/white" />
 
         <Button
@@ -344,11 +343,11 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/rounded10_bg"
             android:backgroundTint="@color/colorPrimary"
             android:fontFamily="@font/open_sans_semibold"
             android:paddingTop="17dp"
-            android:layout_marginBottom="30dp"
             android:paddingBottom="17dp"
             android:text="Done"
             android:textAllCaps="false"

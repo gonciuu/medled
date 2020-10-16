@@ -77,31 +77,41 @@ class AddMedicineFragment : Fragment() {
     //------------------------------| Setup time and date picker |-----------------------------------
 
     private fun setupDateAndTimePicker(){
+
+        //show time picker
         chooseTimeButton.setOnClickListener {
             val timePickerDialog:TimePickerHelper = TimePickerHelper()
             timePickerDialog.show(requireActivity().supportFragmentManager,"time_picker")
         }
 
+        //show date picker
         chooseDateButton.setOnClickListener {
             val datePickerDialog:DatePickerHelper = DatePickerHelper()
             datePickerDialog.show(requireActivity().supportFragmentManager,"date_picker")
         }
 
-        
         val dateTimePickerViewModel : DateTimePickerViewModel = ViewModelProvider(requireActivity()).get(DateTimePickerViewModel::class.java)
+        val c = Calendar.getInstance()
+        //------set actual time in textviews-------
+        dateTimePickerViewModel.setDate(c.timeInMillis)
+        dateTimePickerViewModel.setTime(c.timeInMillis)
+        //=========================================
+
+        //--------------------------------observing change time in timepicker (viewmodel)----------------------------------------------
         dateTimePickerViewModel.getTime().observe(viewLifecycleOwner, Observer { time->
             //tu bedzie ustawienie czasu w obiekcie
-            val c = Calendar.getInstance()
             c.timeInMillis = time
             timeTextInput.setText(DateFormat.format("HH:mm", c).toString())
         })
+        //=========================================================================================================================
 
+        //---------------------------------observing change date in datepicker  (viewmodel)----------------------------------------------
         dateTimePickerViewModel.getDate().observe(viewLifecycleOwner, Observer { date->
             //tu bedzie ustawienie daty w obiekcie
-            val c = Calendar.getInstance()
             c.timeInMillis = date
             dateTextInput.setText(DateFormat.format("dd MMMM yyyy", c).toString())
         })
+        //=========================================================================================================================
     }
 
 
