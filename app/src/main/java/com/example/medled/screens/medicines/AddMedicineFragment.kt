@@ -46,6 +46,7 @@ class AddMedicineFragment : Fragment() {
         requireActivity().onBackPressed()
     }
 
+    //-------------------------------------| setup recycler view with medicines forms |--------------------------------------------
     private fun setupRecyclerView(){
         val listOfMedicinesForms = arrayListOf<MedicineFormCard>(
             MedicineFormCard("SIEMA",R.drawable.doctor_avatar_1,true),
@@ -57,10 +58,13 @@ class AddMedicineFragment : Fragment() {
         medicineFormRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
         medicineFormRecyclerView.adapter = MedicineFormsRecyclerViewAdapter(listOfMedicinesForms){setPillForm()}
     }
+    //=============================================================================================================================
 
+    //----------------------------------| Set pill form in the medicine object |-----------------------------------------
     private fun setPillForm(){
         Toast.makeText(requireContext(),"ZMIENIONO FORME",Toast.LENGTH_SHORT).show()
     }
+    //===================================================================================================================
 
     //-------------------------------| set count of weeks on seekbar changed |-----------------------------
     private fun onSeekbarChanged(){
@@ -90,15 +94,19 @@ class AddMedicineFragment : Fragment() {
     private fun setupDateAndTimePicker(){
 
         //show time picker
-        chooseTimeButton.setOnClickListener {
-            val timePickerDialog:TimePickerHelper = TimePickerHelper()
-            timePickerDialog.show(requireActivity().supportFragmentManager,"time_picker")
+        (arrayListOf<View>(chooseTimeButton,timeTextInput)).forEach {
+            it.setOnClickListener {
+                val timePickerDialog: TimePickerHelper = TimePickerHelper()
+                timePickerDialog.show(requireActivity().supportFragmentManager, "time_picker")
+            }
         }
 
         //show date picker
-        chooseDateButton.setOnClickListener {
-            val datePickerDialog:DatePickerHelper = DatePickerHelper()
-            datePickerDialog.show(requireActivity().supportFragmentManager,"date_picker")
+        (arrayListOf<View>(chooseDateButton,dateTextInput)).forEach {
+            it.setOnClickListener {
+                val datePickerDialog: DatePickerHelper = DatePickerHelper()
+                datePickerDialog.show(requireActivity().supportFragmentManager, "date_picker")
+            }
         }
 
         val dateTimePickerViewModel : DateTimePickerViewModel = ViewModelProvider(requireActivity()).get(DateTimePickerViewModel::class.java)

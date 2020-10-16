@@ -72,8 +72,8 @@ class MedicinesFragment : Fragment() {
                 listOfCalendarDays[actualIndex].isChoose = true
                 for(i in 0 until listOfNumbersTextViews.size) {
                     //set colors based on choose property
-                       listOfNumbersTextViews[i].backgroundTintList =  if(listOfCalendarDays[i].isChoose) ContextCompat.getColorStateList(requireActivity(), R.color.colorPrimary) else ContextCompat.getColorStateList(requireActivity(), R.color.backgroundLightGray)
-                       listOfNumbersTextViews[i].setTextColor(if(listOfCalendarDays[i].isChoose) ContextCompat.getColor(requireContext(),R.color.white) else ContextCompat.getColor(requireContext(),R.color.black))
+                       listOfNumbersTextViews[i].backgroundTintList = ContextCompat.getColorStateList(requireActivity(), if(listOfCalendarDays[i].isChoose) R.color.colorPrimary else  R.color.backgroundLightGray)
+                       listOfNumbersTextViews[i].setTextColor(ContextCompat.getColor(requireContext(),if(listOfCalendarDays[i].isChoose) R.color.white else R.color.black))
                 }
                 //Log.d("TAG",listOfCalendarDays[actualIndex].toString())
                 //tu bedzie kod to ustawienia recyclerviewa
