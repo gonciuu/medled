@@ -68,10 +68,12 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
     //-------------------------------------| setup recycler view with medicines forms |--------------------------------------------
     private fun setupRecyclerView(){
         val listOfMedicinesForms = arrayListOf<MedicineFormCard>(
-            MedicineFormCard("SIEMA",R.drawable.doctor_avatar_1,true),
-            MedicineFormCard("SIEMA2",R.drawable.doctor_avatar_1,false),
-            MedicineFormCard("SIEMA3",R.drawable.doctor_avatar_1,false),
-            MedicineFormCard("SIEMA4",R.drawable.doctor_avatar_1,false)
+            MedicineFormCard("Pill",R.drawable.pills,true),
+            MedicineFormCard("Capsule",R.drawable.capsule,false),
+            MedicineFormCard("Syrup",R.drawable.syrup,false),
+            MedicineFormCard("Cream",R.drawable.cream,false),
+            MedicineFormCard("Drops",R.drawable.drops,false),
+            MedicineFormCard("Syringe",R.drawable.syringe,false)
         )
 
         medicineFormRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
