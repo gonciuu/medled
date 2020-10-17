@@ -43,21 +43,23 @@ class MedicinesFragment : Fragment() {
         setupNavigation()
         setCalendar()
 
+        //------------------- get all medicines from database and set in into all medicines list --------------------
         medicinesViewModel.allMedicines.observe(viewLifecycleOwner, Observer {
             Log.d("TAG",it.toString())
             allMedicines = it
-            firstDay.performClick()
+            setupRecyclerView(MedicinesCalendar().getFirstDay())
         })
+        //============================================================================================================
 
 
     }
-
 
 
     private fun setupNavigation() = addMedicineButton.setOnClickListener {
         findNavController().navigate(R.id.action_medicinesFragment_to_addMedicineFragment)
     }
 
+    //-------------------------| set adapter based on the choose day in calendar |--------------------------
     private fun setupRecyclerView(date: CalendarDay){
         val filterList = ArrayList<Medicine>()
         allMedicines.forEach { medicine->
@@ -65,6 +67,8 @@ class MedicinesFragment : Fragment() {
             medicineCalendar.timeInMillis = medicine.time
             val medicineDay = medicineCalendar.get(Calendar.DAY_OF_MONTH)
             val medicineMonth = medicineCalendar.get(Calendar.MONTH)
+
+            //add to list olny this days which day and month is the same as choose date
             if(medicineDay==date.day && medicineMonth==date.month){
                 filterList.add(medicine)
             }
@@ -72,6 +76,7 @@ class MedicinesFragment : Fragment() {
 
         medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter(filterList)
     }
+    //======================================================================================================
 
 
 
@@ -110,10 +115,11 @@ class MedicinesFragment : Fragment() {
             //========================================
         }
     }
+    //==================================================================
 }
 
 
-    //==================================================================
+
 
 
 

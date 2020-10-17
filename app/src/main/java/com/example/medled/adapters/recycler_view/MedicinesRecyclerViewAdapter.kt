@@ -31,7 +31,7 @@ class MedicinesRecyclerViewAdapter (private val listOfMedicines: ArrayList<Medic
         holder.medicineName.text = medicine.name
         holder.medicineTypeAndAmount.text = medicine.amount + " " + medicine.type + " " + medicine.form
         holder.medicineTime.text = DateFormat.format("HH:mm", medicineTimeCalendar).toString()
-        
+
     }
 
 }
