@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.view_holders.MedicinesViewHolder
 import com.example.medled.databases.medicines_database.Medicine
-import com.example.medled.screens.medicines.DeleteMedicine
+import com.example.medled.screens.medicines.DeleteMedicineInterface
 import java.util.*
 
 
-class MedicinesRecyclerViewAdapter (private val listOfMedicines: ArrayList<Medicine>,private val  listener: DeleteMedicine) : RecyclerView.Adapter<MedicinesViewHolder>(){
+class MedicinesRecyclerViewAdapter (private val listOfMedicines: ArrayList<Medicine>,private val  listener: DeleteMedicineInterface) : RecyclerView.Adapter<MedicinesViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedicinesViewHolder {
         return  MedicinesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.medicine_card,parent,false))
     }
@@ -52,10 +52,12 @@ class MedicinesRecyclerViewAdapter (private val listOfMedicines: ArrayList<Medic
         }
         //==============================================================================
 
+        //-------------------| run delete function on long click on the medicine box |-----------------------
         holder.medicineBox.setOnLongClickListener {
             listener.showDeleteDialog(medicine)
             true
         }
+        //===================================================================================================
 
     }
 

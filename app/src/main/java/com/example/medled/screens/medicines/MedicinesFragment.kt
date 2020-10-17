@@ -24,7 +24,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MedicinesFragment : Fragment(),DeleteMedicine {
+class MedicinesFragment : Fragment(),DeleteMedicineInterface {
 
     private lateinit var medicinesViewModel: MedicinesViewModel
     private lateinit var allMedicines: List<Medicine>
@@ -117,10 +117,12 @@ class MedicinesFragment : Fragment(),DeleteMedicine {
         }
     }
 
+    //show the alert dialog to confirm medicine delete
     override fun showDeleteDialog(medicine: Medicine) {
         DeleteMedicineDialog(medicine,this).show(requireActivity().supportFragmentManager,"delete_medicine_dialog")
     }
-
+    
+    //delete medicine from the database
     override fun deleteMedicine(medicine: Medicine) {
         medicinesViewModel.deleteMedicine(medicine)
     }
