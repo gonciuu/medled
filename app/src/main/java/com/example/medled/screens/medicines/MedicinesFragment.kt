@@ -74,6 +74,7 @@ class MedicinesFragment : Fragment() {
             }
         }
 
+        Collections.sort(filterList,MedicinesArrayListComparator())
         medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter(filterList)
     }
     //======================================================================================================
