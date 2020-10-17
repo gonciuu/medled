@@ -24,7 +24,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MedicinesFragment : Fragment() {
+class MedicinesFragment : Fragment(),DeleteMedicine {
 
     private lateinit var medicinesViewModel: MedicinesViewModel
     private lateinit var allMedicines: List<Medicine>
@@ -75,7 +75,7 @@ class MedicinesFragment : Fragment() {
         }
 
         Collections.sort(filterList,MedicinesArrayListComparator())
-        medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter(filterList)
+        medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter(filterList,this)
     }
     //======================================================================================================
 
@@ -116,6 +116,15 @@ class MedicinesFragment : Fragment() {
             //========================================
         }
     }
+
+    override fun showDeleteDialog(medicine: Medicine) {
+        DeleteMedicineDialog(medicine,this).show(requireActivity().supportFragmentManager,"delete_medicine_dialog")
+    }
+
+    override fun deleteMedicine(medicine: Medicine) {
+        medicinesViewModel.deleteMedicine(medicine)
+    }
+
     //==================================================================
 }
 

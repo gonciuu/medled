@@ -5,6 +5,7 @@
     android:backgroundTint="#ffffff"
     android:id="@+id/medicineBox"
     android:layout_marginStart="20dp"
+    android:longClickable="true"
     android:layout_marginEnd="20dp"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
