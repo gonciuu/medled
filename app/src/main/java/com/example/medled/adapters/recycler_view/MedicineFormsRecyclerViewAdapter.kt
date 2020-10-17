@@ -31,7 +31,7 @@ class MedicineFormsRecyclerViewAdapter(private val listOfMedicinesForms : ArrayL
 
         //handle on click on the box
         holder.allBox.setOnClickListener {
-            listener.changeForm(listOfMedicinesForms[holder.adapterPosition].title)
+            listener.changeForm(listOfMedicinesForms[holder.adapterPosition])
             pillFormClick(holder.adapterPosition)
         }
     }

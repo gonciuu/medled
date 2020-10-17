@@ -29,8 +29,9 @@ class MedicinesRecyclerViewAdapter (private val listOfMedicines: ArrayList<Medic
         medicineTimeCalendar.timeInMillis = medicine.time
 
         holder.medicineName.text = medicine.name
-        holder.medicineTypeAndAmount.text = medicine.amount + " " + medicine.type + " " + medicine.form
+        holder.medicineTypeAndAmount.text = medicine.amount + " " + medicine.type + " " + medicine.formName
         holder.medicineTime.text = DateFormat.format("HH:mm", medicineTimeCalendar).toString()
+        holder.medicineImage.setImageResource(medicine.formImage)
 
     }
 

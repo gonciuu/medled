@@ -47,7 +47,7 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
         super.onViewCreated(view, savedInstanceState)
 
         medicinesViewModel =  ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(MedicinesViewModel::class.java)
-        medicine =  Medicine("","3","pills",Calendar.getInstance().timeInMillis,3,"Tablet")
+        medicine =  Medicine("","3","pills",Calendar.getInstance().timeInMillis,3,"Pills",R.drawable.pills)
 
         setupNavigation()
         setupRecyclerView()
@@ -82,8 +82,9 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
     //=============================================================================================================================
 
     //----------------------------------| Set pill form in the medicine object |-----------------------------------------
-    override fun changeForm(form: String) {
-        medicine.form = form
+    override fun changeForm(form: MedicineFormCard) {
+        medicine.formName = form.title
+        medicine.formImage = form.photo
     }
     //===================================================================================================================
 

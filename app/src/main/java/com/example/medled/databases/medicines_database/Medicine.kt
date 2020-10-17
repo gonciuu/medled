@@ -10,7 +10,8 @@ data class Medicine(
     var type: String,
     var time: Long,
     var duration: Int,
-    var form: String
+    var formName: String,
+    var formImage:Int
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
