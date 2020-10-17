@@ -1,7 +1,9 @@
 package com.example.medled.adapters.recycler_view
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
+import android.graphics.Paint
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -28,10 +30,27 @@ class MedicinesRecyclerViewAdapter (private val listOfMedicines: ArrayList<Medic
         val medicineTimeCalendar = Calendar.getInstance()
         medicineTimeCalendar.timeInMillis = medicine.time
 
+        //set data in layout
         holder.medicineName.text = medicine.name
         holder.medicineTypeAndAmount.text = medicine.amount + " " + medicine.type + " " + medicine.formName
         holder.medicineTime.text = DateFormat.format("HH:mm", medicineTimeCalendar).toString()
         holder.medicineImage.setImageResource(medicine.formImage)
+
+        //-------------------| Check if the pill time is gone |-------------------------
+        if(medicine.time < Calendar.getInstance().timeInMillis){
+
+            //set black-white image color
+            val matrix = ColorMatrix()
+            matrix.setSaturation(0f)
+            holder.medicineImage.colorFilter = ColorMatrixColorFilter(matrix)
+
+            //strikethrough text
+            val strike = Paint.STRIKE_THRU_TEXT_FLAG
+            holder.medicineName.paintFlags = strike
+            holder.medicineTypeAndAmount.paintFlags = strike
+            holder.medicineTime.paintFlags = strike
+        }
+        //==============================================================================
 
     }
 
