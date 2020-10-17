@@ -6,15 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.view_holders.MedicinesViewHolder
+import com.example.medled.databases.medicines_database.Medicine
 
 
-class MedicinesRecyclerViewAdapter ():RecyclerView.Adapter<MedicinesViewHolder>(){
+class MedicinesRecyclerViewAdapter (private val listOfMedicines: ArrayList<Medicine>) : RecyclerView.Adapter<MedicinesViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedicinesViewHolder {
         return  MedicinesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.medicine_card,parent,false))
     }
 
     override fun getItemCount(): Int {
-        return 20
+        return listOfMedicines.size
     }
 
     override fun onBindViewHolder(holder: MedicinesViewHolder, position: Int) {

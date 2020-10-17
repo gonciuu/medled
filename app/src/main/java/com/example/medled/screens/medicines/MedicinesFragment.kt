@@ -2,16 +2,21 @@ package com.example.medled.screens.medicines
 
 import android.os.Bundle
 import android.util.Log
+
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.MedicinesRecyclerViewAdapter
+import com.example.medled.databases.medicines_database.Medicine
+import com.example.medled.databases.medicines_database.MedicinesViewModel
 import com.example.medled.helpers.MedicinesCalendar
 import com.example.medled.models.CalendarDay
 import kotlinx.android.synthetic.main.fragment_medicines.*
@@ -21,6 +26,9 @@ import kotlin.collections.ArrayList
 
 class MedicinesFragment : Fragment() {
 
+    private lateinit var medicinesViewModel: MedicinesViewModel
+    private lateinit var allMedicines: List<Medicine>
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_medicines, container, false)
@@ -28,9 +36,20 @@ class MedicinesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        medicinesViewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(MedicinesViewModel::class.java)
+        medicinesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
         setupNavigation()
-        setupRecyclerView()
         setCalendar()
+
+        medicinesViewModel.allMedicines.observe(viewLifecycleOwner, Observer {
+            Log.d("TAG",it.toString())
+            allMedicines = it
+            firstDay.performClick()
+        })
+
+
     }
 
 
@@ -39,9 +58,19 @@ class MedicinesFragment : Fragment() {
         findNavController().navigate(R.id.action_medicinesFragment_to_addMedicineFragment)
     }
 
-    private fun setupRecyclerView(){
-        medicinesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter()
+    private fun setupRecyclerView(date: CalendarDay){
+        val filterList = ArrayList<Medicine>()
+        allMedicines.forEach { medicine->
+            val medicineCalendar = Calendar.getInstance()
+            medicineCalendar.timeInMillis = medicine.time
+            val medicineDay = medicineCalendar.get(Calendar.DAY_OF_MONTH)
+            val medicineMonth = medicineCalendar.get(Calendar.MONTH)
+            if(medicineDay==date.day && medicineMonth==date.month){
+                filterList.add(medicine)
+            }
+        }
+
+        medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter(filterList)
     }
 
 
@@ -76,7 +105,7 @@ class MedicinesFragment : Fragment() {
                        listOfNumbersTextViews[i].setTextColor(ContextCompat.getColor(requireContext(),if(listOfCalendarDays[i].isChoose) R.color.white else R.color.black))
                 }
                 //Log.d("TAG",listOfCalendarDays[actualIndex].toString())
-                //tu bedzie kod to ustawienia recyclerviewa
+                setupRecyclerView(listOfCalendarDays[actualIndex])
             }
             //========================================
         }

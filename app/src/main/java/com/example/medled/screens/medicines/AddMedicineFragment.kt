@@ -206,7 +206,7 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
         }catch (ex:Exception){
             helpers.showSnackBar(ex.message.toString(),requireView())
         }
-        
+
     }
 
 
