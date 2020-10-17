@@ -1,12 +1,16 @@
 package com.example.medled.adapters.recycler_view
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.view_holders.MedicinesViewHolder
 import com.example.medled.databases.medicines_database.Medicine
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MedicinesRecyclerViewAdapter (private val listOfMedicines: ArrayList<Medicine>) : RecyclerView.Adapter<MedicinesViewHolder>(){
@@ -18,8 +22,16 @@ class MedicinesRecyclerViewAdapter (private val listOfMedicines: ArrayList<Medic
         return listOfMedicines.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MedicinesViewHolder, position: Int) {
-        //TODO("Not yet implemented")
+        val medicine = listOfMedicines[holder.adapterPosition]
+        val medicineTimeCalendar = Calendar.getInstance()
+        medicineTimeCalendar.timeInMillis = medicine.time
+
+        holder.medicineName.text = medicine.name
+        holder.medicineTypeAndAmount.text = medicine.amount + " " + medicine.type + " " + medicine.form
+        holder.medicineTime.text = DateFormat.format("HH:mm", medicineTimeCalendar).toString()
+        
     }
 
 }
