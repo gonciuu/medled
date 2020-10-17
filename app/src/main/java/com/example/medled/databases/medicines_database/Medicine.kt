@@ -5,12 +5,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "medicines")
 data class Medicine(
-    val name: String,
-    val amount: String,
-    val type: String,
-    val time: Long,
-    val duration: Int,
-    val form: String
+    var name: String,
+    var amount: String,
+    var type: String,
+    var time: Long,
+    var duration: Int,
+    var form: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

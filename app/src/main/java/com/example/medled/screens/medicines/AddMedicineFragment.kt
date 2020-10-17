@@ -3,6 +3,7 @@ package com.example.medled.screens.medicines
 import android.app.Activity
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,18 +18,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.MedicineFormsRecyclerViewAdapter
+import com.example.medled.databases.medicines_database.Medicine
+import com.example.medled.databases.medicines_database.MedicinesViewModel
 import com.example.medled.helpers.Helpers
 import com.example.medled.models.MedicineFormCard
 import com.example.medled.screens.medicines.time_date_pickers.DatePickerHelper
 import com.example.medled.screens.medicines.time_date_pickers.TimePickerHelper
 import com.example.medled.view_models.DateTimePickerViewModel
 import kotlinx.android.synthetic.main.fragment_add_medicine.*
+import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.time.hours
 
 
-class AddMedicineFragment : Fragment() {
+class AddMedicineFragment : Fragment(),MedicineFormInterface {
 
 
+    private lateinit var medicine:Medicine
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_add_medicine, container, false)
     }
@@ -36,11 +42,16 @@ class AddMedicineFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        medicine =  Medicine("","3","pills",Calendar.getInstance().timeInMillis,3,"Tablet")
+
         setupNavigation()
         setupRecyclerView()
         onSeekbarChanged()
         setupMedicineType()
         setupDateAndTimePicker()
+        saveMedicineButton.setOnClickListener {
+            insertMedicine()
+        }
     }
 
     private fun setupNavigation() =  addMedicineBackButton.setOnClickListener {
@@ -57,13 +68,13 @@ class AddMedicineFragment : Fragment() {
         )
 
         medicineFormRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
-        medicineFormRecyclerView.adapter = MedicineFormsRecyclerViewAdapter(listOfMedicinesForms){setPillForm()}
+        medicineFormRecyclerView.adapter = MedicineFormsRecyclerViewAdapter(listOfMedicinesForms,this)
     }
     //=============================================================================================================================
 
     //----------------------------------| Set pill form in the medicine object |-----------------------------------------
-    private fun setPillForm(){
-        Toast.makeText(requireContext(),"ZMIENIONO FORME",Toast.LENGTH_SHORT).show()
+    override fun changeForm(form: String) {
+        medicine.form = form
     }
     //===================================================================================================================
 
@@ -83,9 +94,13 @@ class AddMedicineFragment : Fragment() {
     private fun setupMedicineType(){
         medicineTypeChooser.setAdapter(ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,arrayListOf("pills", "ml", "mg")))
         medicineTypeChooser.inputType = 0
-        medicineTypeChooser.keyListener = null;
+        medicineTypeChooser.keyListener = null
         medicineTypeChooser.setOnClickListener {
             medicineTypeChooser.showDropDown()
+        }
+
+        medicineTypeChooser.setOnItemClickListener { _, _, i, _ ->
+            medicine.type = medicineTypeChooser.adapter.getItem(i).toString()
         }
 
         //close keyboard on amount enter click
@@ -131,20 +146,50 @@ class AddMedicineFragment : Fragment() {
 
         //--------------------------------observing change time in timepicker (viewmodel)----------------------------------------------
         dateTimePickerViewModel.getTime().observe(viewLifecycleOwner, Observer { time->
-            //tu bedzie ustawienie czasu w obiekcie
-            c.timeInMillis = time
-            timeTextInput.setText(DateFormat.format("HH:mm", c).toString())
+            val helper = Calendar.getInstance()
+            helper.timeInMillis = time
+
+            c.set(Calendar.HOUR,helper.get(Calendar.HOUR))
+            c.set(Calendar.MINUTE,helper.get(Calendar.MINUTE))
+
+            medicine.time = c.timeInMillis
+            timeTextInput.text = DateFormat.format("HH:mm", helper).toString()
         })
         //=========================================================================================================================
 
         //---------------------------------observing change date in datepicker  (viewmodel)----------------------------------------------
         dateTimePickerViewModel.getDate().observe(viewLifecycleOwner, Observer { date->
-            //tu bedzie ustawienie daty w obiekcie
-            c.timeInMillis = date
-            dateTextInput.setText(DateFormat.format("dd MMMM yyyy", c).toString())
+            val helper = Calendar.getInstance()
+            helper.timeInMillis = date
+            c.set(Calendar.YEAR,helper.get(Calendar.YEAR))
+            c.set(Calendar.MONTH,helper.get(Calendar.MONTH))
+            c.set(Calendar.DAY_OF_MONTH,helper.get(Calendar.DAY_OF_MONTH))
+
+            medicine.time = c.timeInMillis
+            dateTextInput.text = DateFormat.format("dd MMMM yyyy", helper).toString()
         })
         //=========================================================================================================================
     }
+    //===============================================================================================
+
+
+
+    //-------------------------------| Insert medicine to database |---------------------------------
+    private fun insertMedicine(){
+        val medicinesViewModel : MedicinesViewModel= ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(MedicinesViewModel::class.java)
+
+        medicine.name = if(medicineNameInput.text.isNullOrEmpty()) "Medicine" else medicineNameInput.text.toString()
+        medicine.amount = if(amountInputField.text.isNullOrEmpty()) "Blank" else amountInputField.text.toString()
+        medicine.duration = durationSeekbar.progress
+
+        medicinesViewModel.insertMedicine(medicine)
+
+        medicinesViewModel.allMedicines.observe(viewLifecycleOwner, Observer {medicines->
+            Log.d("TAG",medicines.toString())
+        })
+    }
+
+
     //===============================================================================================
 
 }

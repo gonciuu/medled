@@ -67,7 +67,7 @@
 
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/medicineNameInput"
             android:layout_width="0dp"
             android:nextFocusDown="@id/amountInputField"
             android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
             android:textColor="@color/gray"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/editText2" />
+            app:layout_constraintTop_toBottomOf="@+id/medicineNameInput" />
 
 
         <TextView
@@ -337,7 +337,7 @@
             app:tint="@color/white" />
 
         <Button
-            android:id="@+id/button12"
+            android:id="@+id/saveMedicineButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
