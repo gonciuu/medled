@@ -93,6 +93,7 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
         durationSeekbar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 durationText.text = resources.getQuantityString(R.plurals.numberOfSongsAvailable,p1,p1)
+                medicine.duration = p1
             }
             override fun onStartTrackingTouch(p0: SeekBar?) {}
             override fun onStopTrackingTouch(p0: SeekBar?) {}
@@ -195,18 +196,26 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
         //---------set medicine property by text in input field-------------
         medicine.name = if(medicineNameInput.text.isNullOrEmpty()) "Medicine" else medicineNameInput.text.toString()
         medicine.amount = if(amountInputField.text.isNullOrEmpty()) "Blank" else amountInputField.text.toString()
-        medicine.duration = durationSeekbar.progress
         //==================================================================
 
         try{
             //---------handle if the setdate is lower than actual date-----------
             if(medicine.time + 100000 > System.currentTimeMillis()){
                 helpers.showSnackBar("Saved",requireView())
-                medicinesViewModel.insertMedicine(medicine)
+
+                //---------save as many pills as user checked in seekbar----------
+                for(i in 1..medicine.duration){
+                    //save bug if save the same object many time - create dynamic object to save
+                    val medicineToSave = Medicine(medicine.name,medicine.amount,medicine.type,medicine.time,medicine.duration,medicine.formName,medicine.formImage)
+                    Log.d("ZAPIS",medicineToSave.toString())
+                    medicinesViewModel.insertMedicine(medicineToSave)
+                    medicine.time += 604800000
+                }
                 requireActivity().onBackPressed()
             }
             else helpers.showSnackBar("Cannot save medicine which date has already passed",requireView())
         }catch (ex:Exception){
+            Log.d("TAG",ex.toString())
             helpers.showSnackBar(ex.message.toString(),requireView())
         }
 
