@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.constraintlayout.solver.widgets.Helper
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,6 +27,7 @@ import com.example.medled.screens.medicines.time_date_pickers.DatePickerHelper
 import com.example.medled.screens.medicines.time_date_pickers.TimePickerHelper
 import com.example.medled.view_models.DateTimePickerViewModel
 import kotlinx.android.synthetic.main.fragment_add_medicine.*
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.time.hours
@@ -35,6 +37,8 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
 
 
     private lateinit var medicine:Medicine
+    private lateinit var medicinesViewModel : MedicinesViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_add_medicine, container, false)
     }
@@ -42,6 +46,7 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        medicinesViewModel =  ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(MedicinesViewModel::class.java)
         medicine =  Medicine("","3","pills",Calendar.getInstance().timeInMillis,3,"Tablet")
 
         setupNavigation()
@@ -49,9 +54,11 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
         onSeekbarChanged()
         setupMedicineType()
         setupDateAndTimePicker()
+
         saveMedicineButton.setOnClickListener {
             insertMedicine()
         }
+
     }
 
     private fun setupNavigation() =  addMedicineBackButton.setOnClickListener {
@@ -99,6 +106,7 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
             medicineTypeChooser.showDropDown()
         }
 
+        //set type of medicine object
         medicineTypeChooser.setOnItemClickListener { _, _, i, _ ->
             medicine.type = medicineTypeChooser.adapter.getItem(i).toString()
         }
@@ -149,6 +157,7 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
             val helper = Calendar.getInstance()
             helper.timeInMillis = time
 
+            //set madicine time
             c.set(Calendar.HOUR,helper.get(Calendar.HOUR))
             c.set(Calendar.MINUTE,helper.get(Calendar.MINUTE))
 
@@ -161,6 +170,8 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
         dateTimePickerViewModel.getDate().observe(viewLifecycleOwner, Observer { date->
             val helper = Calendar.getInstance()
             helper.timeInMillis = date
+
+            //set madicine date
             c.set(Calendar.YEAR,helper.get(Calendar.YEAR))
             c.set(Calendar.MONTH,helper.get(Calendar.MONTH))
             c.set(Calendar.DAY_OF_MONTH,helper.get(Calendar.DAY_OF_MONTH))
@@ -176,17 +187,26 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
 
     //-------------------------------| Insert medicine to database |---------------------------------
     private fun insertMedicine(){
-        val medicinesViewModel : MedicinesViewModel= ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(MedicinesViewModel::class.java)
+        val helpers:Helpers = Helpers()
 
+        //---------set medicine property by text in input field-------------
         medicine.name = if(medicineNameInput.text.isNullOrEmpty()) "Medicine" else medicineNameInput.text.toString()
         medicine.amount = if(amountInputField.text.isNullOrEmpty()) "Blank" else amountInputField.text.toString()
         medicine.duration = durationSeekbar.progress
+        //==================================================================
 
-        medicinesViewModel.insertMedicine(medicine)
-
-        medicinesViewModel.allMedicines.observe(viewLifecycleOwner, Observer {medicines->
-            Log.d("TAG",medicines.toString())
-        })
+        try{
+            //---------handle if the setdate is lower than actual date-----------
+            if(medicine.time + 100000 > System.currentTimeMillis()){
+                helpers.showSnackBar("Saved",requireView())
+                medicinesViewModel.insertMedicine(medicine)
+                requireActivity().onBackPressed()
+            }
+            else helpers.showSnackBar("Cannot save medicine which date has already passed",requireView())
+        }catch (ex:Exception){
+            helpers.showSnackBar(ex.message.toString(),requireView())
+        }
+        
     }
 
 
