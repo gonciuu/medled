@@ -167,24 +167,24 @@
             app:layout_constraintGuide_end="32dp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/patientButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:layout_marginStart="15dp"
             android:background="@drawable/rounded10_bg"
-            android:backgroundTint="#1100B5AD"
+            android:backgroundTint="@color/bg_cyan"
             android:text="Patient"
             android:textAllCaps="false"
             android:textSize="17sp"
             android:fontFamily="@font/open_sans_regular"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button"
+            app:layout_constraintStart_toEndOf="@+id/doctorButton"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/doctorButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
@@ -193,7 +193,7 @@
             android:backgroundTint="@color/colorPrimary"
             android:textColor="@color/white"
             android:textSize="17sp"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintEnd_toStartOf="@+id/patientButton"
             app:layout_constraintHorizontal_bias="0.5"
             android:layout_marginEnd="15dp"
             android:textAllCaps="false"
@@ -211,7 +211,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layout_constraintTop_toBottomOf="@+id/patientButton" />
 
 
         <Button

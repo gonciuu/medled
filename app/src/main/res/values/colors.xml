@@ -10,4 +10,5 @@
     <color name="gray">#707070</color>
     <color name="yellow">#FFC107</color>
     <color name="backgroundLightGray">#F7F7F7</color>
+    <color name="bg_cyan">#1100B5AD</color>
 </resources>

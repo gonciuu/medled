@@ -162,7 +162,7 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
 
         //remove alarm manager notification
         val intent = Intent(requireActivity().applicationContext, MedicineAlarmReceiver::class.java)
-        //send medicine info to the alarm manager
+
         intent.apply {
             putExtra("medicineName",medicine.name)
             putExtra("medicineAmount",medicine.amount)
