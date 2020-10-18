@@ -28,6 +28,8 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
 
     private lateinit var medicinesViewModel: MedicinesViewModel
     private lateinit var allMedicines: List<Medicine>
+    //handle last choose day from the calendar
+    private lateinit var clickedDay: CalendarDay
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,6 +38,9 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //set day as first on start
+        clickedDay = MedicinesCalendar().getFirstDay()
 
         medicinesViewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(MedicinesViewModel::class.java)
         medicinesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -47,7 +52,8 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
         medicinesViewModel.allMedicines.observe(viewLifecycleOwner, Observer {
             Log.d("TAG",it.toString())
             allMedicines = it
-            setupRecyclerView(MedicinesCalendar().getFirstDay())
+            //on change all medicines in database set the adapter on recyclerview based on last clicked day
+            setupRecyclerView(clickedDay)
         })
         //============================================================================================================
 
@@ -111,6 +117,7 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
                        listOfNumbersTextViews[i].setTextColor(ContextCompat.getColor(requireContext(),if(listOfCalendarDays[i].isChoose) R.color.white else R.color.black))
                 }
                 //Log.d("TAG",listOfCalendarDays[actualIndex].toString())
+                clickedDay = listOfCalendarDays[actualIndex]
                 setupRecyclerView(listOfCalendarDays[actualIndex])
             }
             //========================================
