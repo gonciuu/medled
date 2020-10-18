@@ -92,8 +92,8 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
     private fun onSeekbarChanged(){
         durationSeekbar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                durationText.text = resources.getQuantityString(R.plurals.numberOfSongsAvailable,p1,p1)
-                medicine.duration = p1
+                durationText.text = resources.getQuantityString(R.plurals.numberOfSongsAvailable,p1+1,p1+1)
+                medicine.duration = p1+1
             }
             override fun onStartTrackingTouch(p0: SeekBar?) {}
             override fun onStopTrackingTouch(p0: SeekBar?) {}
@@ -211,6 +211,7 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
                     medicinesViewModel.insertMedicine(medicineToSave)
                     medicine.time += 604800000
                 }
+                Log.d("OBIEKT",medicine.toString())
                 requireActivity().onBackPressed()
             }
             else helpers.showSnackBar("Cannot save medicine which date has already passed",requireView())
