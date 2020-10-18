@@ -53,6 +53,7 @@
             android:fontFamily="@font/open_sans_regular"
             android:paddingTop="17dp"
             android:paddingBottom="17dp"
+            android:stateListAnimator="@animator/scale_anim"
             android:text="Create account"
             android:textAllCaps="false"
             android:textColor="#ffffff"
@@ -70,6 +71,7 @@
             android:fontFamily="@font/open_sans_regular"
             android:paddingTop="17dp"
             android:paddingBottom="17dp"
+            android:stateListAnimator="@animator/scale_anim"
             android:text="Login"
             android:textAllCaps="false"
             android:textSize="17sp" />
