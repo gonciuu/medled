@@ -21,21 +21,25 @@ class MedicineAlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
 
+        //create pending intent to open main activity on the notification click
         val activityPendingIntent = PendingIntent.getActivity(context, 0, Intent(context, MainActivity::class.java), 0)
         val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
+        //create the notification
         val notification: Notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setContentTitle("Title")
-            .setContentText("Message")
-            .setSmallIcon(R.drawable.ic_pill)
+            .setContentTitle(intent!!.getStringExtra("medicineName"))
+            .setContentText(intent.getStringExtra("medicineAmount") + " "+ intent.getStringExtra("medicineType"))
+            .setSmallIcon(intent.getIntExtra("medicineImage",R.drawable.capsule))
             .setContentIntent(activityPendingIntent)
             .build()
 
+        //create the notification channel
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH)
             notificationManager.createNotificationChannel(channel)
         }
 
+        //show the notification
         notificationManager.notify(System.currentTimeMillis().toInt(),notification)
 
     }

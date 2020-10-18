@@ -173,7 +173,7 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
             //set madicine time
             c.set(Calendar.HOUR,helper.get(Calendar.HOUR))
             c.set(Calendar.MINUTE,helper.get(Calendar.MINUTE))
-            c.set(Calendar.SECOND,0)
+            c.set(Calendar.SECOND,helper.get(Calendar.SECOND))
 
             medicine.time = c.timeInMillis
             timeTextInput.text = DateFormat.format("HH:mm", helper).toString()
@@ -219,13 +219,21 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
                     val medicineToSave = Medicine(medicine.name,medicine.amount,medicine.type,medicine.time,medicine.duration,medicine.formName,medicine.formImage)
                     medicinesViewModel.insertMedicine(medicineToSave)
 
+                    //---------------| set alarm manager to show notification in the medicine time |---------------------
                     val intent = Intent(requireActivity().applicationContext, MedicineAlarmReceiver::class.java)
-
+                    //send medicine info to the alarm manager
+                    intent.apply {
+                        putExtra("medicineName",medicine.name)
+                        putExtra("medicineAmount",medicine.amount)
+                        putExtra("medicineType",medicine.type)
+                        putExtra("medicineImage",medicine.formImage)
+                    }
                     val alarmIntent = intent.let {
                         PendingIntent.getBroadcast(requireActivity().applicationContext,medicineToSave.time.toInt(),it,0)
                     }
                     Log.d("OBIEKT",medicineToSave.time.toString())
                     alarmManager.set(AlarmManager.RTC_WAKEUP,medicineToSave.time,alarmIntent)
+                    //======================================================================================================
 
                     medicine.time += 604800000
                 }
