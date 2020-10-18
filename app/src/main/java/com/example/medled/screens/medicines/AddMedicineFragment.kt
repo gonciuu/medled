@@ -215,16 +215,14 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
                 for(i in 1..medicine.duration){
                     //save bug if save the same object many time - create dynamic object to save
                     val medicineToSave = Medicine(medicine.name,medicine.amount,medicine.type,medicine.time,medicine.duration,medicine.formName,medicine.formImage)
-                    Log.d("ZAPIS",medicineToSave.toString())
                     medicinesViewModel.insertMedicine(medicineToSave)
 
-                    val intent = Intent(requireActivity().applicationContext, MedicineAlarmReceiver::class.java)
+                    /*val intent = Intent(requireActivity().applicationContext, MedicineAlarmReceiver::class.java)
 
                     val alarmIntent = intent.let {
                         PendingIntent.getBroadcast(requireActivity().applicationContext,medicine.time.toInt(),it,0)
                     }
-                    alarmManager.set(AlarmManager.RTC_WAKEUP,medicine.time,alarmIntent)
-
+                    alarmManager.set(AlarmManager.RTC_WAKEUP,medicine.time,alarmIntent)*/
 
                     medicine.time += 604800000
                 }
