@@ -61,6 +61,10 @@ class Authentication {
     }
     //===============================================================================================
 
+    fun removeListener() {
+        auth.removeAuthStateListener{}
+    }
+
 
     //------------------| Sign out |-----------------------
     fun signOutFromFirebase(view: View) = try {

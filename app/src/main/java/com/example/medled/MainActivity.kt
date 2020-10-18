@@ -29,7 +29,11 @@ class MainActivity : AppCompatActivity() {
     //===============================================================
 
     //log in to app action
-    private fun stateLogIn() = findNavController(R.id.nav_host_fragment).navigate(R.id.medicinesFragment, null, getNavOptions())
+    private fun stateLogIn() {
+        val navController = findNavController(R.id.nav_host_fragment)
+        if(navController.currentDestination!!.id == R.id.welcomeAuthFragment || navController.currentDestination!!.id == R.id.loginFragment || navController.currentDestination!!.id == R.id.registerFragment)
+            navController.navigate(R.id.medicinesFragment, null, getNavOptions())
+    }
 
     //log out from app action
     private fun stateLogOut() {
