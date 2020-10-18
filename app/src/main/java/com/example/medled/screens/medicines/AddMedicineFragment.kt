@@ -57,6 +57,7 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
         medicinesViewModel =  ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(MedicinesViewModel::class.java)
         medicine =  Medicine("","3","pills",Calendar.getInstance().timeInMillis,3,"Pills",R.drawable.pills)
 
+
         setupNavigation()
         setupRecyclerView()
         onSeekbarChanged()
@@ -172,6 +173,7 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
             //set madicine time
             c.set(Calendar.HOUR,helper.get(Calendar.HOUR))
             c.set(Calendar.MINUTE,helper.get(Calendar.MINUTE))
+            c.set(Calendar.SECOND,0)
 
             medicine.time = c.timeInMillis
             timeTextInput.text = DateFormat.format("HH:mm", helper).toString()
@@ -217,16 +219,17 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
                     val medicineToSave = Medicine(medicine.name,medicine.amount,medicine.type,medicine.time,medicine.duration,medicine.formName,medicine.formImage)
                     medicinesViewModel.insertMedicine(medicineToSave)
 
-                    /*val intent = Intent(requireActivity().applicationContext, MedicineAlarmReceiver::class.java)
+                    val intent = Intent(requireActivity().applicationContext, MedicineAlarmReceiver::class.java)
 
                     val alarmIntent = intent.let {
-                        PendingIntent.getBroadcast(requireActivity().applicationContext,medicine.time.toInt(),it,0)
+                        PendingIntent.getBroadcast(requireActivity().applicationContext,medicineToSave.time.toInt(),it,0)
                     }
-                    alarmManager.set(AlarmManager.RTC_WAKEUP,medicine.time,alarmIntent)*/
+                    Log.d("OBIEKT",medicineToSave.time.toString())
+                    alarmManager.set(AlarmManager.RTC_WAKEUP,medicineToSave.time,alarmIntent)
 
                     medicine.time += 604800000
                 }
-                Log.d("OBIEKT",medicine.toString())
+
                 requireActivity().onBackPressed()
             }
             else helpers.showSnackBar("Cannot save medicine which date has already passed",requireView())

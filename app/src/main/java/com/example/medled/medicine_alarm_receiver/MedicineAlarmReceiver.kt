@@ -36,7 +36,7 @@ class MedicineAlarmReceiver : BroadcastReceiver() {
             notificationManager.createNotificationChannel(channel)
         }
 
-        notificationManager.notify(Calendar.getInstance().timeInMillis.toInt(),notification)
+        notificationManager.notify(System.currentTimeMillis().toInt(),notification)
 
     }
 }
