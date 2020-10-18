@@ -17,9 +17,11 @@ import com.example.medled.R
 import com.example.medled.adapters.recycler_view.MedicinesRecyclerViewAdapter
 import com.example.medled.databases.medicines_database.Medicine
 import com.example.medled.databases.medicines_database.MedicinesViewModel
+import com.example.medled.helpers.Helpers
 import com.example.medled.helpers.MedicinesCalendar
 import com.example.medled.models.CalendarDay
 import kotlinx.android.synthetic.main.fragment_medicines.*
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -81,7 +83,18 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
         }
 
         Collections.sort(filterList,MedicinesArrayListComparator())
-        medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter(filterList,this)
+
+        //list of medicines is empty
+        if(filterList.isEmpty()){
+            addFirstMedicineText.visibility = View.VISIBLE
+            medicinesRecyclerView.visibility = View.GONE
+        }else{
+            //list of medicines has more than 0 elements
+            addFirstMedicineText.visibility = View.GONE
+            medicinesRecyclerView.visibility = View.VISIBLE
+            medicinesRecyclerView.adapter = MedicinesRecyclerViewAdapter(filterList,this)
+        }
+
     }
     //======================================================================================================
 
@@ -126,7 +139,15 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
 
     //show the alert dialog to confirm medicine delete
     override fun showDeleteDialog(medicine: Medicine) {
-        DeleteMedicineDialog(medicine,this).show(requireActivity().supportFragmentManager,"delete_medicine_dialog")
+        val helpers:Helpers = Helpers()
+        try{
+            DeleteMedicineDialog(medicine,this).show(requireActivity().supportFragmentManager,"delete_medicine_dialog")
+        }catch (isex:IllegalStateException){
+            helpers.showSnackBar("Activity cannot be null",requireView())
+        }catch (ex:Exception){
+            helpers.showSnackBar(ex.message.toString(),requireView())
+        }
+
     }
     
     //delete medicine from the database
