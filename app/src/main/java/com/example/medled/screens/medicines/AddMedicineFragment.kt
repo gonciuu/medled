@@ -1,6 +1,10 @@
 package com.example.medled.screens.medicines
 
 import android.app.Activity
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
@@ -22,6 +26,7 @@ import com.example.medled.adapters.recycler_view.MedicineFormsRecyclerViewAdapte
 import com.example.medled.databases.medicines_database.Medicine
 import com.example.medled.databases.medicines_database.MedicinesViewModel
 import com.example.medled.helpers.Helpers
+import com.example.medled.medicine_alarm_receiver.MedicineAlarmReceiver
 import com.example.medled.models.MedicineFormCard
 import com.example.medled.screens.medicines.time_date_pickers.DatePickerHelper
 import com.example.medled.screens.medicines.time_date_pickers.TimePickerHelper
@@ -38,6 +43,7 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
 
     private lateinit var medicine:Medicine
     private lateinit var medicinesViewModel : MedicinesViewModel
+    private lateinit var alarmManager: AlarmManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_add_medicine, container, false)
@@ -45,6 +51,8 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         medicinesViewModel =  ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(MedicinesViewModel::class.java)
         medicine =  Medicine("","3","pills",Calendar.getInstance().timeInMillis,3,"Pills",R.drawable.pills)
@@ -209,6 +217,15 @@ class AddMedicineFragment : Fragment(),MedicineFormInterface {
                     val medicineToSave = Medicine(medicine.name,medicine.amount,medicine.type,medicine.time,medicine.duration,medicine.formName,medicine.formImage)
                     Log.d("ZAPIS",medicineToSave.toString())
                     medicinesViewModel.insertMedicine(medicineToSave)
+
+                    val intent = Intent(requireActivity().applicationContext, MedicineAlarmReceiver::class.java)
+
+                    val alarmIntent = intent.let {
+                        PendingIntent.getBroadcast(requireActivity().applicationContext,medicine.time.toInt(),it,0)
+                    }
+                    alarmManager.set(AlarmManager.RTC_WAKEUP,medicine.time,alarmIntent)
+
+
                     medicine.time += 604800000
                 }
                 Log.d("OBIEKT",medicine.toString())
