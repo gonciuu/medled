@@ -1,5 +1,9 @@
 package com.example.medled.screens.medicines
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 
@@ -19,6 +23,7 @@ import com.example.medled.databases.medicines_database.Medicine
 import com.example.medled.databases.medicines_database.MedicinesViewModel
 import com.example.medled.helpers.Helpers
 import com.example.medled.helpers.MedicinesCalendar
+import com.example.medled.medicine_alarm_receiver.MedicineAlarmReceiver
 import com.example.medled.models.CalendarDay
 import kotlinx.android.synthetic.main.fragment_medicines.*
 import java.lang.Exception
@@ -32,7 +37,7 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
     private lateinit var allMedicines: List<Medicine>
     //handle last choose day from the calendar
     private lateinit var clickedDay: CalendarDay
-
+    private lateinit var alarmManager: AlarmManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_medicines, container, false)
@@ -43,6 +48,7 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
 
         //set day as first on start
         clickedDay = MedicinesCalendar().getFirstDay()
+        alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         medicinesViewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(MedicinesViewModel::class.java)
         medicinesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -153,6 +159,11 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
     //delete medicine from the database
     override fun deleteMedicine(medicine: Medicine) {
         medicinesViewModel.deleteMedicine(medicine)
+        val intent = Intent(requireActivity().applicationContext, MedicineAlarmReceiver::class.java)
+        val alarmIntent = intent.let {
+            PendingIntent.getBroadcast(requireActivity().applicationContext,medicine.time.toInt(),it,0)
+        }
+        alarmManager.cancel(alarmIntent)
     }
 
     //==================================================================
