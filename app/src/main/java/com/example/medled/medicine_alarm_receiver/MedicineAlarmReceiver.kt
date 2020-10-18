@@ -31,6 +31,7 @@ class MedicineAlarmReceiver : BroadcastReceiver() {
             .setContentText(intent.getStringExtra("medicineAmount") + " "+ intent.getStringExtra("medicineType"))
             .setSmallIcon(intent.getIntExtra("medicineImage",R.drawable.capsule))
             .setContentIntent(activityPendingIntent)
+            .setAutoCancel(true)
             .build()
 
         //create the notification channel

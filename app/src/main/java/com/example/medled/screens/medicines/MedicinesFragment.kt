@@ -159,7 +159,16 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
     //delete medicine from the database
     override fun deleteMedicine(medicine: Medicine) {
         medicinesViewModel.deleteMedicine(medicine)
+
+        //remove alarm manager notification
         val intent = Intent(requireActivity().applicationContext, MedicineAlarmReceiver::class.java)
+        //send medicine info to the alarm manager
+        intent.apply {
+            putExtra("medicineName",medicine.name)
+            putExtra("medicineAmount",medicine.amount)
+            putExtra("medicineType",medicine.type)
+            putExtra("medicineImage",medicine.formImage)
+        }
         val alarmIntent = intent.let {
             PendingIntent.getBroadcast(requireActivity().applicationContext,medicine.time.toInt(),it,0)
         }
