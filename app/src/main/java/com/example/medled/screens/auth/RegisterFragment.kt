@@ -61,19 +61,27 @@ class RegisterFragment : Fragment() {
 
     //-------------------------| Patient/Doctor choose button |---------------------------
     private fun setUserTypeButtons(){
-        val listOfButtons = arrayListOf<Button>(doctorButton,patientButton)
-
-        listOfButtons.forEach {bt->
-            bt.setOnClickListener {
-                listOfButtons.forEach { it.backgroundTintList = ContextCompat.getColorStateList( requireContext(),R.color.bg_cyan)
-                    it.setTextColor(ContextCompat.getColor(requireContext(),R.color.darkGray))
-                }
-                bt.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
-                bt.backgroundTintList = ContextCompat.getColorStateList(requireContext(),R.color.colorPrimary)
-            }
+        doctorButton.setOnClickListener {
+            changeColors(doctorButton)
+            doctorTypes.visibility = View.VISIBLE
+        }
+        patientButton.setOnClickListener {
+            changeColors(patientButton)
+            doctorTypes.visibility = View.GONE
         }
     }
     //====================================================================================
+
+    //---------------------------------| INVERSE BUTTON COLORS |-------------------------------------
+    private fun changeColors(clickedButton: Button){
+        arrayListOf(doctorButton,patientButton).forEach {
+            it.backgroundTintList = ContextCompat.getColorStateList( requireContext(),R.color.bg_cyan)
+            it .setTextColor(ContextCompat.getColor(requireContext(),R.color.darkGray))
+        }
+        clickedButton.backgroundTintList = ContextCompat.getColorStateList( requireContext(),R.color.colorPrimary)
+        clickedButton .setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
+    }
+    //===============================================================================================
 
     //------------------------| Setup auto complete text view with doctors types |-------------------------
     private fun setupDoctorsTypesAutoCompleteTextView(){
@@ -89,5 +97,6 @@ class RegisterFragment : Fragment() {
             //zmiana typu lekarza
         }
     }
+    //==========================================================================================================
 
 }
