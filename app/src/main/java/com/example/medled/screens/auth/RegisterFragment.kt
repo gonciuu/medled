@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.example.medled.R
 import com.example.medled.authentication.Authentication
 import com.example.medled.helpers.Helpers
+import kotlinx.android.synthetic.main.fragment_add_medicine.*
 import kotlinx.android.synthetic.main.fragment_register.*
 
 
@@ -31,6 +33,7 @@ class RegisterFragment : Fragment() {
         registerButton.setOnClickListener { registerWithEmailAndPassword() }
         onEnterClicked()
         setUserTypeButtons()
+        setupDoctorsTypesAutoCompleteTextView()
     }
 
     private fun setupNavigation() {
@@ -71,5 +74,20 @@ class RegisterFragment : Fragment() {
         }
     }
     //====================================================================================
+
+    //------------------------| Setup auto complete text view with doctors types |-------------------------
+    private fun setupDoctorsTypesAutoCompleteTextView(){
+        doctorTypes.setAdapter( ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,
+            arrayListOf("Pediatrician","Neurologist","Family Doctor","Psychiatrist","Pulmonologist","Dermatologist","Cardiologist")))
+        doctorTypes.inputType = 0
+        doctorTypes.keyListener = null
+        doctorTypes.setOnClickListener {
+            doctorTypes.showDropDown()
+        }
+
+        doctorTypes.setOnItemClickListener { _, _, i, _ ->
+            //zmiana typu lekarza
+        }
+    }
 
 }

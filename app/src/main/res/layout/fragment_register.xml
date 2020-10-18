@@ -202,15 +202,26 @@
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 
-        <Spinner
-            android:id="@+id/doctorTypeSpinner"
+        <AutoCompleteTextView
+            android:id="@+id/doctorTypes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:background="@drawable/rounded10_bg"
+            android:padding="18dp"
+            android:textColor="@color/darkGray"
+            android:fontFamily="@font/open_sans_regular"
+            android:text="Cardiologist"
             android:layout_marginTop="24dp"
+            android:textSize="17sp"
+            android:backgroundTint="@color/bg_cyan"
+            android:drawableRight="@drawable/ic_more"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/patientButton" />
+            app:layout_constraintTop_toBottomOf="@+id/patientButton"
+            tools:ignore="LabelFor" />
 
 
         <Button
@@ -233,7 +244,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/doctorTypeSpinner"
+            app:layout_constraintTop_toBottomOf="@+id/doctorTypes"
             app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
