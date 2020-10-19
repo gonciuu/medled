@@ -21,6 +21,9 @@ class RealTimeDatabase {
         else{
             //user is register as patient
             user.medicineBranch = null
+            user.starCount = null
+            user.startTime = null
+            user.endTime = null
             patientsRef.child(user.id.toString()).setValue(user).addOnFailureListener {
                 //handle eventual error
                 errorListener.errorHandled(it.message.toString(),view)

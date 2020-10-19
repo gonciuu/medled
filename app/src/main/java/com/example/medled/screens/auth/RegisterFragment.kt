@@ -2,6 +2,8 @@ package com.example.medled.screens.auth
 
 import android.content.Context
 import android.os.Bundle
+import android.text.format.DateFormat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +12,13 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.medled.R
 import com.example.medled.authentication.Authentication
 import com.example.medled.helpers.Helpers
 import com.example.medled.models.User
+import com.example.medled.screens.auth.time_picker_dialog.RegisterTimePickerDialog
+import com.example.medled.view_models.RegisterTimeViewModel
 import kotlinx.android.synthetic.main.fragment_register.*
 import java.util.*
 
@@ -21,6 +26,7 @@ import java.util.*
 class RegisterFragment : Fragment() {
 
     private lateinit var user: User
+    private lateinit var registerTimeViewModel: RegisterTimeViewModel
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -30,14 +36,17 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        registerTimeViewModel = ViewModelProvider(requireActivity()).get(RegisterTimeViewModel::class.java)
+
         //user object to save in database
-        user = User(System.currentTimeMillis().toString(),"Name","A doctor", R.drawable.doctor_avatar_1, true, "Cardiologist" )
+        user = User(System.currentTimeMillis().toString(),"Name","A doctor", R.drawable.doctor_avatar_1, true, "Cardiologist" , System.currentTimeMillis(), System.currentTimeMillis(),0.0f)
 
         setupNavigation()
         registerButton.setOnClickListener { registerWithEmailAndPassword() }
         onEnterClicked()
         setUserTypeButtons()
         setupDoctorsTypesAutoCompleteTextView()
+        setupStartAndEndWorkTime()
     }
 
     private fun setupNavigation() {
@@ -52,8 +61,16 @@ class RegisterFragment : Fragment() {
         //user.drawable = if...
 
 
-        val authentication = Authentication()
-        authentication.registerWithEmailAndPassword(registerEmailInput.text.toString(), registerPasswordInput.text.toString(),requireView(), user)
+        //check if the start time is lower than end time
+        if(user.startTime!! > user.endTime!!){
+            Log.d("TIME",user.startTime.toString())
+            Log.d("TIME",user.endTime.toString())
+            Helpers().showSnackBar("Your work start time is lower than your end time!", requireView())
+        }else{
+            val authentication = Authentication()
+            authentication.registerWithEmailAndPassword(registerEmailInput.text.toString(), registerPasswordInput.text.toString(),requireView(), user)
+        }
+
     }
     //=====================================================================================================
 
@@ -71,15 +88,16 @@ class RegisterFragment : Fragment() {
 
     //-------------------------| Patient/Doctor choose button |---------------------------
     private fun setUserTypeButtons(){
+        val listOfDoctorViews = arrayListOf<View>(doctorTypes, startTimeInput, endTimeInput,startTimeInput2,timeIntervalText)
         doctorButton.setOnClickListener {
             user.isDoctor = true
             changeColors(doctorButton)
-            doctorTypes.visibility = View.VISIBLE
+            listOfDoctorViews.forEach { it.visibility = View.VISIBLE}
         }
         patientButton.setOnClickListener {
             user.isDoctor = false
             changeColors(patientButton)
-            doctorTypes.visibility = View.GONE
+            listOfDoctorViews.forEach { it.visibility = View.GONE}
         }
     }
     //====================================================================================
@@ -111,5 +129,55 @@ class RegisterFragment : Fragment() {
         }
     }
     //==========================================================================================================
+
+
+    //--------------------------| Setup start/end time pickers |-------------------------------
+    private fun setupStartAndEndWorkTime(){
+        val calendar = Calendar.getInstance()
+
+        //-----------------------------| get work start time and setup it into the textview |---------------------------
+        registerTimeViewModel.getStartTime().observe(viewLifecycleOwner, androidx.lifecycle.Observer { startTime->
+            calendar.timeInMillis = startTime
+            startTimeInput.text = DateFormat.format("HH:mm", calendar).toString()
+            user.startTime = startTime
+        })
+        //==============================================================================================================
+
+        //-----------------------------| get work end time and setup it into the textview |---------------------------
+        registerTimeViewModel.getEndTime().observe(viewLifecycleOwner, androidx.lifecycle.Observer { endTime->
+            calendar.timeInMillis = endTime
+            endTimeInput.text = DateFormat.format("HH:mm", calendar).toString()
+            user.endTime = endTime
+        })
+        //============================================================================================================
+
+        setStartTimeValues()
+
+
+        //show time picker to set start time
+        startTimeInput.setOnClickListener {
+            val dialog = RegisterTimePickerDialog(true)
+            dialog.show(requireActivity().supportFragmentManager,"start_time_dialog")
+        }
+
+        //show time picker to set end time
+        endTimeInput.setOnClickListener {
+            val dialog = RegisterTimePickerDialog(false)
+            dialog.show(requireActivity().supportFragmentManager,"end_time_dialog")
+        }
+    }
+    //=========================================================================================
+
+    //--------------| Set doctor times start values |------------------
+    private fun setStartTimeValues(){
+        val c = Calendar.getInstance()
+        c.set(Calendar.HOUR_OF_DAY,8)
+        c.set(Calendar.MINUTE,0)
+        registerTimeViewModel.setStartTime(c.timeInMillis)
+        c.set(Calendar.HOUR_OF_DAY,12)
+        c.set(Calendar.MINUTE,0)
+        registerTimeViewModel.setEndTime(c.timeInMillis)
+    }
+    //===================================================================
 
 }
