@@ -25,6 +25,9 @@ import java.lang.Exception
 class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
 
     private lateinit var realTimeDatabase:RealTimeDatabase
+    private lateinit var allDoctors: ArrayList<User>
+
+    private var chooseDoctorType = "Pediatrician"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
          return inflater.inflate(R.layout.fragment_all_doctors, container, false)
@@ -33,6 +36,7 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        allDoctors = ArrayList()
         realTimeDatabase = RealTimeDatabase()
 
         doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
@@ -53,14 +57,15 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
             DoctorTypeCard("Pulmonologist",R.drawable.doctor_avatar_1,false),
             DoctorTypeCard("Dermatologist",R.drawable.doctor_avatar_1,false),
             DoctorTypeCard("Cardiologist",R.drawable.doctor_avatar_1,false)
-
         )
     }
     //================================================================================================
 
     //----------------| Change doctor type |-------------------
     override fun changeType(doctorType: String) {
-        Toast.makeText(requireContext(),doctorType,Toast.LENGTH_SHORT).show()
+        chooseDoctorType = doctorType
+        val listOfChooseBranchDoctors = getListOfDoctorsBasedOnDoctorType()
+        doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter(listOfChooseBranchDoctors)
     }
     //=========================================================
 
@@ -74,10 +79,23 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
 
     //-------------------------| Listening to the database active doctors |---------------------------------
     override fun onDoctorsDatabaseChanged(allDoctors: ArrayList<User>) {
+        this.allDoctors = allDoctors
         try{
-            doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter(allDoctors)
+            val listOfChooseBranchDoctors = getListOfDoctorsBasedOnDoctorType()
+            doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter(listOfChooseBranchDoctors)
         }catch (ex:Exception){}
     }
     //======================================================================================================
 
+    //-----------| Get all doctors which type is the same as choosen |-------------
+    private fun getListOfDoctorsBasedOnDoctorType():ArrayList<User>{
+        val listOfChooseBranchDoctors = ArrayList<User>()
+        allDoctors.forEach {
+            if(it.medicineBranch == chooseDoctorType){
+                listOfChooseBranchDoctors.add(it)
+            }
+        }
+        return listOfChooseBranchDoctors
+    }
+    //===============================================================================
 }
