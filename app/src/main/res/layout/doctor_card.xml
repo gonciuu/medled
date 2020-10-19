@@ -6,6 +6,7 @@
     android:backgroundTint="#f7f7f7"
     android:layout_marginTop="10dp"
     android:paddingTop="15dp"
+    android:id="@+id/allDoctorBox"
     android:paddingBottom="15dp"
     android:layout_marginBottom="10dp"
     android:orientation="horizontal"

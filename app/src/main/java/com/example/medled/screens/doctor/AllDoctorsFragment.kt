@@ -12,6 +12,7 @@ import com.example.medled.R
 import com.example.medled.adapters.recycler_view.DoctorTypesRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.DoctorsRecyclerViewAdapter
 import com.example.medled.databases.real_time_database.RealTimeDatabase
+import com.example.medled.helpers.Helpers
 import com.example.medled.models.DoctorTypeCard
 import com.example.medled.models.User
 import com.google.firebase.database.DataSnapshot
@@ -65,14 +66,17 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
     override fun changeType(doctorType: String) {
         chooseDoctorType = doctorType
         val listOfChooseBranchDoctors = getListOfDoctorsBasedOnDoctorType()
-        doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter(listOfChooseBranchDoctors)
+        doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter(listOfChooseBranchDoctors,this)
+
+        doctorsAviableText.visibility = if(listOfChooseBranchDoctors.isNotEmpty()) View.GONE else View.VISIBLE
+        doctorsRecyclerView.visibility = if(listOfChooseBranchDoctors.isNotEmpty()) View.VISIBLE else View.GONE
     }
     //=========================================================
 
 
 
     override fun chooseDoctor(doctor: User) {
-
+        Helpers().showSnackBar(doctor.toString(),requireView())
     }
 
 
@@ -82,7 +86,10 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
         this.allDoctors = allDoctors
         try{
             val listOfChooseBranchDoctors = getListOfDoctorsBasedOnDoctorType()
-            doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter(listOfChooseBranchDoctors)
+            doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter(listOfChooseBranchDoctors,this)
+
+            doctorsAviableText.visibility =if(listOfChooseBranchDoctors.isNotEmpty()) View.GONE else View.VISIBLE
+            doctorsRecyclerView.visibility =if(listOfChooseBranchDoctors.isNotEmpty()) View.VISIBLE else View.GONE
         }catch (ex:Exception){}
     }
     //======================================================================================================

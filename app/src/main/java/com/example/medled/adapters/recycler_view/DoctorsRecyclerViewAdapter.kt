@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.view_holders.DoctorsRecyclerViewHolder
 import com.example.medled.models.User
+import com.example.medled.screens.doctor.AllDoctorsInterface
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DoctorsRecyclerViewAdapter(private val listOfDoctors:ArrayList<User>) : RecyclerView.Adapter<DoctorsRecyclerViewHolder>() {
+class DoctorsRecyclerViewAdapter(private val listOfDoctors:ArrayList<User>, private val listener:AllDoctorsInterface) : RecyclerView.Adapter<DoctorsRecyclerViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorsRecyclerViewHolder {
         return DoctorsRecyclerViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.doctor_card,parent,false))
     }
@@ -38,5 +39,10 @@ class DoctorsRecyclerViewAdapter(private val listOfDoctors:ArrayList<User>) : Re
         holder.doctorStarCount.text = doctor.starCount.toString()
         holder.doctorType.text = doctor.medicineBranch
         holder.doctorAvatar.setImageResource(doctor.avatar)
+
+        holder.allBox.setOnClickListener {
+            listener.chooseDoctor(doctor)
+        }
+
     }
 }
