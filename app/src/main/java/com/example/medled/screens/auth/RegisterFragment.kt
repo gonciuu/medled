@@ -31,7 +31,7 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //user object to save in database
-        user = User( Calendar.getInstance().timeInMillis.toInt(),"Name","A doctor", R.drawable.doctor_avatar_1, true, "Cardiologist" )
+        user = User(System.currentTimeMillis().toString(),"Name","A doctor", R.drawable.doctor_avatar_1, true, "Cardiologist" )
 
         setupNavigation()
         registerButton.setOnClickListener { registerWithEmailAndPassword() }
@@ -46,8 +46,12 @@ class RegisterFragment : Fragment() {
 
     //------------------------| Register User With Email And Password |-----------------------------------
     private fun registerWithEmailAndPassword() {
+        //set user info
         user.name = registerFullNameInput.text.toString()
         user.bio = if(user.isDoctor) "A Doctor" else "A patient"
+        //user.drawable = if...
+
+
         val authentication = Authentication()
         authentication.registerWithEmailAndPassword(registerEmailInput.text.toString(), registerPasswordInput.text.toString(),requireView(), user)
     }
@@ -101,6 +105,7 @@ class RegisterFragment : Fragment() {
             doctorTypes.showDropDown()
         }
 
+        //change medicine branch of user
         doctorTypes.setOnItemClickListener { _, _, i, _ ->
             user.medicineBranch = doctorTypes.adapter.getItem(i).toString()
         }

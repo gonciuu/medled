@@ -1,7 +1,7 @@
 package com.example.medled.models
 
 data class User(
-    val id: Int,
+    var id: String,
     var name: String,
     var bio: String,
     val avatar: Int,

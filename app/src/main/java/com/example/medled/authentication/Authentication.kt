@@ -10,8 +10,14 @@ import com.google.firebase.auth.FirebaseAuth
 import java.lang.Exception
 
 class Authentication: DatabaseError {
+
+    //realtime database
     private val database = RealTimeDatabase()
+
+    //google firebase auth
     private val auth = FirebaseAuth.getInstance()
+
+    //helpers (show dialogs, snackbars etc)
     private val helpers: Helpers = Helpers()
 
     //----------------------| Register With email and password |----------------------------
@@ -21,6 +27,9 @@ class Authentication: DatabaseError {
             dialog.show()
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful){
+                    //change user id to the current user uid in authentication
+                    user.id = task.result!!.user.uid
+                    //insert user to database
                     database.insertUserToDatabase(user,view,this)
                     helpers.showSnackBar("Successfully registering",view)
                 }else{
@@ -66,11 +75,6 @@ class Authentication: DatabaseError {
     }
     //===============================================================================================
 
-    fun removeListener() {
-        auth.removeAuthStateListener{}
-    }
-
-
     //------------------| Sign out |-----------------------
     fun signOutFromFirebase(view: View) = try {
         helpers.showSnackBar("Log outed",view)
@@ -82,9 +86,11 @@ class Authentication: DatabaseError {
     //=====================================================
 
 
+    //----------------| function which handled database error |----------------------
     override fun errorHandled(errorMessage:String,view: View) {
         helpers.showSnackBar(errorMessage,view)
         if(auth.currentUser!=null)
             auth.currentUser!!.delete()
     }
+    //================================================================================
 }
