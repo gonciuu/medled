@@ -13,6 +13,11 @@ import com.example.medled.adapters.recycler_view.DoctorTypesRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.DoctorsRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.MedicineFormsRecyclerViewAdapter
 import com.example.medled.models.DoctorTypeCard
+import com.example.medled.models.User
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_all_doctors.*
 
 
@@ -30,8 +35,8 @@ class AllDoctorsFragment : Fragment() , ChangeDoctorTypeInterface{
         doctorsTypeRecyclerView.adapter = DoctorTypesRecyclerViewAdapter(setupDoctorsTypesCards(),this)
 
         doctorsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter()
 
+        getActiveDoctors()
     }
 
     //--------------------------------| get all doctors cards |---------------------------------------
@@ -54,5 +59,26 @@ class AllDoctorsFragment : Fragment() , ChangeDoctorTypeInterface{
         Toast.makeText(requireContext(),doctorType,Toast.LENGTH_SHORT).show()
     }
     //=========================================================
+
+    private fun getActiveDoctors(){
+        val arrayListOfDoctors = arrayListOf<User>()
+        val myRef = FirebaseDatabase.getInstance().getReference("Doctors")
+
+        myRef.addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+                Toast.makeText(context,"Error + ${p0.message}",Toast.LENGTH_SHORT).show()
+            }
+            override fun onDataChange(p0: DataSnapshot) {
+                arrayListOfDoctors.clear()
+                for(i in p0.children){
+                    val doctor = i.getValue(User::class.java)!!
+                    arrayListOfDoctors.add(doctor)
+                }
+
+                if(doctorsRecyclerView!=null)doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter(arrayListOfDoctors)
+            }
+        })
+
+    }
 
 }

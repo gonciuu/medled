@@ -13,6 +13,7 @@
 
 
     <ImageView
+        android:id="@+id/doctorAvatar"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
@@ -26,6 +27,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/doctorName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Dr. Wilson"
@@ -34,6 +36,7 @@
             android:fontFamily="@font/open_sans_semibold"/>
 
         <TextView
+            android:id="@+id/doctorType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pulmanonologist"
@@ -52,7 +55,8 @@
                 android:src="@drawable/ic_star"
                 app:tint="@color/yellow"/>
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/doctorStarCount"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center"
@@ -64,10 +68,12 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:layout_marginEnd="5dp"
                 android:src="@drawable/ic_time"
                 android:layout_gravity="end"
                 app:tint="@color/colorPrimary"/>
             <TextView
+                android:id="@+id/doctorWorkTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
