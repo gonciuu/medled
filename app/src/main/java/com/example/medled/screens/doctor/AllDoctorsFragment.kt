@@ -11,6 +11,7 @@ import com.example.medled.R
 import com.example.medled.adapters.recycler_view.DoctorTypesRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.DoctorsRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.MedicineFormsRecyclerViewAdapter
+import com.example.medled.models.DoctorTypeCard
 import kotlinx.android.synthetic.main.fragment_all_doctors.*
 
 
@@ -25,11 +26,26 @@ class AllDoctorsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
-        doctorsTypeRecyclerView.adapter = DoctorTypesRecyclerViewAdapter()
+        doctorsTypeRecyclerView.adapter = DoctorTypesRecyclerViewAdapter(setupDoctorsTypesCards())
 
         doctorsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter()
 
     }
+
+    //--------------------------------| get all doctors cards |---------------------------------------
+    private fun setupDoctorsTypesCards():ArrayList<DoctorTypeCard>{
+        return arrayListOf<DoctorTypeCard>(
+            DoctorTypeCard("Pediatrician",R.drawable.doctor_avatar_1,true),
+            DoctorTypeCard("Neurologist",R.drawable.doctor_avatar_1,false),
+            DoctorTypeCard("Family Doctor",R.drawable.doctor_avatar_1,false),
+            DoctorTypeCard("Psychiatrist",R.drawable.doctor_avatar_1,false),
+            DoctorTypeCard("Pulmonologist",R.drawable.doctor_avatar_1,false),
+            DoctorTypeCard("Dermatologist",R.drawable.doctor_avatar_1,false),
+            DoctorTypeCard("Cardiologist",R.drawable.doctor_avatar_1,false)
+
+        )
+    }
+    //================================================================================================
 
 }
