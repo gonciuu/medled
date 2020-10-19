@@ -15,7 +15,7 @@ import com.example.medled.models.DoctorTypeCard
 import kotlinx.android.synthetic.main.fragment_all_doctors.*
 
 
-class AllDoctorsFragment : Fragment() {
+class AllDoctorsFragment : Fragment() , ChangeDoctorTypeInterface{
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -26,7 +26,7 @@ class AllDoctorsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
-        doctorsTypeRecyclerView.adapter = DoctorTypesRecyclerViewAdapter(setupDoctorsTypesCards())
+        doctorsTypeRecyclerView.adapter = DoctorTypesRecyclerViewAdapter(setupDoctorsTypesCards(),this)
 
         doctorsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter()
@@ -47,5 +47,11 @@ class AllDoctorsFragment : Fragment() {
         )
     }
     //================================================================================================
+
+    //----------------| Change doctor type |-------------------
+    override fun changeType(doctorType: String) {
+        //TODO("Not yet implemented")
+    }
+    //=========================================================
 
 }

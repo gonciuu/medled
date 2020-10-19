@@ -8,8 +8,9 @@ import com.example.medled.R
 import com.example.medled.adapters.recycler_view.view_holders.DoctorsTypesViewHolder
 import com.example.medled.adapters.recycler_view.view_holders.MedicineFormsViewHolder
 import com.example.medled.models.DoctorTypeCard
+import com.example.medled.screens.doctor.ChangeDoctorTypeInterface
 
-class DoctorTypesRecyclerViewAdapter(private val listOfDoctorsTypes: ArrayList<DoctorTypeCard>):RecyclerView.Adapter<DoctorsTypesViewHolder>() {
+class DoctorTypesRecyclerViewAdapter(private val listOfDoctorsTypes: ArrayList<DoctorTypeCard>,private val listener:ChangeDoctorTypeInterface):RecyclerView.Adapter<DoctorsTypesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorsTypesViewHolder {
         return DoctorsTypesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.photo_and_desc_card,parent,false))
     }
@@ -43,6 +44,7 @@ class DoctorTypesRecyclerViewAdapter(private val listOfDoctorsTypes: ArrayList<D
 
     //-----------------------| Click on card |---------------------------
     private fun doctorCardClick(index:Int){
+        listener.changeType(listOfDoctorsTypes[index].name)
         listOfDoctorsTypes.forEach { it.isChoose=false }
         listOfDoctorsTypes[index].isChoose = true
         notifyDataSetChanged()
