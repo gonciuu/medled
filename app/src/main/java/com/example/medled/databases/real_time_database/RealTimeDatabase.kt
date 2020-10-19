@@ -1,8 +1,15 @@
 package com.example.medled.databases.real_time_database
 
 import android.view.View
+import android.widget.Toast
+import com.example.medled.adapters.recycler_view.DoctorsRecyclerViewAdapter
+import com.example.medled.helpers.Helpers
 import com.example.medled.models.User
+import com.example.medled.screens.doctor.AllDoctorsInterface
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_all_doctors.*
 
 class RealTimeDatabase {
     private val database = FirebaseDatabase.getInstance()
@@ -31,4 +38,24 @@ class RealTimeDatabase {
         }
     }
     //========================================================================================
+
+    //-----------------------| Get all active doctors from database|-------------------------------
+    fun getActiveDoctors(view: View,listener: AllDoctorsInterface){
+        val arrayListOfDoctors = arrayListOf<User>()
+
+        doctorsRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: com.google.firebase.database.DatabaseError) {
+               Helpers().showSnackBar(p0.message,view)
+            }
+            override fun onDataChange(p0: DataSnapshot) {
+                arrayListOfDoctors.clear()
+                for(i in p0.children){
+                    val doctor = i.getValue(User::class.java)!!
+                    arrayListOfDoctors.add(doctor)
+                }
+                listener.onDoctorsDatabaseChanged(arrayListOfDoctors)
+            }
+        })
+    }
+    //===========================================================================================
 }

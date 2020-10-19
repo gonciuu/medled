@@ -6,11 +6,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.view_holders.DoctorsTypesViewHolder
-import com.example.medled.adapters.recycler_view.view_holders.MedicineFormsViewHolder
 import com.example.medled.models.DoctorTypeCard
-import com.example.medled.screens.doctor.ChangeDoctorTypeInterface
+import com.example.medled.screens.doctor.AllDoctorsInterface
 
-class DoctorTypesRecyclerViewAdapter(private val listOfDoctorsTypes: ArrayList<DoctorTypeCard>,private val listener:ChangeDoctorTypeInterface):RecyclerView.Adapter<DoctorsTypesViewHolder>() {
+class DoctorTypesRecyclerViewAdapter(private val listOfDoctorsTypes: ArrayList<DoctorTypeCard>,private val listener:AllDoctorsInterface):RecyclerView.Adapter<DoctorsTypesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorsTypesViewHolder {
         return DoctorsTypesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.photo_and_desc_card,parent,false))
     }
