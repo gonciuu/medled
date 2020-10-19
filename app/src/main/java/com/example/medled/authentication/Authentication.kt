@@ -2,21 +2,25 @@ package com.example.medled.authentication
 
 import android.app.AlertDialog
 import android.view.View
+import com.example.medled.databases.real_time_database.RealTimeDatabase
 import com.example.medled.helpers.Helpers
+import com.example.medled.models.User
 import com.google.firebase.auth.FirebaseAuth
 import java.lang.Exception
 
 class Authentication {
+    private val database = RealTimeDatabase()
     private val auth = FirebaseAuth.getInstance()
     private val helpers: Helpers = Helpers()
 
     //----------------------| Register With email and password |----------------------------
-    fun registerWithEmailAndPassword(email: String, password: String,view: View) {
+    fun registerWithEmailAndPassword(email: String, password: String,view: View,user: User) {
         val dialog :AlertDialog = helpers.getLoadingDialog(view.context,"Registering")  //loading dialog
         try {
             dialog.show()
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful){
+                    database.insertUserToDatabase(user)
                     helpers.showSnackBar("Successfully registering",view)
                 }else{
                     //catch network exception etc

@@ -15,11 +15,15 @@ import androidx.fragment.app.Fragment
 import com.example.medled.R
 import com.example.medled.authentication.Authentication
 import com.example.medled.helpers.Helpers
+import com.example.medled.models.User
 import kotlinx.android.synthetic.main.fragment_add_medicine.*
 import kotlinx.android.synthetic.main.fragment_register.*
+import java.util.*
 
 
 class RegisterFragment : Fragment() {
+
+    private lateinit var user: User
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -28,6 +32,8 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        user = User( Calendar.getInstance().timeInMillis.toInt(),"wfw","A doctor", R.drawable.doctor_avatar_1, true, "Cardiologist" )
 
         setupNavigation()
         registerButton.setOnClickListener { registerWithEmailAndPassword() }
@@ -43,7 +49,7 @@ class RegisterFragment : Fragment() {
     //------------------------| Register User With Email And Password |-----------------------------------
     private fun registerWithEmailAndPassword() {
         val authentication = Authentication()
-        authentication.registerWithEmailAndPassword(registerEmailInput.text.toString(), registerPasswordInput.text.toString(),requireView())
+        authentication.registerWithEmailAndPassword(registerEmailInput.text.toString(), registerPasswordInput.text.toString(),requireView(), user)
     }
     //=====================================================================================================
 
