@@ -8,15 +8,12 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.example.medled.R
 import com.example.medled.authentication.Authentication
 import com.example.medled.helpers.Helpers
 import com.example.medled.models.User
-import kotlinx.android.synthetic.main.fragment_add_medicine.*
 import kotlinx.android.synthetic.main.fragment_register.*
 import java.util.*
 
@@ -33,7 +30,8 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        user = User( Calendar.getInstance().timeInMillis.toInt(),"wfw","A doctor", R.drawable.doctor_avatar_1, true, "Cardiologist" )
+        //user object to save in database
+        user = User( Calendar.getInstance().timeInMillis.toInt(),"Name","A doctor", R.drawable.doctor_avatar_1, true, "Cardiologist" )
 
         setupNavigation()
         registerButton.setOnClickListener { registerWithEmailAndPassword() }
@@ -48,6 +46,8 @@ class RegisterFragment : Fragment() {
 
     //------------------------| Register User With Email And Password |-----------------------------------
     private fun registerWithEmailAndPassword() {
+        user.name = registerFullNameInput.text.toString()
+        user.bio = if(user.isDoctor) "A Doctor" else "A patient"
         val authentication = Authentication()
         authentication.registerWithEmailAndPassword(registerEmailInput.text.toString(), registerPasswordInput.text.toString(),requireView(), user)
     }
@@ -68,10 +68,12 @@ class RegisterFragment : Fragment() {
     //-------------------------| Patient/Doctor choose button |---------------------------
     private fun setUserTypeButtons(){
         doctorButton.setOnClickListener {
+            user.isDoctor = true
             changeColors(doctorButton)
             doctorTypes.visibility = View.VISIBLE
         }
         patientButton.setOnClickListener {
+            user.isDoctor = false
             changeColors(patientButton)
             doctorTypes.visibility = View.GONE
         }
@@ -100,7 +102,7 @@ class RegisterFragment : Fragment() {
         }
 
         doctorTypes.setOnItemClickListener { _, _, i, _ ->
-            //zmiana typu lekarza
+            user.medicineBranch = doctorTypes.adapter.getItem(i).toString()
         }
     }
     //==========================================================================================================
