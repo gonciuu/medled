@@ -1,7 +1,6 @@
 package com.example.medled.databases.real_time_database
 
-import androidx.constraintlayout.solver.widgets.Helper
-import com.example.medled.helpers.Helpers
+import android.view.View
 import com.example.medled.models.User
 import com.google.firebase.database.FirebaseDatabase
 
@@ -11,12 +10,16 @@ class RealTimeDatabase {
     private val doctorsRef = database.getReference("Doctors")
 
 
-    fun insertUserToDatabase(user: User){
+    fun insertUserToDatabase(user: User,view: View, errorListener: DatabaseError){
         if(user.isDoctor)
-            doctorsRef.child(user.id.toString()).setValue(user)
+            doctorsRef.child(user.id.toString()).setValue(user).addOnFailureListener {
+                errorListener.errorHandled(it.message.toString(),view)
+            }
         else{
             user.medicineBranch = null
-            patientsRef.child(user.id.toString()).setValue(user)
+            patientsRef.child(user.id.toString()).setValue(user).addOnFailureListener {
+                errorListener.errorHandled(it.message.toString(),view)
+            }
         }
     }
 }

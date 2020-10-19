@@ -2,13 +2,14 @@ package com.example.medled.authentication
 
 import android.app.AlertDialog
 import android.view.View
+import com.example.medled.databases.real_time_database.DatabaseError
 import com.example.medled.databases.real_time_database.RealTimeDatabase
 import com.example.medled.helpers.Helpers
 import com.example.medled.models.User
 import com.google.firebase.auth.FirebaseAuth
 import java.lang.Exception
 
-class Authentication {
+class Authentication: DatabaseError {
     private val database = RealTimeDatabase()
     private val auth = FirebaseAuth.getInstance()
     private val helpers: Helpers = Helpers()
@@ -20,7 +21,7 @@ class Authentication {
             dialog.show()
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful){
-                    database.insertUserToDatabase(user)
+                    database.insertUserToDatabase(user,view,this)
                     helpers.showSnackBar("Successfully registering",view)
                 }else{
                     //catch network exception etc
@@ -77,7 +78,13 @@ class Authentication {
     }catch (ex:Exception){
         helpers.showSnackBar(ex.message.toString(),view)
     }
+
     //=====================================================
 
 
+    override fun errorHandled(errorMessage:String,view: View) {
+        helpers.showSnackBar(errorMessage,view)
+        if(auth.currentUser!=null)
+            auth.currentUser!!.delete()
+    }
 }
