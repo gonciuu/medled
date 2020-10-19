@@ -11,6 +11,7 @@
     <string name="are_you">Are you?</string>
     <string name="journal">Journal</string>
     <string name="write_a_reply">Write a reply...</string>
+    <string name="choose_your_work_interval">Choose Work Time Interval</string>
 
     <plurals name="numberOfSongsAvailable">
         <item quantity="one">%d week</item>
