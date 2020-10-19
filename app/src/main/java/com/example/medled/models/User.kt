@@ -4,7 +4,7 @@ data class User(
     var id: String,
     var name: String,
     var bio: String,
-    val avatar: Int,
+    var avatar: Int,
     var isDoctor: Boolean,
     var medicineBranch: String?
 )
