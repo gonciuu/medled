@@ -22,17 +22,21 @@ import com.example.medled.adapters.recycler_view.MedicinesRecyclerViewAdapter
 import com.example.medled.authentication.Authentication
 import com.example.medled.databases.medicines_database.Medicine
 import com.example.medled.databases.medicines_database.MedicinesViewModel
+import com.example.medled.databases.real_time_database.GetCurrentUserInterface
+import com.example.medled.databases.real_time_database.RealTimeDatabase
 import com.example.medled.helpers.Helpers
 import com.example.medled.helpers.MedicinesCalendar
 import com.example.medled.medicine_alarm_receiver.MedicineAlarmReceiver
 import com.example.medled.models.CalendarDay
+import com.example.medled.models.User
+import com.example.medled.view_models.CurrentUserViewModel
 import kotlinx.android.synthetic.main.fragment_medicines.*
 import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MedicinesFragment : Fragment(),DeleteMedicineInterface {
+class MedicinesFragment : Fragment(),DeleteMedicineInterface,GetCurrentUserInterface {
 
     private lateinit var medicinesViewModel: MedicinesViewModel
     private lateinit var allMedicines: List<Medicine>
@@ -67,6 +71,7 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
         //============================================================================================================
 
 
+        getCurrentUserId()
     }
 
 
@@ -180,15 +185,34 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
 
     //--------------------| Get current user uid and save it into viewmodel |------------------------
     private fun getCurrentUserId(){
-        val authentication = Authentication()
-        val id = authentication.getCurrentUserId()
-        if(id!=null){
-            
-        }else{
-            Helpers().showSnackBar("Something went wrong . Try again later",requireView())
-        }
+        val currentUserViewModel:CurrentUserViewModel = ViewModelProvider(requireActivity()).get(CurrentUserViewModel::class.java)
+
+        currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer {user->
+            //if user in viewmodel don't exist get it from database
+            if(user==null){
+                Log.d("TAG","Wykonało się")
+                val authentication = Authentication()
+                val id = authentication.getCurrentUserId()
+                if(id!=null){
+                    RealTimeDatabase().getUserById(requireView(),id,this)
+                }else{
+                    Helpers().showSnackBar("Something went wrong . Try again later",requireView())
+                }
+            }else{
+                Log.d("TAG",user.id)
+            }
+        })
+
     }
+
     //===============================================================================================
+
+    //--------------------| set current user in view model |--------------------------
+    override fun onGetCurrentUser(user: User) {
+        val currentUserViewModel:CurrentUserViewModel = ViewModelProvider(requireActivity()).get(CurrentUserViewModel::class.java)
+        currentUserViewModel.setUser(user)
+    }
+    //===============================================================================
 
 }
 
