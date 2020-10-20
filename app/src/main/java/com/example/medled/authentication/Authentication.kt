@@ -93,4 +93,14 @@ class Authentication: DatabaseError {
             auth.currentUser!!.delete()
     }
     //================================================================================
+
+    //---------------------| Get current user id |----------------------
+    fun getCurrentUserId():String?{
+        return try{
+            auth.currentUser!!.uid
+        }catch (ex:Exception){
+            null
+        }
+    }
+    //===================================================================
 }

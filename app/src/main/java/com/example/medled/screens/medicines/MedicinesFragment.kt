@@ -19,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.MedicinesRecyclerViewAdapter
+import com.example.medled.authentication.Authentication
 import com.example.medled.databases.medicines_database.Medicine
 import com.example.medled.databases.medicines_database.MedicinesViewModel
 import com.example.medled.helpers.Helpers
@@ -174,8 +175,21 @@ class MedicinesFragment : Fragment(),DeleteMedicineInterface {
         }
         alarmManager.cancel(alarmIntent)
     }
-
     //==================================================================
+
+
+    //--------------------| Get current user uid and save it into viewmodel |------------------------
+    private fun getCurrentUserId(){
+        val authentication = Authentication()
+        val id = authentication.getCurrentUserId()
+        if(id!=null){
+            
+        }else{
+            Helpers().showSnackBar("Something went wrong . Try again later",requireView())
+        }
+    }
+    //===============================================================================================
+
 }
 
 
