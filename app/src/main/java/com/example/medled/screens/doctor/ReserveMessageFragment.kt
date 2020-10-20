@@ -13,6 +13,7 @@ import com.example.medled.databases.real_time_database.DatabaseError
 import com.example.medled.databases.real_time_database.RealTimeDatabase
 import com.example.medled.helpers.Helpers
 import com.example.medled.models.Request
+import com.example.medled.models.User
 import com.example.medled.view_models.ChooseDoctorViewModel
 import com.example.medled.view_models.CurrentUserViewModel
 import kotlinx.android.synthetic.main.fragment_reserve_message.*
@@ -45,7 +46,7 @@ class ReserveMessageFragment : Fragment(),DatabaseError {
 
             //set on click on the reserve message button
             reserveMessageButton.setOnClickListener {
-                insertRequestToDatabase(doctor.id)
+                insertRequestToDatabase(doctor)
             }
 
         })
@@ -53,11 +54,11 @@ class ReserveMessageFragment : Fragment(),DatabaseError {
     //===================================================================================
 
     //---------------------------| Insert the request to database |---------------------------------
-    private fun insertRequestToDatabase(doctorId:String){
+    private fun insertRequestToDatabase(doctor: User){
         val currentUserViewModel: CurrentUserViewModel = ViewModelProvider(requireActivity()).get(CurrentUserViewModel::class.java)
         currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer {
             val patientId = it!!.id
-            val request: Request  = Request(patientId+doctorId,patientId,doctorId)
+            val request: Request  = Request(patientId+doctor.id,it,doctor)
             val db:RealTimeDatabase = RealTimeDatabase()
             db.insertRequest(request,requireView(),this)
         })

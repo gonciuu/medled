@@ -1,3 +1,3 @@
 package com.example.medled.models
 
-data class Request (val id:String = "", val patientId:String = "",val doctorId: String = ""/*,val messages:ArrayList<Message> = arrayListOf()*/)
+data class Request (val id:String = "", val patient:User? = null, val doctor: User? = null/*,val messages:ArrayList<Message> = arrayListOf()*/)

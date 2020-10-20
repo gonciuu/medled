@@ -1,5 +1,6 @@
 package com.example.medled.screens.doctor
 
+import com.example.medled.models.Request
 import com.example.medled.models.User
 
 interface AllDoctorsInterface {
@@ -9,6 +10,6 @@ interface AllDoctorsInterface {
 
     fun onDoctorsDatabaseChanged(allDoctors: ArrayList<User>)
 
-    fun onRequestsDatabaseChanged(allPatients: ArrayList<User>)
+    fun onRequestsDatabaseChanged(allRequests: ArrayList<Request>)
 
 }

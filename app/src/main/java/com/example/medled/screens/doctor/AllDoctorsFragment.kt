@@ -16,6 +16,7 @@ import com.example.medled.adapters.recycler_view.DoctorsRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.PatientsRecyclerViewAdapter
 import com.example.medled.databases.real_time_database.RealTimeDatabase
 import com.example.medled.models.DoctorTypeCard
+import com.example.medled.models.Request
 import com.example.medled.models.User
 import com.example.medled.view_models.ChooseDoctorViewModel
 import com.example.medled.view_models.CurrentUserViewModel
@@ -27,7 +28,6 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
 
     private lateinit var realTimeDatabase:RealTimeDatabase
     private lateinit var allDoctors: ArrayList<User>
-    private lateinit var allPatients: ArrayList<User>
 
     private var chooseDoctorType = "Pediatrician"
 
@@ -128,11 +128,12 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
 
 
     //-------------------------| Listen to requests database changed |------------------------------
-    override fun onRequestsDatabaseChanged(allPatients: ArrayList<User>) {
-        doctorsRecyclerView.adapter = PatientsRecyclerViewAdapter(allPatients,this)
+    override fun onRequestsDatabaseChanged(allRequests: ArrayList<Request>) {
+        doctorsRecyclerView.adapter = PatientsRecyclerViewAdapter(allRequests,this)
         doctorsAviableText.text = "No patients aviable"
-        doctorsAviableText.visibility =if(allPatients.isNotEmpty()) View.GONE else View.VISIBLE
-        doctorsRecyclerView.visibility =if(allPatients.isNotEmpty()) View.VISIBLE else View.GONE
+        textView17.text = "Your patients"
+        doctorsAviableText.visibility =if(allRequests.isNotEmpty()) View.GONE else View.VISIBLE
+        doctorsRecyclerView.visibility =if(allRequests.isNotEmpty()) View.VISIBLE else View.GONE
     }
     //==============================================================================================
 

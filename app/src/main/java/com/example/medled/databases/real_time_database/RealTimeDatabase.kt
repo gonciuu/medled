@@ -115,7 +115,26 @@ class RealTimeDatabase {
     }
     //=========================================================================
 
+    //-----------------------| Get requests from database |---------------------------
     fun getRequests(view:View,listener:AllDoctorsInterface,doctorId:String){
-
+        val listOfRequests = arrayListOf<Request>()
+        requestsRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: com.google.firebase.database.DatabaseError) {
+                Helpers().showSnackBar(p0.message,view)
+            }
+            //-------check if the doctor id is equal in a request--------
+            override fun onDataChange(p0: DataSnapshot) {
+                listOfRequests.clear()
+                for(i in p0.children){
+                    val request = i.getValue(Request::class.java)!!
+                    if(request.doctor!!.id == doctorId){
+                        listOfRequests.add(request)
+                    }
+                }
+                listener.onRequestsDatabaseChanged(listOfRequests)
+            }
+        })
+        //================================================================
     }
+    //==================================================================================
 }
