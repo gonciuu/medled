@@ -51,13 +51,13 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
     //--------------------------------| get all doctors cards |---------------------------------------
     private fun setupDoctorsTypesCards():ArrayList<DoctorTypeCard>{
         return arrayListOf<DoctorTypeCard>(
-            DoctorTypeCard("Pediatrician",R.drawable.doctor_avatar_1,true),
-            DoctorTypeCard("Neurologist",R.drawable.doctor_avatar_1,false),
-            DoctorTypeCard("Family Doctor",R.drawable.doctor_avatar_1,false),
-            DoctorTypeCard("Psychiatrist",R.drawable.doctor_avatar_1,false),
-            DoctorTypeCard("Pulmonologist",R.drawable.doctor_avatar_1,false),
-            DoctorTypeCard("Dermatologist",R.drawable.doctor_avatar_1,false),
-            DoctorTypeCard("Cardiologist",R.drawable.doctor_avatar_1,false)
+            DoctorTypeCard("Pediatrician",R.drawable.pediatrican_icon,true),
+            DoctorTypeCard("Neurologist",R.drawable.neurologist_icon,false),
+            DoctorTypeCard("Family Doctor",R.drawable.family_doctor_icon,false),
+            DoctorTypeCard("Psychiatrist",R.drawable.psychiatrist_icon,false),
+            DoctorTypeCard("Pulmonologist",R.drawable.pulmonologist_icon,false),
+            DoctorTypeCard("Dermatologist",R.drawable.dermatologist_icon,false),
+            DoctorTypeCard("Cardiologist",R.drawable.cardiologist_icon,false)
         )
     }
     //================================================================================================
