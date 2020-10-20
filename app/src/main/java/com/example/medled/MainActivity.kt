@@ -8,6 +8,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.medled.authentication.Authentication
+import com.example.medled.view_models.CurrentUserViewModel
 import com.example.medled.view_models.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -40,6 +41,10 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         if (navController.currentDestination!!.id != R.id.welcomeAuthFragment)
             navController.navigate(R.id.welcomeAuthFragment, null, getNavOptions())
+
+        val currentUserViewModel: CurrentUserViewModel = ViewModelProvider(this).get(
+            CurrentUserViewModel::class.java)
+        currentUserViewModel.setUser(null)
     }
 
 

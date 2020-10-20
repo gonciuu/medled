@@ -6,12 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.medled.R
+import com.example.medled.view_models.CurrentUserViewModel
 import kotlinx.android.synthetic.main.fragment_choose_avatar.*
 
 
 class ChooseAvatarFragment : Fragment() {
 
+    private lateinit var currentUserViewModel: CurrentUserViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_choose_avatar, container, false)
@@ -19,7 +23,7 @@ class ChooseAvatarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        currentUserViewModel = ViewModelProvider(requireActivity()).get(CurrentUserViewModel::class.java)
         setupNavigation()
         setupImages()
     }
@@ -38,6 +42,7 @@ class ChooseAvatarFragment : Fragment() {
         val listOfAvatarsImageViews = arrayListOf<ImageView>(
             avatar1, avatar2, avatar3, avatar4, avatar5, avatar6
         )
+
         val listOfDoctorsImages = arrayListOf<Int>(
             R.drawable.doctor_avatar_1,
             R.drawable.doctor_avatar_2,
@@ -56,9 +61,12 @@ class ChooseAvatarFragment : Fragment() {
             R.drawable.user_avatar_6
         )
 
-        for(i in 0 until listOfAvatarsImageViews.size){
-            listOfAvatarsImageViews[i].setImageResource(if(false) listOfDoctorsImages[i] else listOfPatientsImages[i])
-        }
+
+        currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer { user->
+            for(i in 0 until listOfAvatarsImageViews.size){
+                listOfAvatarsImageViews[i].setImageResource(if(user!!.isDoctor) listOfDoctorsImages[i] else listOfPatientsImages[i])
+            }
+        })
 
     }
 }

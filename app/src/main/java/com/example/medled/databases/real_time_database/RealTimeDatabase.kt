@@ -64,7 +64,7 @@ class RealTimeDatabase {
 
     fun getUserById(view: View,id:String,listener: GetCurrentUserInterface){
         var currentUser:User? = null
-        doctorsRef.addListenerForSingleValueEvent(object: ValueEventListener{
+        patientsRef.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onCancelled(p0: com.google.firebase.database.DatabaseError) {
                 Helpers().showSnackBar(p0.message,view)
             }
@@ -76,7 +76,27 @@ class RealTimeDatabase {
                         break
                     }
                 }
-                listener.onGetCurrentUser(currentUser!!)
+                if(currentUser == null){
+                    doctorsRef.addListenerForSingleValueEvent(object: ValueEventListener{
+                        override fun onCancelled(p0: com.google.firebase.database.DatabaseError) {
+                            Helpers().showSnackBar(p0.message,view)
+                        }
+                        override fun onDataChange(p0: DataSnapshot) {
+                            for(i in p0.children) {
+                                val user = i.getValue(User::class.java)
+                                if (user!!.id == id) {
+                                    currentUser = user
+                                    break
+                                }
+                            }
+                            listener.onGetCurrentUser(currentUser!!)
+                        }
+
+                    })
+                }else{
+                    listener.onGetCurrentUser(currentUser!!)
+                }
+
             }
         })
     }
