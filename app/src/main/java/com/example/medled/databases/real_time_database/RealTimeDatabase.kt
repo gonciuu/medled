@@ -103,4 +103,9 @@ class RealTimeDatabase {
     }
 
     //====================================================================================
+
+
+    fun getRequests(view:View,listener:AllDoctorsInterface,doctorId:String){
+
+    }
 }

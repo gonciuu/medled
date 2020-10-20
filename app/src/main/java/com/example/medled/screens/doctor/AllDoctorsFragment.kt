@@ -6,15 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.DoctorTypesRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.DoctorsRecyclerViewAdapter
+import com.example.medled.adapters.recycler_view.PatientsRecyclerViewAdapter
 import com.example.medled.databases.real_time_database.RealTimeDatabase
 import com.example.medled.helpers.Helpers
 import com.example.medled.models.DoctorTypeCard
 import com.example.medled.models.User
+import com.example.medled.view_models.CurrentUserViewModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -27,6 +31,7 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
 
     private lateinit var realTimeDatabase:RealTimeDatabase
     private lateinit var allDoctors: ArrayList<User>
+    private lateinit var allPatients: ArrayList<User>
 
     private var chooseDoctorType = "Pediatrician"
 
@@ -37,14 +42,25 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        allDoctors = ArrayList()
         realTimeDatabase = RealTimeDatabase()
-
-        doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
-        doctorsTypeRecyclerView.adapter = DoctorTypesRecyclerViewAdapter(setupDoctorsTypesCards(),this)
-
         doctorsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        realTimeDatabase.getActiveDoctors(requireView(),this)
+
+        val currentUserViewModel: CurrentUserViewModel = ViewModelProvider(requireActivity()).get(CurrentUserViewModel::class.java)
+        currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer {user->
+            if(user!!.isDoctor){
+                allDoctors = ArrayList()
+
+                doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
+                doctorsTypeRecyclerView.adapter = DoctorTypesRecyclerViewAdapter(setupDoctorsTypesCards(),this)
+
+                realTimeDatabase.getActiveDoctors(requireView(),this)
+            }else{
+                doctorsTypeRecyclerView.visibility = View.GONE
+                realTimeDatabase.getRequests(requireView(),this,user.id)
+            }
+        })
+
+
 
     }
 
@@ -92,6 +108,7 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
             doctorsRecyclerView.visibility =if(listOfChooseBranchDoctors.isNotEmpty()) View.VISIBLE else View.GONE
         }catch (ex:Exception){}
     }
+
     //======================================================================================================
 
     //-----------| Get all doctors which type is the same as choosen |-------------
@@ -105,4 +122,15 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
         return listOfChooseBranchDoctors
     }
     //===============================================================================
+
+
+
+    override fun onRequestsDatabaseChanged(allPatients: ArrayList<User>) {
+        doctorsRecyclerView.adapter = PatientsRecyclerViewAdapter(allPatients,this)
+        doctorsAviableText.text = "No patients aviable"
+        doctorsAviableText.visibility =if(allPatients.isNotEmpty()) View.GONE else View.VISIBLE
+        doctorsRecyclerView.visibility =if(allPatients.isNotEmpty()) View.VISIBLE else View.GONE
+    }
+
+
 }

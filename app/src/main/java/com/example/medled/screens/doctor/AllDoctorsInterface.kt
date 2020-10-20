@@ -8,4 +8,7 @@ interface AllDoctorsInterface {
     fun chooseDoctor(doctor:User)
 
     fun onDoctorsDatabaseChanged(allDoctors: ArrayList<User>)
+
+    fun onRequestsDatabaseChanged(allPatients: ArrayList<User>)
+
 }
