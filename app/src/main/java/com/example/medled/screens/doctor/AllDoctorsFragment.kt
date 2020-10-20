@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
@@ -18,6 +19,7 @@ import com.example.medled.databases.real_time_database.RealTimeDatabase
 import com.example.medled.helpers.Helpers
 import com.example.medled.models.DoctorTypeCard
 import com.example.medled.models.User
+import com.example.medled.view_models.ChooseDoctorViewModel
 import com.example.medled.view_models.CurrentUserViewModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -47,21 +49,21 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
 
         val currentUserViewModel: CurrentUserViewModel = ViewModelProvider(requireActivity()).get(CurrentUserViewModel::class.java)
         currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer {user->
-            if(user!!.isDoctor){
-                allDoctors = ArrayList()
+            try {
+                if(user!!.isDoctor){
+                    allDoctors = ArrayList()
 
-                doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
-                doctorsTypeRecyclerView.adapter = DoctorTypesRecyclerViewAdapter(setupDoctorsTypesCards(),this)
+                    doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
+                    doctorsTypeRecyclerView.adapter = DoctorTypesRecyclerViewAdapter(setupDoctorsTypesCards(),this)
 
-                realTimeDatabase.getActiveDoctors(requireView(),this)
-            }else{
-                doctorsTypeRecyclerView.visibility = View.GONE
-                realTimeDatabase.getRequests(requireView(),this,user.id)
-            }
+                    realTimeDatabase.getActiveDoctors(requireView(),this)
+                }else{
+                    doctorsTypeRecyclerView.visibility = View.GONE
+                    realTimeDatabase.getRequests(requireView(),this,user.id)
+                }
+            }catch (ex:Exception){}
         })
-
-
-
+        
     }
 
     //--------------------------------| get all doctors cards |---------------------------------------
@@ -92,7 +94,9 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
 
 
     override fun chooseDoctor(doctor: User) {
-        Helpers().showSnackBar(doctor.toString(),requireView())
+        val chooseDoctorViewModel: ChooseDoctorViewModel = ViewModelProvider(requireActivity()).get(ChooseDoctorViewModel::class.java)
+        chooseDoctorViewModel.setDoctor(doctor)
+        findNavController().navigate(R.id.action_allDoctorsFragment_to_reserveMessageFragment)
     }
 
 

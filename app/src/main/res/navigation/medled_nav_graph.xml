@@ -70,12 +70,28 @@
         android:id="@+id/allDoctorsFragment"
         android:name="com.example.medled.screens.doctor.AllDoctorsFragment"
         android:label="AllDoctorsFragment"
-        tools:layout="@layout/fragment_all_doctors" />
+        tools:layout="@layout/fragment_all_doctors" >
+        <action
+            android:id="@+id/action_allDoctorsFragment_to_reserveMessageFragment"
+            app:destination="@id/reserveMessageFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/reserveMessageFragment"
         android:name="com.example.medled.screens.doctor.ReserveMessageFragment"
         android:label="fragment_reserve_message"
-        tools:layout="@layout/fragment_reserve_message" />
+        tools:layout="@layout/fragment_reserve_message" >
+        <action
+            android:id="@+id/action_reserveMessageFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.medled.screens.doctor.ChatFragment"

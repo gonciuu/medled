@@ -15,6 +15,7 @@ class RealTimeDatabase {
     private val database = FirebaseDatabase.getInstance()
     private val patientsRef = database.getReference("Patients")
     private val doctorsRef = database.getReference("Doctors")
+    private val requestsRef = database.getReference("Requests")
 
 
     //-------------------------| Insert user to realtime database |--------------------------
