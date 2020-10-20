@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.medled.adapters.recycler_view.DoctorsRecyclerViewAdapter
 import com.example.medled.helpers.Helpers
+import com.example.medled.models.Request
 import com.example.medled.models.User
 import com.example.medled.screens.doctor.AllDoctorsInterface
 import com.google.firebase.database.DataSnapshot
@@ -105,6 +106,14 @@ class RealTimeDatabase {
 
     //====================================================================================
 
+    //------------------| Insert request to database |------------------------
+    fun insertRequest(request: Request,view:View,errorListener: DatabaseError){
+        requestsRef.child(request.id).setValue(request).addOnFailureListener {
+            //handle eventual error
+            errorListener.errorHandled(it.message.toString(), view)
+        }
+    }
+    //=========================================================================
 
     fun getRequests(view:View,listener:AllDoctorsInterface,doctorId:String){
 

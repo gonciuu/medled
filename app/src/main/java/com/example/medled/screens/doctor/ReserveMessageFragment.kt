@@ -6,12 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.medled.R
+import com.example.medled.databases.real_time_database.DatabaseError
+import com.example.medled.databases.real_time_database.RealTimeDatabase
+import com.example.medled.helpers.Helpers
+import com.example.medled.models.Request
 import com.example.medled.view_models.ChooseDoctorViewModel
+import com.example.medled.view_models.CurrentUserViewModel
 import kotlinx.android.synthetic.main.fragment_reserve_message.*
 
-class ReserveMessageFragment : Fragment() {
+class ReserveMessageFragment : Fragment(),DatabaseError {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_reserve_message, container, false)
@@ -22,7 +28,6 @@ class ReserveMessageFragment : Fragment() {
 
         setupNavigation()
         setupDoctorInfo()
-
     }
 
     private fun setupNavigation() =  reserveMessageBackButton.setOnClickListener { requireActivity().onBackPressed() }
@@ -37,11 +42,32 @@ class ReserveMessageFragment : Fragment() {
             chooseDoctorMedicineBranch.text = doctor.medicineBranch
             chooseDoctorBio.text = doctor.bio
             chooseDoctorStarCount.text = doctor.starCount.toString()
+
+            //set on click on the reserve message button
+            reserveMessageButton.setOnClickListener {
+                insertRequestToDatabase(doctor.id)
+            }
+
         })
     }
     //===================================================================================
 
+    //---------------------------| Insert the request to database |---------------------------------
+    private fun insertRequestToDatabase(doctorId:String){
+        val currentUserViewModel: CurrentUserViewModel = ViewModelProvider(requireActivity()).get(CurrentUserViewModel::class.java)
+        currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer {
+            val patientId = it!!.id
+            val request: Request  = Request(patientId+doctorId,patientId,doctorId)
+            val db:RealTimeDatabase = RealTimeDatabase()
+            db.insertRequest(request,requireView(),this)
+        })
+    }
+    //==============================================================================================
 
+    //eventual error handler
+    override fun errorHandled(errorMessage: String, view: View) {
+        Helpers().showSnackBar(errorMessage,view)
+    }
 
 
 }

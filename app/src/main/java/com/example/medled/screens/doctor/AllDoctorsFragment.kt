@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,15 +15,10 @@ import com.example.medled.adapters.recycler_view.DoctorTypesRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.DoctorsRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.PatientsRecyclerViewAdapter
 import com.example.medled.databases.real_time_database.RealTimeDatabase
-import com.example.medled.helpers.Helpers
 import com.example.medled.models.DoctorTypeCard
 import com.example.medled.models.User
 import com.example.medled.view_models.ChooseDoctorViewModel
 import com.example.medled.view_models.CurrentUserViewModel
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_all_doctors.*
 import java.lang.Exception
 

@@ -15,7 +15,7 @@ import com.example.medled.helpers.Helpers
 import com.example.medled.models.User
 import com.example.medled.view_models.CurrentUserViewModel
 import kotlinx.android.synthetic.main.fragment_choose_avatar.*
-
+import java.lang.Exception
 
 
 class ChooseAvatarFragment : Fragment(),DatabaseError {
@@ -74,16 +74,19 @@ class ChooseAvatarFragment : Fragment(),DatabaseError {
 
         //-------------------| get currentUser |--------------------
         currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer { user->
-            chooseAvatar.setImageResource(user!!.avatar)
-            for(i in 0 until listOfAvatarsImageViews.size){
-                listOfAvatarsImageViews[i].setImageResource(if(user.isDoctor) listOfDoctorsImages[i] else listOfPatientsImages[i])
+            try{
+                chooseAvatar.setImageResource(user!!.avatar)
+                for(i in 0 until listOfAvatarsImageViews.size){
+                    listOfAvatarsImageViews[i].setImageResource(if(user.isDoctor) listOfDoctorsImages[i] else listOfPatientsImages[i])
 
-                listOfAvatarsImageViews[i].setOnClickListener {
-                    chooseAvatar.setImageResource(if(user.isDoctor) listOfDoctorsImages[i] else listOfPatientsImages[i])
-                    chooseAvatarResource = if(user.isDoctor) listOfDoctorsImages[i] else listOfPatientsImages[i]
+                    listOfAvatarsImageViews[i].setOnClickListener {
+                        chooseAvatar.setImageResource(if(user.isDoctor) listOfDoctorsImages[i] else listOfPatientsImages[i])
+                        chooseAvatarResource = if(user.isDoctor) listOfDoctorsImages[i] else listOfPatientsImages[i]
+                    }
                 }
-            }
-            saveAvatarButton.setOnClickListener { saveAvatar(user) }
+                saveAvatarButton.setOnClickListener { saveAvatar(user) }
+            }catch (ex:Exception){}
+
         })
         //============================================================
     }
