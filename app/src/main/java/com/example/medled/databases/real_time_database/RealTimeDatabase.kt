@@ -69,6 +69,7 @@ class RealTimeDatabase {
                 Helpers().showSnackBar(p0.message,view)
             }
             override fun onDataChange(p0: DataSnapshot) {
+                //current user is a patient
                 for(i in p0.children){
                     val user = i.getValue(User::class.java)
                     if(user!!.id == id){
@@ -76,6 +77,7 @@ class RealTimeDatabase {
                         break
                     }
                 }
+                //current user is a doctor
                 if(currentUser == null){
                     doctorsRef.addListenerForSingleValueEvent(object: ValueEventListener{
                         override fun onCancelled(p0: com.google.firebase.database.DatabaseError) {
@@ -89,14 +91,13 @@ class RealTimeDatabase {
                                     break
                                 }
                             }
-                            listener.onGetCurrentUser(currentUser!!)
+                            listener.onGetCurrentUser(currentUser!!)//doctor
                         }
 
                     })
                 }else{
-                    listener.onGetCurrentUser(currentUser!!)
+                    listener.onGetCurrentUser(currentUser!!)//patient
                 }
-
             }
         })
     }
