@@ -27,7 +27,7 @@ class ReserveMessageFragment : Fragment() {
 
     private fun setupNavigation() =  reserveMessageBackButton.setOnClickListener { requireActivity().onBackPressed() }
 
-    
+    //--------------------| Set doctors info data in layout |---------------------------
     private fun setupDoctorInfo(){
         val chooseDoctorViewModel:ChooseDoctorViewModel = ViewModelProvider(requireActivity()).get(ChooseDoctorViewModel::class.java)
 
@@ -38,8 +38,10 @@ class ReserveMessageFragment : Fragment() {
             chooseDoctorBio.text = doctor.bio
             chooseDoctorStarCount.text = doctor.starCount.toString()
         })
-
-
     }
+    //===================================================================================
+
+
+
 
 }

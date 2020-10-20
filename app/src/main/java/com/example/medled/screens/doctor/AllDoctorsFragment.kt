@@ -48,22 +48,24 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
         doctorsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val currentUserViewModel: CurrentUserViewModel = ViewModelProvider(requireActivity()).get(CurrentUserViewModel::class.java)
+        //---------------------------------| Check the user type (doctor or patient) |--------------------------------------
         currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer {user->
             try {
-                if(user!!.isDoctor){
+                if(!user!!.isDoctor){
+                    //if user is a patient show the doctor list
                     allDoctors = ArrayList()
-
                     doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
                     doctorsTypeRecyclerView.adapter = DoctorTypesRecyclerViewAdapter(setupDoctorsTypesCards(),this)
-
                     realTimeDatabase.getActiveDoctors(requireView(),this)
                 }else{
+                    //if user is a doctor show a patients list
                     doctorsTypeRecyclerView.visibility = View.GONE
                     realTimeDatabase.getRequests(requireView(),this,user.id)
                 }
             }catch (ex:Exception){}
         })
-        
+        //====================================================================================================================
+
     }
 
     //--------------------------------| get all doctors cards |---------------------------------------
@@ -93,11 +95,13 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
 
 
 
+    //----------------------| Set the choose doctor in viewmoel to et data in next layout - go to reserve message screen |-----------------------------
     override fun chooseDoctor(doctor: User) {
         val chooseDoctorViewModel: ChooseDoctorViewModel = ViewModelProvider(requireActivity()).get(ChooseDoctorViewModel::class.java)
         chooseDoctorViewModel.setDoctor(doctor)
         findNavController().navigate(R.id.action_allDoctorsFragment_to_reserveMessageFragment)
     }
+    //==================================================================================================================================================
 
 
 
@@ -107,7 +111,6 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
         try{
             val listOfChooseBranchDoctors = getListOfDoctorsBasedOnDoctorType()
             doctorsRecyclerView.adapter = DoctorsRecyclerViewAdapter(listOfChooseBranchDoctors,this)
-
             doctorsAviableText.visibility =if(listOfChooseBranchDoctors.isNotEmpty()) View.GONE else View.VISIBLE
             doctorsRecyclerView.visibility =if(listOfChooseBranchDoctors.isNotEmpty()) View.VISIBLE else View.GONE
         }catch (ex:Exception){}
@@ -129,12 +132,15 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
 
 
 
+
+    //-------------------------| Listen to requests database changed |------------------------------
     override fun onRequestsDatabaseChanged(allPatients: ArrayList<User>) {
         doctorsRecyclerView.adapter = PatientsRecyclerViewAdapter(allPatients,this)
         doctorsAviableText.text = "No patients aviable"
         doctorsAviableText.visibility =if(allPatients.isNotEmpty()) View.GONE else View.VISIBLE
         doctorsRecyclerView.visibility =if(allPatients.isNotEmpty()) View.VISIBLE else View.GONE
     }
+    //==============================================================================================
 
 
 }
