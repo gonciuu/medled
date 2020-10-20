@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rounded10_bg"
+    android:backgroundTint="#f7f7f7"
+    android:layout_marginTop="10dp"
+    android:paddingTop="15dp"
+    android:id="@+id/allPatientBox"
+    android:paddingBottom="15dp"
+    android:layout_marginBottom="10dp"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <ImageView
+        android:id="@+id/patientAvatar"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_gravity="center"
+        android:src="@drawable/user_avatar_1"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/patientName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dr. Wilson"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:fontFamily="@font/open_sans_semibold"/>
+
+        <TextView
+            android:id="@+id/patientBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pulmanonologist"
+            android:textColor="@color/gray"
+            android:textSize="15sp"
+            android:fontFamily="@font/open_sans_regular"/>
+
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/declineButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#F44336"
+        android:layout_gravity="center"
+        android:layout_marginStart="5dp"
+        app:tint="@color/white"
+        android:src="@drawable/ic_exit"
+        android:padding="10dp"
+        android:background="@drawable/rounded10_bg"/>
+
+
+    <ImageView
+        android:id="@+id/confirmButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#124342"
+        app:tint="@color/white"
+        android:src="@drawable/ic_confirm"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:background="@drawable/rounded10_bg"/>
+
+
+
+
+</LinearLayout>

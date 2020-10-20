@@ -58,7 +58,7 @@ class RegisterFragment : Fragment() {
         //set user info
         user.name = registerFullNameInput.text.toString()
         user.bio = if(user.isDoctor) "A Doctor" else "A patient"
-        //user.drawable = if...
+        user.avatar =  if(user.isDoctor) R.drawable.doctor_avatar_1 else R.drawable.user_avatar_1
 
 
         //check if the start time is lower than end time
