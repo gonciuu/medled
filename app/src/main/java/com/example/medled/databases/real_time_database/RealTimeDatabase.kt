@@ -7,6 +7,7 @@ import com.example.medled.helpers.Helpers
 import com.example.medled.models.Request
 import com.example.medled.models.User
 import com.example.medled.screens.doctor.AllDoctorsInterface
+import com.example.medled.screens.doctor.ChatInterface
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
@@ -137,4 +138,24 @@ class RealTimeDatabase {
         //================================================================
     }
     //==================================================================================
+
+
+    fun getRequestById(view: View, requestId: String,listener: ChatInterface){
+        var request:Request? = null
+
+        requestsRef.child(requestId).addValueEventListener(object: ValueEventListener{
+            override fun onCancelled(p0: com.google.firebase.database.DatabaseError) {
+                Helpers().showSnackBar(p0.message,view)
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                    val rq = p0.getValue(Request::class.java)!!
+                    if(rq.id == requestId){
+                        request = rq
+                    }
+                listener.onRequestChanged(request!!)
+            }
+        })
+
+    }
 }
