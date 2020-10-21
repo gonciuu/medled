@@ -77,6 +77,19 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <TextView
+        android:id="@+id/waitingForDoctorText"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Waiting for doctor..."
+        android:textAlignment="center"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="24sp"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"

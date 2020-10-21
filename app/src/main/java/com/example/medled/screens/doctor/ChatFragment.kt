@@ -59,7 +59,6 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
     override fun onRequestChanged(request: Request) {
         try{
             currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer { currentUser->
-
                 //send message
                 sendMessageButton.setOnClickListener {
                     request.messages.add(Message(messageTextInput.text.toString(),currentUser!!.id))
@@ -75,8 +74,14 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
                 }else{
                     chatMemberName.text = request.doctor!!.name
                     chatMemberBio.text = request.doctor.medicineBranch
+                    if(request.isDoctorActive){
+                        messagesRecyclerView.visibility = View.VISIBLE
+                        waitingForDoctorText.visibility = View.GONE
+                    }else{
+                        messagesRecyclerView.visibility = View.GONE
+                        waitingForDoctorText.visibility = View.VISIBLE
+                    }
                 }
-
                 //set the messages recycler view
                 messagesRecyclerView.adapter = MessagesRecyclerViewAdapter(currentUser.id, request.messages)
             })
@@ -98,4 +103,11 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
         imm!!.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
     //===================================================================================
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+
+    }
+
 }

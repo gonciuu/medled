@@ -61,7 +61,7 @@ class ReserveMessageFragment : Fragment(),DatabaseError {
         currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer {
             val patientId = it!!.id
             val request: Request  = Request(patientId+doctor.id,it,doctor,
-               true,
+                isUserActive =true,
                 isDoctorActive = false,
                 messages = arrayListOf()
             )

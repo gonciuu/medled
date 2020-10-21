@@ -14,7 +14,9 @@ import com.example.medled.R
 import com.example.medled.adapters.recycler_view.DoctorTypesRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.DoctorsRecyclerViewAdapter
 import com.example.medled.adapters.recycler_view.PatientsRecyclerViewAdapter
+import com.example.medled.databases.real_time_database.DatabaseError
 import com.example.medled.databases.real_time_database.RealTimeDatabase
+import com.example.medled.helpers.Helpers
 import com.example.medled.models.DoctorTypeCard
 import com.example.medled.models.Request
 import com.example.medled.models.User
@@ -25,7 +27,7 @@ import kotlinx.android.synthetic.main.fragment_all_doctors.*
 import java.lang.Exception
 
 
-class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
+class AllDoctorsFragment : Fragment() , AllDoctorsInterface, DatabaseError{
 
     private lateinit var realTimeDatabase:RealTimeDatabase
     private lateinit var allDoctors: ArrayList<User>
@@ -141,8 +143,19 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
     //------------| accept request by the doctor |---------------
     override fun onRequestAccept(request: Request) {
         val requestViewModel: RequestViewModel = ViewModelProvider(requireActivity()).get(RequestViewModel::class.java)
+        request.isDoctorActive = true
+        RealTimeDatabase().insertRequest(request,requireView(),this)
         requestViewModel.setRequest(request.id)
         findNavController().navigate(R.id.action_allDoctorsFragment_to_chatFragment)
     }
+
     //============================================================
+
+    //-------------------------| Catch eventual error |-------------------------------
+    override fun errorHandled(errorMessage: String, view: View) {
+        Helpers().showSnackBar(errorMessage,requireView())
+    }
+    //================================================================================
+
+
 }
