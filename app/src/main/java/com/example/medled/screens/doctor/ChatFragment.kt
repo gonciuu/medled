@@ -1,6 +1,7 @@
 package com.example.medled.screens.doctor
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.MessagesRecyclerViewAdapter
@@ -67,6 +69,10 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
                     RealTimeDatabase().insertRequest(request,requireView(),this)
                 }
 
+                exitChatButton.setOnClickListener {
+                    ConfirmDialog("Confirm","Are you sure to leave ?", currentUser!!.isDoctor,request,this).show(requireActivity().supportFragmentManager,"confirm")
+                }
+
                 //set the chat member info
                 if(currentUser!!.isDoctor){
                     chatMemberName.text = request.patient!!.name
@@ -84,6 +90,7 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
                 }
                 //set the messages recycler view
                 messagesRecyclerView.adapter = MessagesRecyclerViewAdapter(currentUser.id, request.messages)
+
             })
         }catch (ex:Exception){ }
     }
@@ -104,10 +111,15 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
     }
     //===================================================================================
 
-    override fun onDestroy() {
-        super.onDestroy()
 
 
+    override fun onDeleteChat(request: Request) {
+    }
+
+    override fun onDoctorLeave(request: Request) {
+        request.isDoctorActive = false
+        RealTimeDatabase().insertRequest(request,requireView(),this)
+        findNavController().navigate(R.id.action_chatFragment_to_medicinesFragment)
     }
 
 }

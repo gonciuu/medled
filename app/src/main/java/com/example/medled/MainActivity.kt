@@ -11,6 +11,7 @@ import com.example.medled.authentication.Authentication
 import com.example.medled.view_models.CurrentUserViewModel
 import com.example.medled.view_models.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_chat.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,4 +78,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     //=============================================================================================================================================
+
+
+    override fun onBackPressed() {
+        val navController = findNavController(R.id.nav_host_fragment)
+        if (navController.currentDestination!!.id == R.id.chatFragment){
+            exitChatButton.performClick()
+        }else{
+            super.onBackPressed()
+        }
+    }
 }

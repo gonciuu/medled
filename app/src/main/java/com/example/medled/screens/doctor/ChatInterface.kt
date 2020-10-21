@@ -5,4 +5,8 @@ import com.example.medled.models.Request
 interface ChatInterface {
 
     fun onRequestChanged(request: Request)
+
+    fun onDeleteChat(request: Request)
+
+    fun onDoctorLeave(request: Request)
 }
