@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.MessagesRecyclerViewAdapter
 import com.example.medled.databases.real_time_database.RealTimeDatabase
+import com.example.medled.models.Message
 import com.example.medled.models.Request
 import com.example.medled.view_models.CurrentUserViewModel
 import com.example.medled.view_models.RequestViewModel
@@ -28,15 +29,12 @@ class ChatFragment : Fragment(),ChatInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         currentUserViewModel = ViewModelProvider(requireActivity()).get(CurrentUserViewModel::class.java)
+        requestViewModel =  ViewModelProvider(requireActivity()).get(RequestViewModel::class.java)
 
-        requestViewModel =  ViewModelProvider(requireActivity()).get(
-            RequestViewModel::class.java)
         setChatInfo()
-
-
         messagesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        messagesRecyclerView.adapter = MessagesRecyclerViewAdapter()
     }
 
 
@@ -59,6 +57,18 @@ class ChatFragment : Fragment(),ChatInterface {
                  chatMemberName.text = request.doctor!!.name
                  chatMemberBio.text = request.doctor.medicineBranch
              }
+
+             val msgs = arrayListOf<Message>(
+                 Message("SIEMA","L9z3hTmMtKVB7wn1l3OyHMVtYDA3"),
+                 Message("SIEMA","f4UHcGg0e6UC4ZZWhFRSRWk1hVo2"),
+                 Message("SIEMA","L9z3hTmMtKVB7wn1l3OyHMVtYDA3"),
+                 Message("SIEMA","f4UHcGg0e6UC4ZZWhFRSRWk1hVo2"),
+                 Message("SIEMA","L9z3hTmMtKVB7wn1l3OyHMVtYDA3"),
+                 Message("SIEMA","f4UHcGg0e6UC4ZZWhFRSRWk1hVo2"),
+                 Message("SIEMA","f4UHcGg0e6UC4ZZWhFRSRWk1hVo2"),
+                 Message("SIEMA","f4UHcGg0e6UC4ZZWhFRSRWk1hVo2")
+             )
+             messagesRecyclerView.adapter = MessagesRecyclerViewAdapter(currentUser.id,msgs)
          })
     }
     //==============================================================================================

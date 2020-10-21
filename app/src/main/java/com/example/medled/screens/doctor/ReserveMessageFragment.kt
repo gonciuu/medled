@@ -61,8 +61,9 @@ class ReserveMessageFragment : Fragment(),DatabaseError {
         currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer {
             val patientId = it!!.id
             val request: Request  = Request(patientId+doctor.id,it,doctor,
-                isUserActive = true,
-                isDoctorActive = false
+               true,
+                isDoctorActive = false,
+                messages = arrayListOf()
             )
             val db:RealTimeDatabase = RealTimeDatabase()
             db.insertRequest(request,requireView(),this)
