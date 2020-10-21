@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.medled.R
 import com.example.medled.databases.real_time_database.DatabaseError
 import com.example.medled.databases.real_time_database.RealTimeDatabase
@@ -16,6 +17,7 @@ import com.example.medled.models.Request
 import com.example.medled.models.User
 import com.example.medled.view_models.ChooseDoctorViewModel
 import com.example.medled.view_models.CurrentUserViewModel
+import com.example.medled.view_models.RequestViewModel
 import kotlinx.android.synthetic.main.fragment_reserve_message.*
 
 class ReserveMessageFragment : Fragment(),DatabaseError {
@@ -58,9 +60,18 @@ class ReserveMessageFragment : Fragment(),DatabaseError {
         val currentUserViewModel: CurrentUserViewModel = ViewModelProvider(requireActivity()).get(CurrentUserViewModel::class.java)
         currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer {
             val patientId = it!!.id
-            val request: Request  = Request(patientId+doctor.id,it,doctor)
+            val request: Request  = Request(patientId+doctor.id,it,doctor,
+                isUserActive = true,
+                isDoctorActive = false
+            )
             val db:RealTimeDatabase = RealTimeDatabase()
             db.insertRequest(request,requireView(),this)
+
+            //set request in view model to provide it into the message fragment
+            val requestViewModel:RequestViewModel = ViewModelProvider(requireActivity()).get(RequestViewModel::class.java)
+            requestViewModel.setRequest(request.id)
+
+            findNavController().navigate(R.id.action_reserveMessageFragment_to_chatFragment)
         })
     }
     //==============================================================================================
