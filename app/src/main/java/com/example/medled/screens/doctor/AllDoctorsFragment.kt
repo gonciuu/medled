@@ -54,6 +54,7 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
                     realTimeDatabase.getActiveDoctors(requireView(),this)
                 }else{
                     //if user is a doctor show a patients list
+                    doctorsAviableText.text = "No patients aviable"
                     doctorsTypeRecyclerView.visibility = View.GONE
                     realTimeDatabase.getRequests(requireView(),this,user.id)
                 }
@@ -131,16 +132,17 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
     //-------------------------| Listen to requests database changed |------------------------------
     override fun onRequestsDatabaseChanged(allRequests: ArrayList<Request>) {
         doctorsRecyclerView.adapter = PatientsRecyclerViewAdapter(allRequests,this)
-        doctorsAviableText.text = "No patients aviable"
         textView17.text = "Your patients"
         doctorsAviableText.visibility =if(allRequests.isNotEmpty()) View.GONE else View.VISIBLE
         doctorsRecyclerView.visibility =if(allRequests.isNotEmpty()) View.VISIBLE else View.GONE
     }
     //==============================================================================================
 
+    //------------| accept request by the doctor |---------------
     override fun onRequestAccept(request: Request) {
         val requestViewModel: RequestViewModel = ViewModelProvider(requireActivity()).get(RequestViewModel::class.java)
         requestViewModel.setRequest(request.id)
         findNavController().navigate(R.id.action_allDoctorsFragment_to_chatFragment)
     }
+    //============================================================
 }

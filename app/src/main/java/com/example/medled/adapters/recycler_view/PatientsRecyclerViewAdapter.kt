@@ -20,10 +20,13 @@ class PatientsRecyclerViewAdapter(private val listOfPatients:ArrayList<Request>,
 
     override fun onBindViewHolder(holder: PatientsRecyclerViewHolder, position: Int) {
         val request = listOfPatients[holder.adapterPosition]
+
+        //setup patient data
         holder.patientName.text = request.patient!!.name
         holder.patientAvatar.setImageResource(request.patient.avatar)
         holder.patientBio.text = request.patient.bio
 
+        //accept request
         holder.confirmButton.setOnClickListener {
             listener.onRequestAccept(request)
         }
