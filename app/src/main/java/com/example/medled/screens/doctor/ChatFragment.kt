@@ -60,6 +60,7 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
         try{
             currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer { currentUser->
 
+                //send message
                 sendMessageButton.setOnClickListener {
                     request.messages.add(Message(messageTextInput.text.toString(),currentUser!!.id))
                     messageTextInput.text.clear()
@@ -67,6 +68,7 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
                     RealTimeDatabase().insertRequest(request,requireView(),this)
                 }
 
+                //set the chat member info
                 if(currentUser!!.isDoctor){
                     chatMemberName.text = request.patient!!.name
                     chatMemberBio.text = request.patient.bio
@@ -75,19 +77,25 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
                     chatMemberBio.text = request.doctor.medicineBranch
                 }
 
+                //set the messages recycler view
                 messagesRecyclerView.adapter = MessagesRecyclerViewAdapter(currentUser.id, request.messages)
             })
         }catch (ex:Exception){ }
     }
 
     //==============================================================================================
+
+    //--------------------| handle eventual db error |----------------------------
     override fun errorHandled(errorMessage: String, view: View) {
         Helpers().showSnackBar(errorMessage,requireView())
     }
+    //============================================================================
 
+    //-------------------------| close the soft keyboard |------------------------------
     private fun closeKeyboard(){
         val imm: InputMethodManager? =
             requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
         imm!!.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
+    //===================================================================================
 }
