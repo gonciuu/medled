@@ -88,7 +88,8 @@
         android:orientation="horizontal">
 
         <EditText
-            android:layout_width="match_parent"
+            android:id="@+id/messageTextInput"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
             android:layout_weight="1"
@@ -101,6 +102,7 @@
             android:padding="15dp" />
 
         <ImageView
+            android:id="@+id/sendMessageButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/ic_send"

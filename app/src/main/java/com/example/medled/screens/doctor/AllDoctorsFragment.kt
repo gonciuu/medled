@@ -127,14 +127,14 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
     //===============================================================================
 
 
-
-
     //-------------------------| Listen to requests database changed |------------------------------
     override fun onRequestsDatabaseChanged(allRequests: ArrayList<Request>) {
-        doctorsRecyclerView.adapter = PatientsRecyclerViewAdapter(allRequests,this)
-        textView17.text = "Your patients"
-        doctorsAviableText.visibility =if(allRequests.isNotEmpty()) View.GONE else View.VISIBLE
-        doctorsRecyclerView.visibility =if(allRequests.isNotEmpty()) View.VISIBLE else View.GONE
+        try{
+            doctorsRecyclerView.adapter = PatientsRecyclerViewAdapter(allRequests,this)
+            textView17.text = "Your patients"
+            doctorsAviableText.visibility =if(allRequests.isNotEmpty()) View.GONE else View.VISIBLE
+            doctorsRecyclerView.visibility =if(allRequests.isNotEmpty()) View.VISIBLE else View.GONE
+        }catch (ex:Exception){}
     }
     //==============================================================================================
 
