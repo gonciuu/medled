@@ -12,4 +12,6 @@ interface AllDoctorsInterface {
 
     fun onRequestsDatabaseChanged(allRequests: ArrayList<Request>)
 
+    fun onRequestAccept(request: Request)
+
 }

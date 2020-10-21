@@ -20,6 +20,7 @@ import com.example.medled.models.Request
 import com.example.medled.models.User
 import com.example.medled.view_models.ChooseDoctorViewModel
 import com.example.medled.view_models.CurrentUserViewModel
+import com.example.medled.view_models.RequestViewModel
 import kotlinx.android.synthetic.main.fragment_all_doctors.*
 import java.lang.Exception
 
@@ -137,5 +138,9 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface{
     }
     //==============================================================================================
 
-
+    override fun onRequestAccept(request: Request) {
+        val requestViewModel: RequestViewModel = ViewModelProvider(requireActivity()).get(RequestViewModel::class.java)
+        requestViewModel.setRequest(request.id)
+        findNavController().navigate(R.id.action_allDoctorsFragment_to_chatFragment)
+    }
 }
