@@ -45,6 +45,7 @@
 
 
         <LinearLayout
+            android:id="@+id/changeNameBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -94,6 +95,7 @@
             android:background="@color/lightGray" />
 
         <LinearLayout
+            android:id="@+id/changeBioBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -193,6 +195,7 @@
             android:background="@color/lightGray" />
 
         <LinearLayout
+            android:id="@+id/changeMedicineBranchBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -242,6 +245,7 @@
             android:background="@color/lightGray" />
 
         <LinearLayout
+            android:id="@+id/changePasswordBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

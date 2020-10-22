@@ -125,6 +125,54 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_changeBio"
+            app:destination="@id/changeBio"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_changeMedicineBranch"
+            app:destination="@id/changeMedicineBranch"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_changeName"
+            app:destination="@id/changeName"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_changePassword"
+            app:destination="@id/changePassword"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+    <fragment
+        android:id="@+id/changeBio"
+        android:name="com.example.medled.screens.profile.user_config.ChangeBio"
+        android:label="fragment_change_bio"
+        tools:layout="@layout/fragment_change_bio" />
+    <fragment
+        android:id="@+id/changeMedicineBranch"
+        android:name="com.example.medled.screens.profile.user_config.ChangeMedicineBranch"
+        android:label="fragment_change_medicine_branch"
+        tools:layout="@layout/fragment_change_medicine_branch" />
+    <fragment
+        android:id="@+id/changeName"
+        android:name="com.example.medled.screens.profile.user_config.ChangeName"
+        android:label="fragment_change_name"
+        tools:layout="@layout/fragment_change_name" />
+    <fragment
+        android:id="@+id/changePassword"
+        android:name="com.example.medled.screens.profile.user_config.ChangePassword"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
 
 </navigation>

@@ -18,13 +18,16 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
 
-
+    private lateinit var  currentUserViewModel: CurrentUserViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        currentUserViewModel = ViewModelProvider(requireActivity()).get(com.example.medled.view_models.CurrentUserViewModel::class.java)
+
 
         changeAvatarBox.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_chooseAvatarFragment)
@@ -35,12 +38,13 @@ class ProfileFragment : Fragment() {
         }
 
         setupUserInfo()
+        boxesClick()
 
     }
 
     //-------------------------| Setup user info in profile fragment |---------------------------------
     private fun setupUserInfo(){
-        val currentUserViewModel: CurrentUserViewModel = ViewModelProvider(requireActivity()).get(CurrentUserViewModel::class.java)
+
         currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer { user->
             if(user!=null){
                 currentUserName.text = user.name
@@ -51,4 +55,26 @@ class ProfileFragment : Fragment() {
         })
     }
     //==================================================================================================
+
+    //-------------------------------------| Setup menu boxes clicks |------------------------------------------
+    private fun boxesClick(){
+        changeNameBox.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_changeName)
+        }
+        changeBioBox.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_changeBio)
+        }
+
+        changeMedicineBranchBox.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_changeMedicineBranch)
+        }
+
+        changePasswordBox.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_changePassword)
+        }
+
+    }
+    //==========================================================================================================
+
+
 }
