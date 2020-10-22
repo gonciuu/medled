@@ -1,4 +1,4 @@
-package com.example.medled.screens.profile
+package com.example.medled.screens.profile.user_config
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

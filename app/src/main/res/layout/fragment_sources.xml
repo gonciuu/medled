@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+
+        android:orientation="vertical"
+        tools:context=".screens.profile.user_config.SourcesFragment">
+
+        <ImageView
+            android:id="@+id/sourcesBackButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/ic_back_button"
+            app:tint="@color/black" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Sources"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:text="Layout inspirations :"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:autoLink="web"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/open_sans_regular"
+            android:linksClickable="true"
+            android:text="https://dribbble.com/shots/13959395-Medicines-reminder"
+            android:textColor="@color/gray"
+            android:textColorLink="@color/lightGray"
+            android:textSize="16sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutInspirationsSourcesRecyclerView"/>
+
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:text="Icons, Drawables, Images :"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/imagesSourcesRecyclerView"/>
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

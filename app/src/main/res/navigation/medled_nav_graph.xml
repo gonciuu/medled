@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_welcome" />
     <fragment
         android:id="@+id/chooseAvatarFragment"
-        android:name="com.example.medled.screens.profile.ChooseAvatarFragment"
+        android:name="com.example.medled.screens.profile.user_config.ChooseAvatarFragment"
         android:label="fragment_choose_avatar"
         tools:layout="@layout/fragment_choose_avatar" />
 
@@ -153,6 +153,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_sourcesFragment"
+            app:destination="@id/sourcesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/changeBio"
@@ -174,5 +181,9 @@
         android:name="com.example.medled.screens.profile.user_config.ChangePassword"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/sourcesFragment"
+        android:name="com.example.medled.screens.profile.user_config.SourcesFragment"
+        android:label="SourcesFragment" />
 
 </navigation>

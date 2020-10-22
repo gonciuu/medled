@@ -294,7 +294,55 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
             android:background="@color/lightGray" />
+        <LinearLayout
+            android:id="@+id/sourcesBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/rounded10_bg"
+                android:backgroundTint="#003F8E"
+                android:padding="7dp"
+                android:src="@drawable/ic_sources"
+                app:tint="@color/white" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/open_sans_regular"
+                android:paddingStart="20dp"
+                android:text="Sources"
+                android:textColor="@color/gray"
+                android:textSize="18sp"
+                tools:ignore="RtlSymmetry" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:rotation="180"
+                android:src="@drawable/ic_back_button"
+                app:tint="@color/darkGray" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/lightGray" />
         <LinearLayout
             android:id="@+id/logOutBox"
             android:layout_width="match_parent"

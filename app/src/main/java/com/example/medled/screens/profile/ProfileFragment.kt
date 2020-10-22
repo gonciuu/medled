@@ -79,6 +79,10 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_profileFragment_to_changePassword)
         }
 
+        sourcesBox.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_sourcesFragment)
+        }
+
     }
     //==========================================================================================================
 

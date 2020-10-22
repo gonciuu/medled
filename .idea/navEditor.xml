@@ -196,6 +196,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_profileFragment_to_sourcesFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -230,6 +235,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="sourcesFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1168" />
+                            <option name="y" value="1617" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
