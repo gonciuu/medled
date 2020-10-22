@@ -42,27 +42,12 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:autoLink="web"
-            android:clickable="true"
-            android:focusable="true"
-            android:fontFamily="@font/open_sans_regular"
-            android:linksClickable="true"
-            android:text="https://dribbble.com/shots/13959395-Medicines-reminder"
-            android:textColor="@color/gray"
-            android:textColorLink="@color/lightGray"
-            android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/layoutInspirationsSourcesRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/layoutInspirationsSourcesRecyclerView"/>
-
-
-
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content" />
 
 
         <TextView
@@ -74,10 +59,11 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-       <androidx.recyclerview.widget.RecyclerView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:id="@+id/imagesSourcesRecyclerView"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/imagesSourcesRecyclerView"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>
