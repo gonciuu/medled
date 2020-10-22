@@ -1,11 +1,14 @@
 package com.example.medled.authentication
 
 import android.app.AlertDialog
+import android.util.Log
 import android.view.View
 import com.example.medled.databases.real_time_database.DatabaseError
 import com.example.medled.databases.real_time_database.RealTimeDatabase
 import com.example.medled.helpers.Helpers
 import com.example.medled.models.User
+import com.google.firebase.auth.EmailAuthCredential
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import java.lang.Exception
 
@@ -103,4 +106,36 @@ class Authentication: DatabaseError {
         }
     }
     //===================================================================
+
+
+
+    //-----------------------| Change Password |-------------------------
+    fun changePassword(oldPassword:String, newPassword:String, view: View, complete: ()->Unit){
+        val dialog :AlertDialog = helpers.getLoadingDialog(view.context,"Changing password...")  //loading dialog
+        try{
+           dialog.show()
+            val user = auth.currentUser!!
+            val credential = EmailAuthProvider.getCredential(user.email!!,oldPassword)
+            user.reauthenticate(credential).addOnCompleteListener { task1 ->
+                if (task1.isSuccessful) {
+                    user.updatePassword(newPassword).addOnCompleteListener { task2 ->
+                        if (task2.isSuccessful) {
+                            helpers.showSnackBar("Password has been changed", view)
+                            complete()
+                        } else {
+                            Log.d("EXC", task2.exception.toString())
+                            helpers.showSnackBar(task2.exception!!.message.toString(), view)
+                        }
+                    }
+                }else{
+                    Log.d("EXC", task1.exception.toString())
+                    helpers.showSnackBar(task1.exception!!.message.toString(), view)
+                }
+                dialog.dismiss()
+            }
+        }catch (ex:Exception){
+            dialog.dismiss()
+        }
+    }
+    //=====================================================================
 }
