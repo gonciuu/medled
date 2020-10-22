@@ -38,8 +38,9 @@ class ChangeName : Fragment(),DatabaseError {
     //-----------------------------| Save new username in database |---------------------------------
     private fun saveNewName(){
         currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer {user->
+            changeNameInput.setText(user!!.name)
             saveNewNameButton.setOnClickListener {
-                user!!.name = changeNameInput.text.toString()
+                user.name = changeNameInput.text.toString()
                 val db: RealTimeDatabase = RealTimeDatabase()
                 db.insertUserToDatabase(user,requireView(),this)
                 requireActivity().onBackPressed()

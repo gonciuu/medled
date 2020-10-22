@@ -13,6 +13,7 @@
     <string name="write_a_reply">Write a reply...</string>
     <string name="choose_your_work_interval">Choose Work Time Interval</string>
     <string name="new_name">New Name</string>
+    <string name="new_bio">New Bio</string>
 
     <plurals name="numberOfSongsAvailable">
         <item quantity="one">%d week</item>
