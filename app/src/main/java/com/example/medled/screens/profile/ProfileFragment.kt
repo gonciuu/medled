@@ -50,6 +50,12 @@ class ProfileFragment : Fragment() {
                 currentUserName.text = user.name
                 currentUserAvatar.setImageResource(user.avatar)
                 currentUserBio.text = if(user.isDoctor) user.medicineBranch else user.bio
+
+                //hide chang medicine branch option
+                if(!user.isDoctor){
+                    changeMedicineBranchDivider.visibility = View.GONE
+                    changeMedicineBranchBox.visibility = View.GONE
+                }
             }
 
         })
