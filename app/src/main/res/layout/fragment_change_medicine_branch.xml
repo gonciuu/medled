@@ -1,14 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".screens.profile.user_config.ChangeMedicineBranch">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <AutoCompleteTextView
+        android:id="@+id/newMedicineBranchACTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded10_bg"
+        android:backgroundTint="@color/bg_cyan"
+        android:drawableRight="@drawable/ic_more"
+        android:fontFamily="@font/open_sans_regular"
+        android:maxLines="1"
+        android:padding="18dp"
+        android:singleLine="true"
+        android:text="Cardiologist"
+        android:textColor="@color/darkGray"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        tools:ignore="LabelFor" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/open_sans_regular"
+        android:text="@string/new_mb"
+        android:textColor="@color/lightGray"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/changeMedicineBranchBackButton"
+        app:layout_constraintTop_toBottomOf="@+id/changeMedicineBranchBackButton" />
+
+    <Button
+        android:id="@+id/saveNewMedicineBranchButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/rounded10_bg"
+        android:backgroundTint="@color/colorPrimary"
+        android:fontFamily="@font/open_sans_regular"
+        android:paddingTop="17dp"
+        android:paddingBottom="17dp"
+        android:stateListAnimator="@animator/scale_anim"
+        android:text="Save"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/changeMedicineBranchBackButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_back_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/black" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

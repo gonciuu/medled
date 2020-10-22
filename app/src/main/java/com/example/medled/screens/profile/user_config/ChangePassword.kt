@@ -26,6 +26,7 @@ class ChangePassword : Fragment() {
             changePassword()
         }
 
+        //soft keyboard enter click
         Helpers().keyboardEnterButtonClick(newPasswordInput){saveNewPasswordButton.performClick()}
     }
 

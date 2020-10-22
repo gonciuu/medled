@@ -16,6 +16,7 @@
     <string name="new_bio">New Bio</string>
     <string name="new_passsword">New Password</string>
     <string name="old_passsword">Old Password</string>
+    <string name="new_mb">New Medicine Branch</string>
 
     <plurals name="numberOfSongsAvailable">
         <item quantity="one">%d week</item>
