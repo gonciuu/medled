@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity() {
     //=============================================================================================================================================
 
 
+    //-----------------| handle back button press in the chat fragment |-----------------------------
     override fun onBackPressed() {
         val navController = findNavController(R.id.nav_host_fragment)
         if (navController.currentDestination!!.id == R.id.chatFragment){
@@ -88,4 +89,5 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+    //===============================================================================================
 }

@@ -17,7 +17,9 @@ class ConfirmDialog(private val title: String, private val message: String, priv
                 .setPositiveButton(
                     "Ok"
                 ) { dialog, _ ->
+                    //doctor leave
                     if(isDoctor) listener.onDoctorLeave(request)
+                    //user leave
                     else listener.onDeleteChat(request.id)
                     dialog.cancel()
                 }

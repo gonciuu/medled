@@ -159,7 +159,7 @@ class RealTimeDatabase {
                     }
                     listener.onRequestChanged(request!!)
                 }else{
-                    //Helpers().showSnackBar("A request has been canceled by patient",view)
+                    //chat is null
                     listener.onPatientDisabledChat()
                 }
 
