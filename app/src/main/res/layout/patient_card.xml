@@ -51,18 +51,6 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/declineButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:backgroundTint="#F44336"
-        android:layout_gravity="center"
-        android:layout_marginStart="5dp"
-        app:tint="@color/white"
-        android:src="@drawable/ic_exit"
-        android:padding="10dp"
-        android:background="@drawable/rounded10_bg"/>
-
 
     <ImageView
         android:id="@+id/confirmButton"
@@ -72,7 +60,7 @@
         app:tint="@color/white"
         android:src="@drawable/ic_confirm"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         android:layout_gravity="center"
         android:padding="10dp"
         android:background="@drawable/rounded10_bg"/>

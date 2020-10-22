@@ -11,5 +11,4 @@ class PatientsRecyclerViewHolder(v:View):RecyclerView.ViewHolder(v) {
     val patientAvatar: ImageView = v.patientAvatar
     val patientBio: TextView = v.patientBio
     val confirmButton: ImageView = v.confirmButton
-    val declineButton: ImageView = v.declineButton
 }

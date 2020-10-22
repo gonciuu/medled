@@ -48,7 +48,8 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface, DatabaseError{
         //---------------------------------| Check the user type (doctor or patient) |--------------------------------------
         currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer {user->
             try {
-                if(!user!!.isDoctor){
+                setupUserData(user!!.name, user.isDoctor)
+                if(!user.isDoctor){
                     //if user is a patient show the doctor list
                     allDoctors = ArrayList()
                     doctorsTypeRecyclerView.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
@@ -157,5 +158,11 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface, DatabaseError{
     }
     //================================================================================
 
+    //--------------| set user name and welcome text in textviews |---------------------
+    private fun setupUserData(name:String, isDoctor: Boolean){
+        nameHi.text = "Hi $name"
+        topDoctorsTV.text = if(isDoctor) "Patients" else "Top Doctors"
+    }
+    //=================================================================================
 
 }
