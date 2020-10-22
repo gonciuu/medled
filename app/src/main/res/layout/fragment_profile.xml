@@ -13,6 +13,7 @@
 
 
         <ImageView
+            android:id="@+id/currentUserAvatar"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
@@ -21,6 +22,7 @@
             android:src="@drawable/doctor_avatar_1" />
 
         <TextView
+            android:id="@+id/currentUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -31,6 +33,7 @@
             android:textSize="26sp" />
 
         <TextView
+            android:id="@+id/currentUserBio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
