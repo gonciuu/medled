@@ -18,7 +18,7 @@ class ConfirmDialog(private val title: String, private val message: String, priv
                     "Ok"
                 ) { dialog, _ ->
                     if(isDoctor) listener.onDoctorLeave(request)
-                    else listener.onDeleteChat(request)
+                    else listener.onDeleteChat(request.id)
                     dialog.cancel()
                 }
                 .setNegativeButton(

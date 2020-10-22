@@ -6,7 +6,10 @@ interface ChatInterface {
 
     fun onRequestChanged(request: Request)
 
-    fun onDeleteChat(request: Request)
+    fun onDeleteChat(requestId: String)
 
     fun onDoctorLeave(request: Request)
+
+    fun onPatientDisabledChat()
+
 }

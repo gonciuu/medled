@@ -3,10 +3,14 @@ package com.example.medled.screens.doctor
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.constraintlayout.solver.widgets.Helper
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -50,6 +54,7 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
 
     //------------------| Get request info from database |----------------------
     private fun setChatInfo(){
+        Log.d("FUNKCJA","SET CHAT INFO")
         val database = RealTimeDatabase()
         requestViewModel.getRequest().observe(viewLifecycleOwner, Observer {requestId->
             database.getRequestById(requireView(),requestId,this)
@@ -60,6 +65,7 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
     //----------------------------| Listen to the request changed |---------------------------------
     override fun onRequestChanged(request: Request) {
         try{
+            Log.d("FUNKCJA","onRequestChanged")
             currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer { currentUser->
                 //send message
                 sendMessageButton.setOnClickListener {
@@ -99,6 +105,7 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
 
     //--------------------| handle eventual db error |----------------------------
     override fun errorHandled(errorMessage: String, view: View) {
+        Log.d("FUNKCJA","ERROR")
         Helpers().showSnackBar(errorMessage,requireView())
     }
     //============================================================================
@@ -112,14 +119,30 @@ class ChatFragment : Fragment(),ChatInterface,DatabaseError {
     //===================================================================================
 
 
-
-    override fun onDeleteChat(request: Request) {
+    //------------------------| On User leave - delete chat and go to the medicines screen |---------------------------------
+    override fun onDeleteChat(requestId: String) {
+        Log.d("FUNKCJA","onDeleteChat")
+        RealTimeDatabase().deleteAndRemoveValueEventListenerFromRequest(requestId)
     }
+    //=======================================================================================================================
 
+    //--------------------------| On doctor Leave |------------------------------
     override fun onDoctorLeave(request: Request) {
+        Log.d("FUNKCJA","onDoctorLeave")
         request.isDoctorActive = false
         RealTimeDatabase().insertRequest(request,requireView(),this)
         findNavController().navigate(R.id.action_chatFragment_to_medicinesFragment)
+    }
+    //===========================================================================
+
+    override fun onPatientDisabledChat() {
+        try{
+            currentUserViewModel.getUser().observe(viewLifecycleOwner, Observer { currentUser->
+                Helpers().showSnackBar(if(currentUser!!.isDoctor) "A chat has been canceled by user" else "You canceled the chat",requireView())
+                findNavController().navigate(R.id.action_chatFragment_to_medicinesFragment)
+                Log.d("FUNKCJA","onPatientDisabledChat")
+            })
+        }catch (ex:java.lang.Exception){}
     }
 
 }
