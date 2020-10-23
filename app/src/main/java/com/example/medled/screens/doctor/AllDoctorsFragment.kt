@@ -1,6 +1,7 @@
 package com.example.medled.screens.doctor
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.example.medled.adapters.recycler_view.PatientsRecyclerViewAdapter
 import com.example.medled.databases.real_time_database.DatabaseError
 import com.example.medled.databases.real_time_database.RealTimeDatabase
 import com.example.medled.helpers.Helpers
+import com.example.medled.models.CalendarDay
 import com.example.medled.models.DoctorTypeCard
 import com.example.medled.models.Request
 import com.example.medled.models.User
@@ -25,6 +27,8 @@ import com.example.medled.view_models.CurrentUserViewModel
 import com.example.medled.view_models.RequestViewModel
 import kotlinx.android.synthetic.main.fragment_all_doctors.*
 import java.lang.Exception
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AllDoctorsFragment : Fragment() , AllDoctorsInterface, DatabaseError{
@@ -117,17 +121,27 @@ class AllDoctorsFragment : Fragment() , AllDoctorsInterface, DatabaseError{
 
     //======================================================================================================
 
-    //-----------| Get all doctors which type is the same as choosen |-------------
+    //-----------| Get all doctors which type is the same as choosen and the hours is the same as actual |-------------
     private fun getListOfDoctorsBasedOnDoctorType():ArrayList<User>{
+        val currentHour: Int = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+
+        val doctorStartTimeCalendar = Calendar.getInstance()
+        val doctorEndTimeCalendar = Calendar.getInstance()
+
         val listOfChooseBranchDoctors = ArrayList<User>()
         allDoctors.forEach {
-            if(it.medicineBranch == chooseDoctorType){
+            doctorStartTimeCalendar.timeInMillis = it.startTime!!
+            doctorEndTimeCalendar.timeInMillis = it.endTime!!
+            
+            if(it.medicineBranch == chooseDoctorType &&
+                currentHour >= doctorStartTimeCalendar.get(Calendar.HOUR_OF_DAY) &&
+                currentHour <= doctorEndTimeCalendar.get(Calendar.HOUR_OF_DAY) ) {
                 listOfChooseBranchDoctors.add(it)
-            }
+                }
         }
         return listOfChooseBranchDoctors
     }
-    //===============================================================================
+    //=======================================================================================================
 
 
     //-------------------------| Listen to requests database changed |------------------------------
