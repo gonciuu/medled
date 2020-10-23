@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@drawable/rounded10_bg"
     android:backgroundTint="#ffffff"
@@ -37,15 +38,23 @@
             android:text="Centrum"
             android:fontFamily="@font/open_sans_bold"
             android:textSize="20sp"
-            android:textColor="@color/black"/>
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:paddingEnd="5dp"
+            android:textColor="@color/black"
+            tools:ignore="RtlSymmetry" />
         <TextView
             android:id="@+id/medicineTypeAndAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="3 capsules"
+            android:text="3 capsules "
             android:fontFamily="@font/open_sans_regular"
             android:textSize="17sp"
-            android:textColor="#707070"/>
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:paddingEnd="5dp"
+            android:textColor="#707070"
+            tools:ignore="RtlSymmetry" />
 
     </LinearLayout>
 

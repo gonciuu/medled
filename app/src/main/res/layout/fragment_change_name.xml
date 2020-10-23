@@ -49,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        android:maxLines="1"
         android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_stroke_bg"
         android:fontFamily="@font/open_sans_regular"

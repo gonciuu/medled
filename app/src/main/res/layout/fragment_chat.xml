@@ -40,6 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_semibold"
+                android:maxLines="2"
+                android:ellipsize="end"
                 android:text="Dr. Wilson"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
@@ -50,6 +52,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_semibold"
                 android:text="Pulmanonologist"
+                android:maxLines="2"
+                android:ellipsize="end"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
@@ -111,6 +115,7 @@
             android:fontFamily="@font/open_sans_regular"
             android:hint="@string/write_a_reply"
             android:importantForAutofill="no"
+            android:maxLines="1"
             android:inputType="text"
             android:padding="15dp" />
 

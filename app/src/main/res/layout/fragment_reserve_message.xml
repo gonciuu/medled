@@ -96,6 +96,8 @@ Lorem ipsum dolor sit amet, consectetur
  adipiscing elit. Nam posuere elit vitae turpis
 ullamcorper. Aliquam erat volutpat."
         android:textAlignment="center"
+        android:maxLines="10"
+        android:ellipsize="end"
         android:textColor="@color/lightGray"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"

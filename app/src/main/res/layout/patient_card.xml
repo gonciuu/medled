@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rounded10_bg"
@@ -34,9 +35,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Dr. Wilson"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:textColor="@color/black"
+            android:paddingEnd="10dp"
             android:textSize="18sp"
-            android:fontFamily="@font/open_sans_semibold"/>
+            android:fontFamily="@font/open_sans_semibold"
+            tools:ignore="RtlSymmetry" />
 
         <TextView
             android:id="@+id/patientBio"
@@ -44,8 +49,12 @@
             android:layout_height="wrap_content"
             android:text="Pulmanonologist"
             android:textColor="@color/gray"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:textSize="15sp"
-            android:fontFamily="@font/open_sans_regular"/>
+            android:paddingEnd="10dp"
+            android:fontFamily="@font/open_sans_regular"
+            tools:ignore="RtlSymmetry" />
 
 
 
