@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/welcomeAuthFragment"
-        android:name="com.example.medled.screens.auth.WelcomeAuthFragment"
+        android:name="com.myapp.medled.screens.auth.WelcomeAuthFragment"
         android:label="fragment_welcome_auth"
         tools:layout="@layout/fragment_welcome_auth">
         <action
@@ -29,23 +29,23 @@
 
     <fragment
         android:id="@+id/chooseAvatarFragment"
-        android:name="com.example.medled.screens.profile.user_config.ChooseAvatarFragment"
+        android:name="com.myapp.medled.screens.profile.user_config.ChooseAvatarFragment"
         android:label="fragment_choose_avatar"
         tools:layout="@layout/fragment_choose_avatar" />
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.medled.screens.auth.RegisterFragment"
+        android:name="com.myapp.medled.screens.auth.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.medled.screens.auth.LoginFragment"
+        android:name="com.myapp.medled.screens.auth.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/medicinesFragment"
-        android:name="com.example.medled.screens.medicines.MedicinesFragment"
+        android:name="com.myapp.medled.screens.medicines.MedicinesFragment"
         android:label="MedicinesFragment"
         tools:layout="@layout/fragment_medicines">
         <action
@@ -58,13 +58,13 @@
     </fragment>
     <fragment
         android:id="@+id/addMedicineFragment"
-        android:name="com.example.medled.screens.medicines.AddMedicineFragment"
+        android:name="com.myapp.medled.screens.medicines.AddMedicineFragment"
         android:label="fragment_add_medicine"
         tools:layout="@layout/fragment_add_medicine" />
     <fragment
 
         android:id="@+id/allDoctorsFragment"
-        android:name="com.example.medled.screens.doctor.AllDoctorsFragment"
+        android:name="com.myapp.medled.screens.doctor.AllDoctorsFragment"
         android:label="AllDoctorsFragment"
         tools:layout="@layout/fragment_all_doctors" >
         <action
@@ -84,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/reserveMessageFragment"
-        android:name="com.example.medled.screens.doctor.ReserveMessageFragment"
+        android:name="com.myapp.medled.screens.doctor.ReserveMessageFragment"
         android:label="fragment_reserve_message"
         tools:layout="@layout/fragment_reserve_message" >
         <action
@@ -97,7 +97,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.example.medled.screens.doctor.ChatFragment"
+        android:name="com.myapp.medled.screens.doctor.ChatFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" >
         <action
@@ -111,7 +111,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.medled.screens.profile.ProfileFragment"
+        android:name="com.myapp.medled.screens.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile">
         <action
@@ -159,27 +159,27 @@
     </fragment>
     <fragment
         android:id="@+id/changeBio"
-        android:name="com.example.medled.screens.profile.user_config.ChangeBio"
+        android:name="com.myapp.medled.screens.profile.user_config.ChangeBio"
         android:label="fragment_change_bio"
         tools:layout="@layout/fragment_change_bio" />
     <fragment
         android:id="@+id/changeMedicineBranch"
-        android:name="com.example.medled.screens.profile.user_config.ChangeMedicineBranch"
+        android:name="com.myapp.medled.screens.profile.user_config.ChangeMedicineBranch"
         android:label="fragment_change_medicine_branch"
         tools:layout="@layout/fragment_change_medicine_branch" />
     <fragment
         android:id="@+id/changeName"
-        android:name="com.example.medled.screens.profile.user_config.ChangeName"
+        android:name="com.myapp.medled.screens.profile.user_config.ChangeName"
         android:label="fragment_change_name"
         tools:layout="@layout/fragment_change_name" />
     <fragment
         android:id="@+id/changePassword"
-        android:name="com.example.medled.screens.profile.user_config.ChangePassword"
+        android:name="com.myapp.medled.screens.profile.user_config.ChangePassword"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password" />
     <fragment
         android:id="@+id/sourcesFragment"
-        android:name="com.example.medled.screens.profile.user_config.SourcesFragment"
+        android:name="com.myapp.medled.screens.profile.user_config.SourcesFragment"
         android:label="SourcesFragment" />
 
 </navigation>
