@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.medled.R
 import com.example.medled.adapters.recycler_view.view_holders.PatientsRecyclerViewHolder
 import com.example.medled.models.Request
-import com.example.medled.models.User
 import com.example.medled.screens.doctor.AllDoctorsInterface
 
 class PatientsRecyclerViewAdapter(private val listOfPatients:ArrayList<Request>,private val listener:AllDoctorsInterface): RecyclerView.Adapter<PatientsRecyclerViewHolder>() {

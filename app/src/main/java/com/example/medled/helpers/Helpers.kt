@@ -1,15 +1,12 @@
 package com.example.medled.helpers
 
-import android.app.Activity
 import android.app.AlertDialog
-import android.app.ProgressDialog
 import android.content.Context
 import android.view.KeyEvent
 import android.view.View
 import android.widget.EditText
 import com.example.medled.R
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_register.*
 
 class Helpers {
 

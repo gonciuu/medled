@@ -26,11 +26,7 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment
-        android:id="@+id/welcomeFragment"
-        android:name="com.example.medled.screens.WelcomeFragment"
-        android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" />
+
     <fragment
         android:id="@+id/chooseAvatarFragment"
         android:name="com.example.medled.screens.profile.user_config.ChooseAvatarFragment"

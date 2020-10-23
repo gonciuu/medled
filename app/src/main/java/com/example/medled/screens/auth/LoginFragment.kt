@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.medled.R
 import com.example.medled.authentication.Authentication
 import com.example.medled.helpers.Helpers

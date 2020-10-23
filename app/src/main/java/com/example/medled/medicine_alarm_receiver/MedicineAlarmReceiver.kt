@@ -11,7 +11,6 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.example.medled.MainActivity
 import com.example.medled.R
-import java.util.*
 
 class MedicineAlarmReceiver : BroadcastReceiver() {
     companion object {
