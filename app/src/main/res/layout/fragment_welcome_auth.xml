@@ -24,8 +24,8 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/welcomePagerDots"
-        android:layout_width="70dp"
-        android:layout_height="12dp"
+        android:layout_width="200px"
+        android:layout_height="35px"
         android:layout_gravity="center"
         android:layout_marginTop="2dp"
         app:tabBackground="@drawable/view_pager_tab_selector"

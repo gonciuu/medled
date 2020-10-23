@@ -68,9 +68,9 @@ class WelcomeAuthFragment : Fragment() {
     //--------------------| Get titles and messages to viewpager |------------------------
     private fun getPagerMessagesList():ArrayList<PagerCard>{
         val listOfCards = ArrayList<PagerCard>()
-        listOfCards.add(PagerCard("Let's get started","some messages here, some messages here, some messages here, some messages here"))
-        listOfCards.add(PagerCard("Let's get started2","some messages here, some messages here, some messages here, some messages here2"))
-        listOfCards.add( PagerCard("Let's get started3","some messages here, some messages here, some messages here, some messages here3"))
+        listOfCards.add(PagerCard("Let's get started","The app which helps you to remember all your daily medicines. Keep it all in save place! "))
+        listOfCards.add(PagerCard("Keep medicines save","Save your medicines - app will remind you when you have to take pills! You don't have to remember anything"))
+        listOfCards.add(PagerCard("Contact with doctor","Easily keep in touch with your favorite doctor. Messages with him and take disease solution!"))
         return listOfCards
     }
     //====================================================================================
