@@ -41,21 +41,32 @@ A few resources to get you started if this is your first kotlin project:
 
 - #### First you need to login or register
 
-<img src="https://github.com/F-Y-E-F/medled/blob/master/icon.png" width=200 height=400/>
-<img src="https://github.com/F-Y-E-F/medled/blob/master/icon.png" width=200 height=400/>
+<img src= "scr/login_screen.png" width=200 height=400/>
+<img src= "scr/register_screen.png" width=200 height=400/>
 
 - #### Add medicine
-<img src="https://github.com/F-Y-E-F/medled/blob/master/icon.png" width=200 height=400/>
+<img src= "scr/add_pills_screen.png" width=200 height=400/>
+<img src= "scr/pills_screen.png" width=200 height=400/>
 
 - #### Find doctors
-<img src="https://github.com/F-Y-E-F/medled/blob/master/icon.png" width=200 height=400/>
+<img src= "scr/find_doctors_screen.png" width=200 height=400/>
+<img src= "scr/find_doctors_2_screen.png" width=200 height=400/>
+<img src= "scr/doctor_info_screen.png" width=200 height=400/>	
 
 - #### Message with doctor
-<img src="https://github.com/F-Y-E-F/medled/blob/master/icon.png" width=200 height=400/>
+<img src= "scr/waiting_screen.png" width=200 height=400/>	
+<img src= "scr/chat_screen.png" width=200 height=400/>	
 
 - #### Change profile settings
-<img src="https://github.com/F-Y-E-F/medled/blob/master/icon.png" width=200 height=400/>
+<img src= "scr/profile_screen.png" width=200 height=400/>	
+<img src= "scr/change_sth_screen.png" width=200 height=400/>	
 
+
+### Doctor perspective :
+
+<img src= "scr/patients_screen.png" width=200 height=400/>	
+<img src= "scr/doctor_chat_screen.png" width=200 height=400/>	
+<img src= "scr/doctor_profile_screen.png" width=200 height=400/>	
 
 
 
