@@ -9,8 +9,8 @@ A few resources to get you started if this is your first kotlin project:
 
 <img src="https://github.com/F-Y-E-F/medled/blob/master/icon.png" width=100 height=100/>
 
- :shopping_cart: :point_right: [Find app on playstore](https://github.com/F-Y-E-F/medled/tree/feature/make_graphic_project_in_adobeXd)  :point_left: :shopping_cart:\
-:film_strip: :point_right: [App guide video](https://github.com/F-Y-E-F/medled/tree/feature/make_graphic_project_in_adobeXd)  :point_left: :film_strip:
+ :shopping_cart: :point_right: [Find app on playstore](https://play.google.com/store/apps/details?id=com.myapp.medled)  :point_left: :shopping_cart:\
+:film_strip: :point_right: [App guide video](https://youtu.be/Zx2-DHT7mqg)  :point_left: :film_strip:
 
 ### App branches :
 
@@ -41,32 +41,32 @@ A few resources to get you started if this is your first kotlin project:
 
 - #### First you need to login or register
 
-<img src= "scr/login_screen.png" width=200 height=400/>
-<img src= "scr/register_screen.png" width=200 height=400/>
+<img src= "scr/login_screen.png"  width="40%">
+<img src= "scr/register_screen.png"  width="40%">
 
 - #### Add medicine
-<img src= "scr/add_pills_screen.png" width=200 height=400/>
-<img src= "scr/pills_screen.png" width=200 height=400/>
+<img src= "scr/add_pills_screen.png"  width="40%">
+<img src= "scr/pills_screen.png"  width="40%">
 
 - #### Find doctors
-<img src= "scr/find_doctors_screen.png" width=200 height=400/>
-<img src= "scr/find_doctors_2_screen.png" width=200 height=400/>
-<img src= "scr/doctor_info_screen.png" width=200 height=400/>	
+<img src= "scr/find_doctors_screen.png" width="40%">
+<img src= "scr/find_doctors_2_screen.png"  width="40%">
+<img src= "scr/doctor_info_screen.png"  width="40%">
 
 - #### Message with doctor
-<img src= "scr/waiting_screen.png" width=200 height=400/>	
-<img src= "scr/chat_screen.png" width=200 height=400/>	
+<img src= "scr/waiting_screen.png"  width="40%">
+<img src= "scr/chat_screen.png"  width="40%">
 
 - #### Change profile settings
-<img src= "scr/profile_screen.png" width=200 height=400/>	
-<img src= "scr/change_sth_screen.png" width=200 height=400/>	
+<img src= "scr/profile_screen.png" width="40%">
+<img src= "scr/change_sth_screen.png"  width="40%">
 
 
 ### Doctor perspective :
 
-<img src= "scr/patients_screen.png" width=200 height=400/>	
-<img src= "scr/doctor_chat_screen.png" width=200 height=400/>	
-<img src= "scr/doctor_profile_screen.png" width=200 height=400/>	
+<img src= "scr/patients_screen.png"  width="40%">
+<img src= "scr/doctor_chat_screen.png"  width="40%">
+<img src= "scr/doctor_profile_screen.png"  width="40%">
 
 
 
